@@ -54,14 +54,62 @@
 		8ADE62472200B12900E956A1 /* Pizza_Ordering_Web_App */ = {
 			isa = PBXGroup;
 			children = (
-				8ADE62482200B12900E956A1 /* AppDelegate.swift */,
+				8ADE625A2200B8B100E956A1 /* Home */,
+				8ADE625B2200B8D500E956A1 /* Models */,
+				8ADE625F2200B99800E956A1 /* Network manager */,
+				8ADE625C2200B91D00E956A1 /* Resources */,
+				8ADE625D2200B92D00E956A1 /* Startup */,
+				8ADE625E2200B94000E956A1 /* Supporting files */,
+			);
+			path = Pizza_Ordering_Web_App;
+			sourceTree = "<group>";
+		};
+		8ADE625A2200B8B100E956A1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
 				8ADE624A2200B12900E956A1 /* HomeViewController.swift */,
 				8ADE624C2200B12900E956A1 /* Home.storyboard */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		8ADE625B2200B8D500E956A1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8ADE625C2200B91D00E956A1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				8ADE624F2200B12B00E956A1 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		8ADE625D2200B92D00E956A1 /* Startup */ = {
+			isa = PBXGroup;
+			children = (
+				8ADE62482200B12900E956A1 /* AppDelegate.swift */,
+			);
+			path = Startup;
+			sourceTree = "<group>";
+		};
+		8ADE625E2200B94000E956A1 /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
 				8ADE62512200B12B00E956A1 /* LaunchScreen.storyboard */,
 				8ADE62542200B12B00E956A1 /* Info.plist */,
 			);
-			path = Pizza_Ordering_Web_App;
+			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		8ADE625F2200B99800E956A1 /* Network manager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Network manager";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,7 +332,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HHF5S2KXXT;
-				INFOPLIST_FILE = Pizza_Ordering_Web_App/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Pizza_Ordering_Web_App/Supporting files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -303,7 +351,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HHF5S2KXXT;
-				INFOPLIST_FILE = Pizza_Ordering_Web_App/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Pizza_Ordering_Web_App/Supporting files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
