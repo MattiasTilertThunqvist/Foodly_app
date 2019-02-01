@@ -11,14 +11,17 @@ import UIKit
 class RestaurantTableViewCell: UITableViewCell {
 
     // MARK: IBOutlets
+    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     
-    func setName(name: String) {
+    // MARK: Helpers
+    
+    func setName(to name: String) {
         nameLabel.text = name
     }
     
-    func setAdress(adress1: String, adress2: String) {
-        addressLabel.text = adress1 + ", " + adress2
+    func setAdress(to adress: String) {
+        addressLabel.text = adress
     }
 }

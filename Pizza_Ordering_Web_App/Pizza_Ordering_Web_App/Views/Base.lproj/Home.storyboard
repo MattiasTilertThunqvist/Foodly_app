@@ -32,7 +32,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="xcz-0g-wsj"/>
+                    <navigationItem key="navigationItem" id="xcz-0g-wsj">
+                        <barButtonItem key="backBarButtonItem" title=" " id="5kf-lH-S2M"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="D2o-rC-Xwl" id="un4-h5-GTp"/>
                     </connections>
@@ -40,6 +42,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1079.2" y="132.68365817091455"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="KZg-hn-VXC">
+            <objects>
+                <viewController storyboardIdentifier="DetailViewController" id="RUn-qW-rBE" customClass="DetailViewController" customModule="Pizza_Ordering_Web_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nI6-2o-vJS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="v4a-t0-bzl">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ZdM-qX-REh">
+                                <rect key="frame" x="167.5" y="313.5" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="1xl-Td-1yG"/>
+                                    <constraint firstAttribute="height" constant="40" id="fxd-5B-RUp"/>
+                                </constraints>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="v4a-t0-bzl" firstAttribute="leading" secondItem="QNe-i3-rdL" secondAttribute="leading" id="7t6-6W-JsW"/>
+                            <constraint firstItem="v4a-t0-bzl" firstAttribute="top" secondItem="QNe-i3-rdL" secondAttribute="top" id="JaG-1e-o2Z"/>
+                            <constraint firstItem="QNe-i3-rdL" firstAttribute="bottom" secondItem="v4a-t0-bzl" secondAttribute="bottom" id="LK2-w9-N8a"/>
+                            <constraint firstItem="QNe-i3-rdL" firstAttribute="trailing" secondItem="v4a-t0-bzl" secondAttribute="trailing" id="e9l-qm-xBQ"/>
+                            <constraint firstItem="ZdM-qX-REh" firstAttribute="centerX" secondItem="nI6-2o-vJS" secondAttribute="centerX" id="lpD-dT-4EY"/>
+                            <constraint firstItem="ZdM-qX-REh" firstAttribute="centerY" secondItem="nI6-2o-vJS" secondAttribute="centerY" id="z9H-gA-Idn"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="QNe-i3-rdL"/>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="ZdM-qX-REh" id="UOk-pe-fMl"/>
+                        <outlet property="tableView" destination="v4a-t0-bzl" id="BHb-RW-PYA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M8o-RC-9ou" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1822" y="133"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wAw-VK-272">
