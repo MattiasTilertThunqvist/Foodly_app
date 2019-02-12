@@ -21,7 +21,6 @@ class DetailViewController: UIViewController {
     // MARK: IBOutlets
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: View
     
@@ -38,7 +37,6 @@ class DetailViewController: UIViewController {
 extension DetailViewController {
     
     func setup() {
-        activityIndicator.startAnimating()
         guard let restaurant = restaurant else { return }
         title = restaurant.name
     }
@@ -55,15 +53,18 @@ extension DetailViewController {
     func getMenu() {
         guard let restaurant = restaurant else { return }
         
+        let loadingViewController = LoadingViewController()
+        add(loadingViewController)
+        
         dataController.getMenuForRestaurant(with: restaurant.id) { (menu, error) in
+            loadingViewController.remove()
+            
             if error != nil {
                 let alert = UIAlertController(title: "Kunde inte hämta meny", message: "", preferredStyle: .alert)
                 let alertAction = UIAlertAction(title: "Okej", style: .default, handler: nil)
                 alert.addAction(alertAction)
                 
                 DispatchQueue.main.async {
-                    self.activityIndicator.stopAnimating()
-                    self.activityIndicator.isHidden = true
                     self.present(alert, animated: true, completion: nil)
                 }
             } else if let menu = menu {
@@ -77,8 +78,6 @@ extension DetailViewController {
                 self.sortMenuByRank()
                 
                 DispatchQueue.main.async {
-                    self.activityIndicator.stopAnimating()
-                    self.activityIndicator.isHidden = true
                     self.tableView.reloadData()
                     self.tableView.alpha = 1.0
                 }
