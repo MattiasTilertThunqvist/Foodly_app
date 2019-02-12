@@ -31,6 +31,7 @@ class HomeViewController: UIViewController {
         startRequests()
         setup()
         setupTableView()
+        registerNibs()
     }
 }
 
@@ -67,7 +68,9 @@ private extension HomeViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.alpha = 0.0
-        
+    }
+    
+    func registerNibs() {
         let cellNib = UINib(nibName: RestaurantCellIdentifier, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: RestaurantCellIdentifier)
     }

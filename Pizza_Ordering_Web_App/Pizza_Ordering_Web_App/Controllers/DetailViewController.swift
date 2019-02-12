@@ -29,6 +29,7 @@ class DetailViewController: UIViewController {
         getMenu()
         setup()
         setupTableView()
+        registerNibs()
     }
 }
 
@@ -45,7 +46,9 @@ extension DetailViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.alpha = 0.0
-        
+    }
+    
+    func registerNibs() {
         let cellNib = UINib(nibName: menuCellIdentifier, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: menuCellIdentifier)
     }
