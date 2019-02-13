@@ -20,6 +20,7 @@
 		8A8F100F2213007B00E4B185 /* AddToCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8F100E2213007B00E4B185 /* AddToCartViewController.swift */; };
 		8AA8DA0B2212C2EE00138FAF /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA8DA0A2212C2EE00138FAF /* LoadingViewController.swift */; };
 		8AA8DA0E2212C6C900138FAF /* UIViewController+Pizza.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA8DA0D2212C6C900138FAF /* UIViewController+Pizza.swift */; };
+		8AC21A772214581A00DF1BD9 /* AddToCartProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC21A762214581A00DF1BD9 /* AddToCartProtocol.swift */; };
 		8ADC8477221309ED0049464E /* StoryboardInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADC8476221309ED0049464E /* StoryboardInstance.swift */; };
 		8ADE62492200B12900E956A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADE62482200B12900E956A1 /* AppDelegate.swift */; };
 		8ADE624B2200B12900E956A1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADE624A2200B12900E956A1 /* HomeViewController.swift */; };
@@ -42,6 +43,7 @@
 		8A8F100E2213007B00E4B185 /* AddToCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCartViewController.swift; sourceTree = "<group>"; };
 		8AA8DA0A2212C2EE00138FAF /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		8AA8DA0D2212C6C900138FAF /* UIViewController+Pizza.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Pizza.swift"; sourceTree = "<group>"; };
+		8AC21A762214581A00DF1BD9 /* AddToCartProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCartProtocol.swift; sourceTree = "<group>"; };
 		8ADC8476221309ED0049464E /* StoryboardInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardInstance.swift; sourceTree = "<group>"; };
 		8ADE62452200B12900E956A1 /* Pizza_Ordering_Web_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pizza_Ordering_Web_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ADE62482200B12900E956A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +118,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		8AC21A75221457D700DF1BD9 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				8AC21A762214581A00DF1BD9 /* AddToCartProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		8ADE623C2200B12900E956A1 = {
 			isa = PBXGroup;
 			children = (
@@ -139,8 +149,9 @@
 				8A6940A722032F7B00FD71F8 /* Views */,
 				8ADE625B2200B8D500E956A1 /* Models */,
 				8ADE625F2200B99800E956A1 /* Data */,
-				8A1B01FA2202E24800CE513A /* UI Components */,
+				8AC21A75221457D700DF1BD9 /* Protocols */,
 				8AA8DA0C2212C69700138FAF /* Extensions */,
+				8A1B01FA2202E24800CE513A /* UI Components */,
 				8ADE625C2200B91D00E956A1 /* Resources */,
 				8ADE625D2200B92D00E956A1 /* Startup */,
 				8ADE625E2200B94000E956A1 /* Supporting files */,
@@ -282,6 +293,7 @@
 				8A28D64E2201A35400F5B640 /* Restaurant.swift in Sources */,
 				8A6940AB220339B100FD71F8 /* MenuItem.swift in Sources */,
 				8A8F100F2213007B00E4B185 /* AddToCartViewController.swift in Sources */,
+				8AC21A772214581A00DF1BD9 /* AddToCartProtocol.swift in Sources */,
 				8ADE624B2200B12900E956A1 /* HomeViewController.swift in Sources */,
 				8AA8DA0E2212C6C900138FAF /* UIViewController+Pizza.swift in Sources */,
 				8A6940A9220330B100FD71F8 /* DetailViewController.swift in Sources */,

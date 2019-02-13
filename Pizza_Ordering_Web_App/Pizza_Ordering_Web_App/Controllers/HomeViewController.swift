@@ -43,7 +43,8 @@ private extension HomeViewController {
         let nav = self.navigationController?.navigationBar
         nav?.barStyle = UIBarStyle.black
         nav?.tintColor = .pizzaColor(.white)
-        nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.pizzaColor(.white)]
+        nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.pizzaColor(.white),
+                                    NSAttributedString.Key.font: UIFont.pizzaRegularFont(withSize: 20)]
         navigationItem.title = ""
         title = "Restauranger"
     }

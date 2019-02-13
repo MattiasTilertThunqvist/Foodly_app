@@ -132,9 +132,10 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         let storyboard = StoryboardInstance.home
         if let viewController = storyboard.instantiateViewController(withIdentifier: "AddToCartViewController") as? AddToCartViewController {
             
-            viewController.restaurant = restaurant
             let menuItemsInCategory = getMenuItemsIn(category: categories[indexPath.section])
             viewController.menuItem = menuItemsInCategory[indexPath.row]
+            viewController.restaurant = restaurant
+            viewController.addToCartProtocol = self
             viewController.modalPresentationStyle = .overCurrentContext
             present(viewController, animated: false, completion: nil)
         }
@@ -157,5 +158,15 @@ extension DetailViewController {
     
     func getMenuItemsIn(category: String) -> [MenuItem] {
         return menu.filter({ $0.category == category })
+    }
+}
+
+// MARK: SettingsProtocol
+
+extension DetailViewController: AddToCartProtocol {
+    
+    func addToCart(_ menuItem: MenuItem, quantity: Int) {
+        print("items added to cart")
+        print(menuItem, quantity)
     }
 }

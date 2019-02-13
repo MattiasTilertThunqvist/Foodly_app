@@ -13,6 +13,7 @@ class AddToCartViewController: UIViewController {
     // MARK: Properties
     var restaurant: Restaurant!
     var menuItem: MenuItem!
+    var addToCartProtocol: AddToCartProtocol!
     let animationDuration = 0.3
     var numberOfItems = 1
     
@@ -52,14 +53,14 @@ class AddToCartViewController: UIViewController {
     }
     
     @IBAction func addToCartButtonWasPressed(_ sender: UIButton) {
-        addToCart()
+        addToCartProtocol.addToCart(menuItem, quantity: numberOfItems)
+        dismissView()
     }
     
     // MARK: View
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setup()
     }
     
@@ -67,12 +68,8 @@ class AddToCartViewController: UIViewController {
         setupContent()
     }
     
-    override func viewDidLayoutSubviews() {
-        
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
-        contentWillShow()
+        showContent()
     }
 }
 
@@ -87,11 +84,10 @@ extension AddToCartViewController {
         pricePerUnitLabel.text = menuItem.price > 0 ? "\(menuItem.price) kr" : "Gratis"
         addToCartButton.setTitle("Lägg i varukorgen", for: .normal)
         setTotalPrice()
+        hideContent(withAnimation: false) {}
     }
     
-    func setupContent() {
-        view.backgroundColor = UIColor.clear
-        
+    func setupContent() {        
         blurEffectView.frame = view.bounds
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissView))
         blurEffectView.addGestureRecognizer(tapGesture)
@@ -106,8 +102,6 @@ extension AddToCartViewController {
         addToCartButton.layer.cornerRadius = addToCartButton.frame.height * 0.5
         
         removeItemButton.isUserInteractionEnabled = false
-        
-        contentWillHide(withAnimation: false)
     }
 }
 
@@ -116,25 +110,29 @@ extension AddToCartViewController {
 
 extension AddToCartViewController {
     
-    func contentWillShow() {
-        UIView.animate(withDuration: 0.3) {
+    func showContent() {
+        UIView.animate(withDuration: animationDuration) {
             self.blurEffectView.alpha = 1.0
             self.containerView.transform = .identity
         }
     }
     
-    func contentWillHide(withAnimation animation: Bool) {
-        let timeInterval = animation ? 0.3 : 0.0
-        
-        UIView.animate(withDuration: timeInterval) {
+    func hideContent(withAnimation animation: Bool, completion: (() -> ())?) {
+        let timeInterval = animation ? animationDuration : 0.0
+
+        UIView.animate(withDuration: timeInterval, animations: {
             self.blurEffectView.alpha = 0.0
             self.containerView.transform = CGAffineTransform(translationX: 0,
                                                              y: self.containerView.frame.height)
+        }) { (_) in
+            completion?()
         }
     }
     
     @objc func dismissView() {
-        dismiss(animated: false, completion: nil)
+        hideContent(withAnimation: true) {
+            self.dismiss(animated: false, completion: nil)
+        }
     }
     
     func setTotalPrice() {
@@ -145,10 +143,5 @@ extension AddToCartViewController {
     func nrOfItemsDidChange() {
         removeItemButton.isUserInteractionEnabled = numberOfItems > 1
         setTotalPrice()
-    }
-    
-    func addToCart() {
-        
-        print("Add to cart")
     }
 }
