@@ -56,23 +56,94 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ViS-X3-h4B">
+                                <rect key="frame" x="0.0" y="573" width="375" height="94"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go to cart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5eu-Li-DKn">
+                                        <rect key="frame" x="15" y="47.5" width="345" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" name="pizzaWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zIw-PP-fbp">
+                                        <rect key="frame" x="15" y="15" width="345" height="27.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="1 item in cart" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G5l-TP-VOc">
+                                                <rect key="frame" x="0.0" y="0.0" width="288" height="27.5"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                                <color key="textColor" name="pizzaWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123 kr" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2L-ZJ-SI9">
+                                                <rect key="frame" x="288" y="0.0" width="57" height="27.5"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                                <color key="textColor" name="pizzaWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" name="pizzaGreen"/>
+                                <constraints>
+                                    <constraint firstItem="5eu-Li-DKn" firstAttribute="top" secondItem="zIw-PP-fbp" secondAttribute="bottom" constant="5" id="8WJ-PZ-0wf"/>
+                                    <constraint firstAttribute="trailing" secondItem="5eu-Li-DKn" secondAttribute="trailing" constant="15" id="K9A-ah-OzB"/>
+                                    <constraint firstAttribute="trailing" secondItem="zIw-PP-fbp" secondAttribute="trailing" constant="15" id="abp-PK-xKy"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="5eu-Li-DKn" secondAttribute="bottom" constant="15" id="dF6-8P-S7U"/>
+                                    <constraint firstItem="zIw-PP-fbp" firstAttribute="leading" secondItem="ViS-X3-h4B" secondAttribute="leading" constant="15" id="o79-q9-Ro5"/>
+                                    <constraint firstItem="zIw-PP-fbp" firstAttribute="top" secondItem="ViS-X3-h4B" secondAttribute="top" constant="15" id="rFa-fF-fbm"/>
+                                    <constraint firstItem="5eu-Li-DKn" firstAttribute="leading" secondItem="ViS-X3-h4B" secondAttribute="leading" constant="15" id="sct-Ju-rGJ"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1bM-Ua-y8a">
+                                <rect key="frame" x="0.0" y="573" width="375" height="94"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="1bM-Ua-y8a" firstAttribute="centerY" secondItem="ViS-X3-h4B" secondAttribute="centerY" id="4Az-hk-CR0"/>
+                            <constraint firstItem="1bM-Ua-y8a" firstAttribute="centerX" secondItem="ViS-X3-h4B" secondAttribute="centerX" id="7oQ-MH-Nyu"/>
                             <constraint firstItem="v4a-t0-bzl" firstAttribute="leading" secondItem="QNe-i3-rdL" secondAttribute="leading" id="7t6-6W-JsW"/>
                             <constraint firstItem="v4a-t0-bzl" firstAttribute="top" secondItem="QNe-i3-rdL" secondAttribute="top" id="JaG-1e-o2Z"/>
                             <constraint firstAttribute="bottom" secondItem="v4a-t0-bzl" secondAttribute="bottom" id="LK2-w9-N8a"/>
+                            <constraint firstItem="QNe-i3-rdL" firstAttribute="trailing" secondItem="ViS-X3-h4B" secondAttribute="trailing" id="QNO-dB-qU5"/>
+                            <constraint firstAttribute="bottom" secondItem="ViS-X3-h4B" secondAttribute="bottom" id="cg0-FJ-F6F"/>
                             <constraint firstItem="QNe-i3-rdL" firstAttribute="trailing" secondItem="v4a-t0-bzl" secondAttribute="trailing" id="e9l-qm-xBQ"/>
+                            <constraint firstItem="1bM-Ua-y8a" firstAttribute="width" secondItem="ViS-X3-h4B" secondAttribute="width" id="qUL-Jy-CGc"/>
+                            <constraint firstItem="1bM-Ua-y8a" firstAttribute="height" secondItem="ViS-X3-h4B" secondAttribute="height" id="v97-to-YYZ"/>
+                            <constraint firstItem="ViS-X3-h4B" firstAttribute="leading" secondItem="QNe-i3-rdL" secondAttribute="leading" id="y3c-Cd-OMQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QNe-i3-rdL"/>
                     </view>
                     <connections>
+                        <outlet property="cartContainerView" destination="ViS-X3-h4B" id="QjE-RR-g1W"/>
+                        <outlet property="cartTapView" destination="1bM-Ua-y8a" id="PDa-1N-JmO"/>
+                        <outlet property="descriptionLabel" destination="5eu-Li-DKn" id="tdp-y0-x36"/>
+                        <outlet property="nrOfItemsLabel" destination="G5l-TP-VOc" id="Hfh-cI-28w"/>
+                        <outlet property="priceLabel" destination="O2L-ZJ-SI9" id="a42-Go-qjC"/>
                         <outlet property="tableView" destination="v4a-t0-bzl" id="BHb-RW-PYA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M8o-RC-9ou" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1822" y="133"/>
+            <point key="canvasLocation" x="1821.5999999999999" y="132.68365817091455"/>
+        </scene>
+        <!--Cart View Controller-->
+        <scene sceneID="ruN-hO-p3k">
+            <objects>
+                <viewController storyboardIdentifier="CartViewController" id="RxT-eM-ccf" customClass="CartViewController" customModule="Pizza_Ordering_Web_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ptH-qG-VU6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="CMH-Xz-85g"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C7x-xa-oUn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2532" y="133"/>
         </scene>
         <!--Add To Cart View Controller-->
         <scene sceneID="Or0-hM-xyV">
@@ -221,7 +292,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Abx-n7-uEj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1824.8" y="811.84407796101959"/>
+            <point key="canvasLocation" x="1822" y="812"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wAw-VK-272">
@@ -254,6 +325,9 @@
         </namedColor>
         <namedColor name="pizzaLightGray">
             <color red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="pizzaWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

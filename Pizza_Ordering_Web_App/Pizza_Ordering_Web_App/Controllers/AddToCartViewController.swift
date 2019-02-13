@@ -84,7 +84,7 @@ extension AddToCartViewController {
         pricePerUnitLabel.text = menuItem.price > 0 ? "\(menuItem.price) kr" : "Gratis"
         addToCartButton.setTitle("Lägg i varukorgen", for: .normal)
         setTotalPrice()
-        hideContent(withAnimation: false) {}
+        hideContent(withAnimation: false, completion: nil)
     }
     
     func setupContent() {        
@@ -123,7 +123,7 @@ extension AddToCartViewController {
         UIView.animate(withDuration: timeInterval, animations: {
             self.blurEffectView.alpha = 0.0
             self.containerView.transform = CGAffineTransform(translationX: 0,
-                                                             y: self.containerView.frame.height)
+                                                             y: self.view.bounds.maxY)
         }) { (_) in
             completion?()
         }

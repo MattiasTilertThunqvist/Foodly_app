@@ -45,8 +45,8 @@ private extension HomeViewController {
         nav?.tintColor = .pizzaColor(.white)
         nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.pizzaColor(.white),
                                     NSAttributedString.Key.font: UIFont.pizzaRegularFont(withSize: 20)]
-        navigationItem.title = ""
         title = "Restauranger"
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     func startRequests() {

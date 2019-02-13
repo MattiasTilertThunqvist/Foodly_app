@@ -16,11 +16,18 @@ class DetailViewController: UIViewController {
     var restaurant: Restaurant!
     var menu: [MenuItem] = []
     var categories: [String] = []
+    var cart: [Cart] = []
     let menuCellIdentifier = "MenuItemTableViewCell"
+    let animationDuration = 0.3
     
     // MARK: IBOutlets
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var cartContainerView: UIView!
+    @IBOutlet weak var nrOfItemsLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var cartTapView: UIView!
     
     // MARK: View
     
@@ -39,6 +46,11 @@ extension DetailViewController {
     
     func setup() {
         title = restaurant.name
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(goToCart))
+        cartTapView.addGestureRecognizer(tapGesture)
+        hideCartButton(withAnimation: false)
     }
     
     func setupTableView() {
@@ -166,7 +178,72 @@ extension DetailViewController {
 extension DetailViewController: AddToCartProtocol {
     
     func addToCart(_ menuItem: MenuItem, quantity: Int) {
-        print("items added to cart")
-        print(menuItem, quantity)
+        let newItem = Cart(menuItem: menuItem, quantity: quantity)
+        cart.append(newItem)
+        showCartButton()
+    }
+}
+
+// MARK: Cart
+
+extension DetailViewController {
+    
+    func showCartButton() {
+        tableView.contentInset.bottom = cartContainerView.frame.height
+        setCartButtonText()
+        
+        UIView.animate(withDuration: animationDuration) {
+            self.cartContainerView.transform = .identity
+            self.cartTapView.transform = .identity
+        }
+    }
+    
+    func hideCartButton(withAnimation animation: Bool) {
+        let timeInterval = animation ? animationDuration : 0.0
+        
+        UIView.animate(withDuration: timeInterval, animations: {
+            let transformation = CGAffineTransform(translationX: 0,
+                                                   y: self.view.bounds.maxY)
+            self.cartContainerView.transform = transformation
+            self.cartTapView.transform = transformation
+        })
+    }
+    
+    func setCartButtonText() {
+        let quantity = quantityOfItemsInCart()
+        let itemString = quantity > 1 ? "varor" : "vara"
+        nrOfItemsLabel.text = "\(quantity) \(itemString) i varukorgen"
+        
+        priceLabel.text = "\(totalPriceOfItemsInCart()) kr"
+        descriptionLabel.text = "Gå till varukorgen"
+    }
+    
+    func quantityOfItemsInCart() -> Int {
+        var quantity = 0
+        
+        for item in cart {
+            quantity += item.quantity
+        }
+        
+        return quantity
+    }
+    
+    func totalPriceOfItemsInCart() -> Int {
+        var totalPrice = 0
+        
+        for item in cart {
+            totalPrice += item.menuItem.price * item.quantity
+        }
+        
+        return totalPrice
+    }
+    
+    @objc func goToCart() {
+        let storyboard = StoryboardInstance.home
+        if let viewController = storyboard.instantiateViewController(withIdentifier: "CartViewController") as? CartViewController {
+            viewController.restaurant = restaurant
+            viewController.cart = cart
+            navigationController?.pushViewController(viewController, animated: true)
+        }
     }
 }
