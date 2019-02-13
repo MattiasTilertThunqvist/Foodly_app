@@ -42,8 +42,8 @@ private extension HomeViewController {
     func setup() {
         let nav = self.navigationController?.navigationBar
         nav?.barStyle = UIBarStyle.black
-        nav?.tintColor = UIColor.white
-        nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        nav?.tintColor = .pizzaColor(.white)
+        nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.pizzaColor(.white)]
         navigationItem.title = ""
         title = "Restauranger"
     }
@@ -112,7 +112,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        let storyboard = StoryboardInstance.home
         if let detailViewController = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController {
             detailViewController.restaurant = restaurants[indexPath.row]
             navigationController?.pushViewController(detailViewController, animated: true)

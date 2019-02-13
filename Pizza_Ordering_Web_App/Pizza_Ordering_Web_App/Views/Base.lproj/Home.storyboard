@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -73,6 +74,153 @@
             </objects>
             <point key="canvasLocation" x="1822" y="133"/>
         </scene>
+        <!--Add To Cart View Controller-->
+        <scene sceneID="Or0-hM-xyV">
+            <objects>
+                <viewController storyboardIdentifier="AddToCartViewController" id="9ja-Jd-6ET" customClass="AddToCartViewController" customModule="Pizza_Ordering_Web_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Vsh-2a-oa9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YUa-5E-4Ua">
+                                <rect key="frame" x="0.0" y="322.5" width="375" height="344.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu item name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wcs-8D-Wtu">
+                                        <rect key="frame" x="15" y="80" width="345" height="34.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="25"/>
+                                        <color key="textColor" name="pizzaDarkGray"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1OM-SC-bSQ">
+                                        <rect key="frame" x="310" y="15" width="50" height="50"/>
+                                        <color key="backgroundColor" name="pizzaLightGray"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Ihm-68-Yoh"/>
+                                            <constraint firstAttribute="width" constant="50" id="McJ-co-KFD"/>
+                                        </constraints>
+                                        <state key="normal" image="cancel"/>
+                                        <connections>
+                                            <action selector="dismissButtonWasPressed:" destination="9ja-Jd-6ET" eventType="touchUpInside" id="c2R-AJ-13c"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lzp-OC-doY">
+                                        <rect key="frame" x="15" y="129.5" width="345" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" name="pizzaLightGray"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price per unit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WLZ-K6-hMA">
+                                        <rect key="frame" x="15" y="168" width="345" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" name="pizzaLightGray"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bzX-cr-6xu">
+                                        <rect key="frame" x="15" y="206.5" width="50" height="50"/>
+                                        <color key="backgroundColor" name="pizzaLightGray"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="ZuN-lq-g8q"/>
+                                            <constraint firstAttribute="height" constant="50" id="fwx-LB-95u"/>
+                                        </constraints>
+                                        <state key="normal" image="minus"/>
+                                        <connections>
+                                            <action selector="removeItemButtonWasPressed:" destination="9ja-Jd-6ET" eventType="touchUpInside" id="s6m-bJ-FRu"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NHP-yi-6wO">
+                                        <rect key="frame" x="310" y="206.5" width="50" height="50"/>
+                                        <color key="backgroundColor" name="pizzaGreen"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="fan-Uz-Eau"/>
+                                            <constraint firstAttribute="width" constant="50" id="pWO-dB-htu"/>
+                                        </constraints>
+                                        <state key="normal" image="plus"/>
+                                        <connections>
+                                            <action selector="addItemButtonWasPressed:" destination="9ja-Jd-6ET" eventType="touchUpInside" id="pCU-Kk-own"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 for 75 kr " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bqp-TF-uvV">
+                                        <rect key="frame" x="70" y="220" width="235" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" name="pizzaGreen"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Yc-7t-eKw">
+                                        <rect key="frame" x="15" y="271.5" width="345" height="50"/>
+                                        <color key="backgroundColor" name="pizzaGreen"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Fv4-Fu-GB3"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                        <state key="normal" title="Add to cart">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addToCartButtonWasPressed:" destination="9ja-Jd-6ET" eventType="touchUpInside" id="jbh-qj-Dkc"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ym6-Oa-zCL">
+                                        <rect key="frame" x="15" y="26.5" width="280" height="27.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                        <color key="textColor" name="pizzaLightGray"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="1Yc-7t-eKw" firstAttribute="leading" secondItem="YUa-5E-4Ua" secondAttribute="leading" constant="15" id="0Og-oB-tVd"/>
+                                    <constraint firstItem="wcs-8D-Wtu" firstAttribute="leading" secondItem="YUa-5E-4Ua" secondAttribute="leading" constant="15" id="4ds-fz-lk6"/>
+                                    <constraint firstItem="NHP-yi-6wO" firstAttribute="leading" secondItem="Bqp-TF-uvV" secondAttribute="trailing" constant="5" id="8P3-Bb-vzA"/>
+                                    <constraint firstAttribute="trailing" secondItem="wcs-8D-Wtu" secondAttribute="trailing" constant="15" id="IUR-KL-1gN"/>
+                                    <constraint firstItem="NHP-yi-6wO" firstAttribute="top" secondItem="WLZ-K6-hMA" secondAttribute="bottom" constant="15" id="Jj4-8a-Twe"/>
+                                    <constraint firstAttribute="trailing" secondItem="NHP-yi-6wO" secondAttribute="trailing" constant="15" id="LVS-f4-gZv"/>
+                                    <constraint firstItem="WLZ-K6-hMA" firstAttribute="leading" secondItem="YUa-5E-4Ua" secondAttribute="leading" constant="15" id="NPp-qr-geY"/>
+                                    <constraint firstItem="bzX-cr-6xu" firstAttribute="leading" secondItem="YUa-5E-4Ua" secondAttribute="leading" constant="15" id="Src-Mr-FNT"/>
+                                    <constraint firstItem="Bqp-TF-uvV" firstAttribute="centerY" secondItem="bzX-cr-6xu" secondAttribute="centerY" id="Ufb-9C-ass"/>
+                                    <constraint firstAttribute="trailing" secondItem="WLZ-K6-hMA" secondAttribute="trailing" constant="15" id="Wuz-Jf-Qn8"/>
+                                    <constraint firstItem="Bqp-TF-uvV" firstAttribute="leading" secondItem="bzX-cr-6xu" secondAttribute="trailing" constant="5" id="bLc-xW-Nl2"/>
+                                    <constraint firstItem="1Yc-7t-eKw" firstAttribute="top" secondItem="bzX-cr-6xu" secondAttribute="bottom" constant="15" id="cA8-EN-tlM"/>
+                                    <constraint firstItem="wcs-8D-Wtu" firstAttribute="top" secondItem="1OM-SC-bSQ" secondAttribute="bottom" constant="15" id="f7W-Eh-6M6"/>
+                                    <constraint firstAttribute="trailing" secondItem="1Yc-7t-eKw" secondAttribute="trailing" constant="15" id="gy9-bn-2Sc"/>
+                                    <constraint firstItem="lzp-OC-doY" firstAttribute="leading" secondItem="YUa-5E-4Ua" secondAttribute="leading" constant="15" id="kgV-Pc-wsD"/>
+                                    <constraint firstItem="ym6-Oa-zCL" firstAttribute="centerY" secondItem="1OM-SC-bSQ" secondAttribute="centerY" id="mck-Xi-71F"/>
+                                    <constraint firstAttribute="trailing" secondItem="lzp-OC-doY" secondAttribute="trailing" constant="15" id="moR-c9-sap"/>
+                                    <constraint firstAttribute="trailing" secondItem="1OM-SC-bSQ" secondAttribute="trailing" constant="15" id="nO5-1z-uRI"/>
+                                    <constraint firstItem="lzp-OC-doY" firstAttribute="top" secondItem="wcs-8D-Wtu" secondAttribute="bottom" constant="15" id="q1y-tN-yfk"/>
+                                    <constraint firstItem="bzX-cr-6xu" firstAttribute="top" secondItem="WLZ-K6-hMA" secondAttribute="bottom" constant="15" id="qeH-6z-Qdb"/>
+                                    <constraint firstItem="1OM-SC-bSQ" firstAttribute="leading" secondItem="ym6-Oa-zCL" secondAttribute="trailing" constant="15" id="toI-fW-dOQ"/>
+                                    <constraint firstItem="ym6-Oa-zCL" firstAttribute="leading" secondItem="YUa-5E-4Ua" secondAttribute="leading" constant="15" id="vB9-ET-aZc"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="1Yc-7t-eKw" secondAttribute="bottom" constant="15" id="vUg-46-dcI"/>
+                                    <constraint firstItem="WLZ-K6-hMA" firstAttribute="top" secondItem="lzp-OC-doY" secondAttribute="bottom" constant="15" id="wg9-lL-sHg"/>
+                                    <constraint firstItem="1OM-SC-bSQ" firstAttribute="top" secondItem="YUa-5E-4Ua" secondAttribute="top" constant="15" id="z9q-FI-nWX"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="YUa-5E-4Ua" firstAttribute="bottom" secondItem="Vsh-2a-oa9" secondAttribute="bottom" id="0dN-wu-Bgc"/>
+                            <constraint firstItem="YUa-5E-4Ua" firstAttribute="leading" secondItem="R2r-ma-lFx" secondAttribute="leading" id="Tvw-cc-vY1"/>
+                            <constraint firstItem="R2r-ma-lFx" firstAttribute="trailing" secondItem="YUa-5E-4Ua" secondAttribute="trailing" id="n6n-sd-mI4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="R2r-ma-lFx"/>
+                    </view>
+                    <connections>
+                        <outlet property="addItemButton" destination="NHP-yi-6wO" id="EIr-RB-79N"/>
+                        <outlet property="addToCartButton" destination="1Yc-7t-eKw" id="Xr5-0s-3rc"/>
+                        <outlet property="containerView" destination="YUa-5E-4Ua" id="IWY-qc-YsT"/>
+                        <outlet property="descriptionLabel" destination="lzp-OC-doY" id="Jk2-er-YXc"/>
+                        <outlet property="dismissButton" destination="1OM-SC-bSQ" id="SeS-vM-Rf3"/>
+                        <outlet property="menuItemLabel" destination="wcs-8D-Wtu" id="x7g-zw-ikX"/>
+                        <outlet property="pricePerUnitLabel" destination="WLZ-K6-hMA" id="z6p-5J-Ffi"/>
+                        <outlet property="removeItemButton" destination="bzX-cr-6xu" id="pHh-45-mXL"/>
+                        <outlet property="restaurantNameLabel" destination="ym6-Oa-zCL" id="GHP-2d-pxF"/>
+                        <outlet property="totalPriceLabel" destination="Bqp-TF-uvV" id="95Y-6c-1Vi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Abx-n7-uEj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1824.8" y="811.84407796101959"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="wAw-VK-272">
             <objects>
@@ -92,4 +240,18 @@
             <point key="canvasLocation" x="236" y="133"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cancel" width="38.400001525878906" height="38.400001525878906"/>
+        <image name="minus" width="36" height="36"/>
+        <image name="plus" width="36" height="36"/>
+        <namedColor name="pizzaDarkGray">
+            <color red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="pizzaGreen">
+            <color red="0.5725490196078431" green="0.7686274509803922" blue="0.52941176470588236" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="pizzaLightGray">
+            <color red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

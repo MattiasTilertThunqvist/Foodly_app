@@ -9,14 +9,18 @@
 /* Begin PBXBuildFile section */
 		8A1B01FD2202E2A800CE513A /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B01FB2202E2A800CE513A /* RestaurantTableViewCell.swift */; };
 		8A1B01FE2202E2A800CE513A /* RestaurantTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A1B01FC2202E2A800CE513A /* RestaurantTableViewCell.xib */; };
+		8A1FA55E2214301D00DF0430 /* UIFont+Pizza.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1FA55D2214301D00DF0430 /* UIFont+Pizza.swift */; };
+		8A1FA560221437DC00DF0430 /* UIColor+Pizza.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1FA55F221437DC00DF0430 /* UIColor+Pizza.swift */; };
 		8A28D64C220194FF00F5B640 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A28D64B220194FF00F5B640 /* DataController.swift */; };
 		8A28D64E2201A35400F5B640 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A28D64D2201A35400F5B640 /* Restaurant.swift */; };
 		8A40D5F2220366D20066DCD9 /* MenuItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A40D5F0220366D20066DCD9 /* MenuItemTableViewCell.swift */; };
 		8A40D5F3220366D20066DCD9 /* MenuItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A40D5F1220366D20066DCD9 /* MenuItemTableViewCell.xib */; };
 		8A6940A9220330B100FD71F8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6940A8220330B100FD71F8 /* DetailViewController.swift */; };
 		8A6940AB220339B100FD71F8 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6940AA220339B100FD71F8 /* MenuItem.swift */; };
+		8A8F100F2213007B00E4B185 /* AddToCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8F100E2213007B00E4B185 /* AddToCartViewController.swift */; };
 		8AA8DA0B2212C2EE00138FAF /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA8DA0A2212C2EE00138FAF /* LoadingViewController.swift */; };
-		8AA8DA0E2212C6C900138FAF /* UIViewController + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA8DA0D2212C6C900138FAF /* UIViewController + extension.swift */; };
+		8AA8DA0E2212C6C900138FAF /* UIViewController+Pizza.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA8DA0D2212C6C900138FAF /* UIViewController+Pizza.swift */; };
+		8ADC8477221309ED0049464E /* StoryboardInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADC8476221309ED0049464E /* StoryboardInstance.swift */; };
 		8ADE62492200B12900E956A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADE62482200B12900E956A1 /* AppDelegate.swift */; };
 		8ADE624B2200B12900E956A1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADE624A2200B12900E956A1 /* HomeViewController.swift */; };
 		8ADE624E2200B12900E956A1 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ADE624C2200B12900E956A1 /* Home.storyboard */; };
@@ -27,14 +31,18 @@
 /* Begin PBXFileReference section */
 		8A1B01FB2202E2A800CE513A /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
 		8A1B01FC2202E2A800CE513A /* RestaurantTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantTableViewCell.xib; sourceTree = "<group>"; };
+		8A1FA55D2214301D00DF0430 /* UIFont+Pizza.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Pizza.swift"; sourceTree = "<group>"; };
+		8A1FA55F221437DC00DF0430 /* UIColor+Pizza.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Pizza.swift"; sourceTree = "<group>"; };
 		8A28D64B220194FF00F5B640 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		8A28D64D2201A35400F5B640 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		8A40D5F0220366D20066DCD9 /* MenuItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemTableViewCell.swift; sourceTree = "<group>"; };
 		8A40D5F1220366D20066DCD9 /* MenuItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuItemTableViewCell.xib; sourceTree = "<group>"; };
 		8A6940A8220330B100FD71F8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		8A6940AA220339B100FD71F8 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
+		8A8F100E2213007B00E4B185 /* AddToCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCartViewController.swift; sourceTree = "<group>"; };
 		8AA8DA0A2212C2EE00138FAF /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
-		8AA8DA0D2212C6C900138FAF /* UIViewController + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + extension.swift"; sourceTree = "<group>"; };
+		8AA8DA0D2212C6C900138FAF /* UIViewController+Pizza.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Pizza.swift"; sourceTree = "<group>"; };
+		8ADC8476221309ED0049464E /* StoryboardInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardInstance.swift; sourceTree = "<group>"; };
 		8ADE62452200B12900E956A1 /* Pizza_Ordering_Web_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pizza_Ordering_Web_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ADE62482200B12900E956A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8ADE624A2200B12900E956A1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -101,7 +109,9 @@
 		8AA8DA0C2212C69700138FAF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				8AA8DA0D2212C6C900138FAF /* UIViewController + extension.swift */,
+				8AA8DA0D2212C6C900138FAF /* UIViewController+Pizza.swift */,
+				8A1FA55D2214301D00DF0430 /* UIFont+Pizza.swift */,
+				8A1FA55F221437DC00DF0430 /* UIColor+Pizza.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -144,6 +154,7 @@
 				8AA8DA092212C29B00138FAF /* Child View Controllers */,
 				8ADE624A2200B12900E956A1 /* HomeViewController.swift */,
 				8A6940A8220330B100FD71F8 /* DetailViewController.swift */,
+				8A8F100E2213007B00E4B185 /* AddToCartViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -176,6 +187,7 @@
 		8ADE625E2200B94000E956A1 /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
+				8ADC8476221309ED0049464E /* StoryboardInstance.swift */,
 				8ADE62512200B12B00E956A1 /* LaunchScreen.storyboard */,
 				8ADE62542200B12B00E956A1 /* Info.plist */,
 			);
@@ -263,11 +275,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A1FA560221437DC00DF0430 /* UIColor+Pizza.swift in Sources */,
 				8A1B01FD2202E2A800CE513A /* RestaurantTableViewCell.swift in Sources */,
+				8A1FA55E2214301D00DF0430 /* UIFont+Pizza.swift in Sources */,
+				8ADC8477221309ED0049464E /* StoryboardInstance.swift in Sources */,
 				8A28D64E2201A35400F5B640 /* Restaurant.swift in Sources */,
 				8A6940AB220339B100FD71F8 /* MenuItem.swift in Sources */,
+				8A8F100F2213007B00E4B185 /* AddToCartViewController.swift in Sources */,
 				8ADE624B2200B12900E956A1 /* HomeViewController.swift in Sources */,
-				8AA8DA0E2212C6C900138FAF /* UIViewController + extension.swift in Sources */,
+				8AA8DA0E2212C6C900138FAF /* UIViewController+Pizza.swift in Sources */,
 				8A6940A9220330B100FD71F8 /* DetailViewController.swift in Sources */,
 				8AA8DA0B2212C2EE00138FAF /* LoadingViewController.swift in Sources */,
 				8A40D5F2220366D20066DCD9 /* MenuItemTableViewCell.swift in Sources */,
@@ -421,7 +437,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HHF5S2KXXT;
 				INFOPLIST_FILE = "$(SRCROOT)/Pizza_Ordering_Web_App/Supporting files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -440,7 +456,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HHF5S2KXXT;
 				INFOPLIST_FILE = "$(SRCROOT)/Pizza_Ordering_Web_App/Supporting files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

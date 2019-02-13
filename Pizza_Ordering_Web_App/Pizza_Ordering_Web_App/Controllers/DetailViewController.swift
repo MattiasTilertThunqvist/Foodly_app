@@ -13,7 +13,7 @@ class DetailViewController: UIViewController {
     // MARK: Properties
     
     let dataController = DataController()
-    var restaurant: Restaurant?
+    var restaurant: Restaurant!
     var menu: [MenuItem] = []
     var categories: [String] = []
     let menuCellIdentifier = "MenuItemTableViewCell"
@@ -38,7 +38,6 @@ class DetailViewController: UIViewController {
 extension DetailViewController {
     
     func setup() {
-        guard let restaurant = restaurant else { return }
         title = restaurant.name
     }
     
@@ -54,8 +53,6 @@ extension DetailViewController {
     }
     
     func getMenu() {
-        guard let restaurant = restaurant else { return }
-        
         let loadingViewController = LoadingViewController()
         add(loadingViewController)
         
@@ -101,6 +98,14 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         return categories[section]
     }
     
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let header = view as? UITableViewHeaderFooterView {
+            header.textLabel?.font = .pizzaRegularFont(withSize: 20)
+            header.textLabel?.textColor = .pizzaColor(.white)
+            header.backgroundView?.backgroundColor = .pizzaColor(.green)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let menuItemsInCategory = getMenuItemsIn(category: categories[section])
         return menuItemsInCategory.count
@@ -123,6 +128,16 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let storyboard = StoryboardInstance.home
+        if let viewController = storyboard.instantiateViewController(withIdentifier: "AddToCartViewController") as? AddToCartViewController {
+            
+            viewController.restaurant = restaurant
+            let menuItemsInCategory = getMenuItemsIn(category: categories[indexPath.section])
+            viewController.menuItem = menuItemsInCategory[indexPath.row]
+            viewController.modalPresentationStyle = .overCurrentContext
+            present(viewController, animated: false, completion: nil)
+        }
     }
 }
 
