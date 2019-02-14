@@ -67,6 +67,8 @@ private extension HomeViewController {
     func setupTableView() {
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 80
     }
     
     func registerNibs() {
@@ -102,10 +104,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         cell.setName(to: restaurant.name)
         cell.setAdress(to: restaurant.address1 + ", " + restaurant.address2)
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80.0
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

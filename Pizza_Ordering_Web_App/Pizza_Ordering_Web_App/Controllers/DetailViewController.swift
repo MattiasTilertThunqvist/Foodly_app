@@ -60,6 +60,8 @@ extension DetailViewController {
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 100
     }
     
     func registerNibs() {
@@ -134,10 +136,6 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         cell.setPrice(to: menuItem.price)
         cell.setDescription(to: menuItem.topping?.joined(separator: ", ") ?? "")
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100.0
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -29,11 +29,8 @@
                         <color key="textColor" name="pizzaDarkGray"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfU-HW-L0f">
-                        <rect key="frame" x="15" y="45" width="290" height="20"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="20" id="Dgy-aa-YO1"/>
-                        </constraints>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfU-HW-L0f">
+                        <rect key="frame" x="15" y="45" width="290" height="19.5"/>
                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
                         <color key="textColor" name="pizzaLightGray"/>
                         <nil key="highlightedColor"/>
@@ -44,6 +41,7 @@
                     <constraint firstAttribute="trailing" secondItem="sfU-HW-L0f" secondAttribute="trailing" constant="15" id="QIs-wR-Ndm"/>
                     <constraint firstItem="sfU-HW-L0f" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Rii-5y-fto"/>
                     <constraint firstAttribute="trailing" secondItem="4gY-XW-HsV" secondAttribute="trailing" constant="15" id="TWF-va-ChZ"/>
+                    <constraint firstAttribute="bottom" secondItem="sfU-HW-L0f" secondAttribute="bottom" constant="15" id="WHm-pO-b99"/>
                     <constraint firstItem="4gY-XW-HsV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="e0S-HS-edw"/>
                     <constraint firstItem="sfU-HW-L0f" firstAttribute="top" secondItem="4gY-XW-HsV" secondAttribute="bottom" constant="5" id="ntl-qP-g2h"/>
                 </constraints>

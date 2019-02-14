@@ -47,19 +47,19 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="wnY-aO-D28">
-                        <rect key="frame" x="80" y="18.5" width="211" height="44"/>
+                        <rect key="frame" x="80" y="16.5" width="211" height="48"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="I6v-6d-eU0">
-                                <rect key="frame" x="0.0" y="0.0" width="104.5" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="104.5" height="48"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MenuItem" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjP-3N-sWe">
-                                        <rect key="frame" x="0.0" y="0.0" width="104.5" height="23.5"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="104.5" height="27.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
                                         <color key="textColor" name="pizzaDarkGray"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="233 kr per item" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UZk-nl-c61">
-                                        <rect key="frame" x="0.0" y="23.5" width="104.5" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="27.5" width="104.5" height="20.5"/>
                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
                                         <color key="textColor" name="pizzaLightGray"/>
                                         <nil key="highlightedColor"/>
@@ -68,7 +68,7 @@
                                 <viewLayoutGuide key="safeArea" id="VNB-qH-DGo"/>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123 kr" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ja-L0-2Rx" userLabel="Total Price Label">
-                                <rect key="frame" x="162.5" y="0.0" width="48.5" height="44"/>
+                                <rect key="frame" x="162.5" y="0.0" width="48.5" height="48"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
                                 <color key="textColor" name="pizzaDarkGray"/>
                                 <nil key="highlightedColor"/>
