@@ -10,7 +10,7 @@ import UIKit
 
 class LoadingViewController: UIViewController {
     
-    // MARK: Properties
+    // MARK: UI components
     
     private lazy var activityIndicator = UIActivityIndicatorView(style: .gray)
     

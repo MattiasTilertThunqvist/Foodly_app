@@ -8,6 +8,7 @@
 
 import Foundation
 
-protocol AddToCartProtocol {
+protocol UpdateCartProtocol {
     func addToCart(_ menuItem: MenuItem, quantity: Int)
+    func removeFromCart(_ menuItem: MenuItem)
 }

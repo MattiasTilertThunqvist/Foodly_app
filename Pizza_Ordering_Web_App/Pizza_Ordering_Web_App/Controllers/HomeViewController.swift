@@ -60,7 +60,6 @@ private extension HomeViewController {
                 })
                 
                 self.tableView.reloadData()
-                self.tableView.alpha = 1.0
             }
         }
     }
@@ -68,7 +67,6 @@ private extension HomeViewController {
     func setupTableView() {
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.alpha = 0.0
     }
     
     func registerNibs() {

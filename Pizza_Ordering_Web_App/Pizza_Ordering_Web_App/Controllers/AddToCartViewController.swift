@@ -13,9 +13,11 @@ class AddToCartViewController: UIViewController {
     // MARK: Properties
     var restaurant: Restaurant!
     var menuItem: MenuItem!
-    var addToCartProtocol: AddToCartProtocol!
+    var addToCartProtocol: UpdateCartProtocol!
     let animationDuration = 0.3
     var numberOfItems = 1
+    
+    // MARK: UI components
     
     let blurEffectView: UIVisualEffectView = {
         let blurEffect = UIBlurEffect(style: .dark)

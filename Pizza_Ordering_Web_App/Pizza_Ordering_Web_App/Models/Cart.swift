@@ -11,4 +11,24 @@ import Foundation
 struct Cart {
     let menuItem: MenuItem
     let quantity: Int
+    
+    static func totalPriceOfItems(in cart: [Cart]) -> Int {
+        var totalPrice = 0
+        
+        for item in cart {
+            totalPrice += item.menuItem.price * item.quantity
+        }
+    
+        return totalPrice
+    }
+    
+    static func quantityOfItems(in cart: [Cart]) -> Int {
+        var quantity = 0
+        
+        for item in cart {
+            quantity += item.quantity
+        }
+        
+        return quantity
+    }
 }

@@ -16,7 +16,11 @@ class DetailViewController: UIViewController {
     var restaurant: Restaurant!
     var menu: [MenuItem] = []
     var categories: [String] = []
-    var cart: [Cart] = []
+    var cart: [Cart] = [] {
+        didSet {
+            handleCartButton()
+        }
+    }
     let menuCellIdentifier = "MenuItemTableViewCell"
     let animationDuration = 0.3
     
@@ -50,13 +54,12 @@ extension DetailViewController {
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(goToCart))
         cartTapView.addGestureRecognizer(tapGesture)
-        hideCartButton(withAnimation: false)
+        handleCartButton()
     }
     
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.alpha = 0.0
     }
     
     func registerNibs() {
@@ -91,7 +94,6 @@ extension DetailViewController {
                 
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
-                    self.tableView.alpha = 1.0
                 }
             }
         }
@@ -175,12 +177,24 @@ extension DetailViewController {
 
 // MARK: SettingsProtocol
 
-extension DetailViewController: AddToCartProtocol {
+extension DetailViewController: UpdateCartProtocol {
     
     func addToCart(_ menuItem: MenuItem, quantity: Int) {
         let newItem = Cart(menuItem: menuItem, quantity: quantity)
         cart.append(newItem)
-        showCartButton()
+    }
+    
+    func removeFromCart(_ menuItem: MenuItem) {
+        var index = 0
+        
+        for item in cart {
+            if item.menuItem.id == menuItem.id {
+                break
+            }
+            index += 1
+        }
+        
+        cart.remove(at: index)
     }
 }
 
@@ -188,9 +202,13 @@ extension DetailViewController: AddToCartProtocol {
 
 extension DetailViewController {
     
+    func handleCartButton() {
+        setCartButtonText()
+        cart.isEmpty ? hideCartButton(withAnimation: false) : showCartButton()
+    }
+    
     func showCartButton() {
         tableView.contentInset.bottom = cartContainerView.frame.height
-        setCartButtonText()
         
         UIView.animate(withDuration: animationDuration) {
             self.cartContainerView.transform = .identity
@@ -210,32 +228,12 @@ extension DetailViewController {
     }
     
     func setCartButtonText() {
-        let quantity = quantityOfItemsInCart()
+        let quantity = Cart.quantityOfItems(in: cart)
         let itemString = quantity > 1 ? "varor" : "vara"
         nrOfItemsLabel.text = "\(quantity) \(itemString) i varukorgen"
         
-        priceLabel.text = "\(totalPriceOfItemsInCart()) kr"
+        priceLabel.text = "\(Cart.totalPriceOfItems(in: cart)) kr"
         descriptionLabel.text = "Gå till varukorgen"
-    }
-    
-    func quantityOfItemsInCart() -> Int {
-        var quantity = 0
-        
-        for item in cart {
-            quantity += item.quantity
-        }
-        
-        return quantity
-    }
-    
-    func totalPriceOfItemsInCart() -> Int {
-        var totalPrice = 0
-        
-        for item in cart {
-            totalPrice += item.menuItem.price * item.quantity
-        }
-        
-        return totalPrice
     }
     
     @objc func goToCart() {
@@ -243,6 +241,7 @@ extension DetailViewController {
         if let viewController = storyboard.instantiateViewController(withIdentifier: "CartViewController") as? CartViewController {
             viewController.restaurant = restaurant
             viewController.cart = cart
+            viewController.updateCartProtocol = self
             navigationController?.pushViewController(viewController, animated: true)
         }
     }
