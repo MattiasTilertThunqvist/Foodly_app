@@ -11,7 +11,7 @@ import Foundation
 class DataController {
     
     func getRestaurants(completion: @escaping (_ restaurants: [Restaurant]?, _ error: Error?) -> ()) {
-        guard let url = URL(string: "https://private-anon-93a88b892d-pizzaapp.apiary-mock.com/restaurants/") else { return }
+        let url = URL(string: "https://private-anon-93a88b892d-pizzaapp.apiary-mock.com/restaurants/")!
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if error == nil, let data = data {
@@ -28,7 +28,7 @@ class DataController {
     }
     
     func getMenuForRestaurant(with id: Int, completion: @escaping (_ menu: [MenuItem]?, _ error: Error?) -> ()) {
-        guard let url = URL(string: "https://private-anon-aaa547a087-pizzaapp.apiary-mock.com/restaurants/\(id)/menu") else { return }
+        let url = URL(string: "https://private-anon-aaa547a087-pizzaapp.apiary-mock.com/restaurants/\(id)/menu")!
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if error == nil, let data = data {
@@ -40,6 +40,30 @@ class DataController {
                 }
             } else {
                 completion(nil, error)
+            }
+        }.resume()
+    }
+    
+    func createOrder(_ order: Order, completion: @escaping (_ orderStatus: OrderStatus?, _ error: Error?) -> ()) {
+        let url = URL(string: "https://private-anon-bc43a7f805-pizzaapp.apiary-mock.com/orders/")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        do {
+            let jsonData = try JSONEncoder().encode(order)
+            request.httpBody = jsonData
+        } catch {
+            completion(nil, error)
+        }
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if error == nil, let data = data {
+                do {
+                    let orderStatus = try JSONDecoder().decode(OrderStatus.self, from: data)
+                    completion(orderStatus, nil)
+                } catch let jsonError {
+                    completion(nil, jsonError)
+                }
             }
         }.resume()
     }

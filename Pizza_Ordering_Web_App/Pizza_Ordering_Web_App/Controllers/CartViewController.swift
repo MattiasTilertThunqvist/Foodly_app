@@ -12,6 +12,7 @@ class CartViewController: UIViewController {
     
     // MARK: Properties
     
+    lazy var data = DataController()
     var restaurant: Restaurant!
     var cart: [Cart] = []
     var updateCartProtocol: UpdateCartProtocol!
@@ -42,7 +43,7 @@ class CartViewController: UIViewController {
     // Mark: IBAction
     
     @IBAction func orderButtonWasPressed(_ sender: UIButton) {
-        
+        createOrder()
     }
     
     // MARK: View
@@ -89,27 +90,6 @@ extension CartViewController {
     }
 }
 
-// MARK: Functions
-
-extension CartViewController {
-    
-    func handleEmpyCart() {
-        emptyCartLabel.frame.size = CGSize(width: tableView.frame.width * 0.8, height: tableView.frame.height)
-        emptyCartLabel.center = view.center
-        emptyCartLabel.alpha = 0.0
-        view.addSubview(emptyCartLabel)
-        
-        UIView.animate(withDuration: animationDuration) {
-            self.tableView.alpha = 0.0
-            self.bottomBorderView.alpha = 0.0
-            self.totalLabel.alpha = 0.0
-            self.priceLabel.alpha = 0.0
-            self.orderButton.alpha = 0.0
-            self.emptyCartLabel.alpha = 1.0
-        }
-    }
-}
-
 // MARK: TableView
 
 extension CartViewController: UITableViewDelegate, UITableViewDataSource {
@@ -135,6 +115,50 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             self.priceLabel.text = "\(Cart.totalPriceOfItems(in: cart)) kr"
             if cart.isEmpty { handleEmpyCart() }
+        }
+    }
+}
+
+// MARK: Functions
+
+extension CartViewController {
+    
+    func handleEmpyCart() {
+        emptyCartLabel.frame.size = CGSize(width: tableView.frame.width * 0.8, height: tableView.frame.height)
+        emptyCartLabel.center = view.center
+        emptyCartLabel.alpha = 0.0
+        view.addSubview(emptyCartLabel)
+        
+        UIView.animate(withDuration: animationDuration) {
+            self.tableView.alpha = 0.0
+            self.bottomBorderView.alpha = 0.0
+            self.totalLabel.alpha = 0.0
+            self.priceLabel.alpha = 0.0
+            self.orderButton.alpha = 0.0
+            self.emptyCartLabel.alpha = 1.0
+        }
+    }
+    
+    func createOrder() {
+        navigationController?.navigationBar.isUserInteractionEnabled = false
+        let loadingViewController = LoadingViewController()
+        add(loadingViewController)
+        
+        let orderDetails = cart.map { OrderDetails.init(menuItemId: $0.menuItem.id, quantity: $0.quantity) }
+        let order = Order(cart: orderDetails, restuarantId: restaurant.id)
+        
+        data.createOrder(order) { (orderStatus, error) in
+            self.navigationController?.navigationBar.isUserInteractionEnabled = true
+            loadingViewController.remove()
+
+            if let error = error {
+                // Handle error
+                // Om det är ett fel så presentera ett meddelande i emptyCartLabel
+            }
+            
+            
+            
+            // Oavsett om det är ett error så ska vyn presenteras
         }
     }
 }

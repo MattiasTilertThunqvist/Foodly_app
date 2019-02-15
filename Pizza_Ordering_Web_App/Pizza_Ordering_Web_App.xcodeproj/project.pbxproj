@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A0E988422170C9200A0EEA6 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0E988322170C9200A0EEA6 /* Order.swift */; };
+		8A0E98862217244400A0EEA6 /* OrderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0E98852217244400A0EEA6 /* OrderDetails.swift */; };
+		8A0E98882217246000A0EEA6 /* OrderStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0E98872217246000A0EEA6 /* OrderStatus.swift */; };
 		8A1B01FD2202E2A800CE513A /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B01FB2202E2A800CE513A /* RestaurantTableViewCell.swift */; };
 		8A1B01FE2202E2A800CE513A /* RestaurantTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A1B01FC2202E2A800CE513A /* RestaurantTableViewCell.xib */; };
 		8A1FA55E2214301D00DF0430 /* UIFont+Pizza.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1FA55D2214301D00DF0430 /* UIFont+Pizza.swift */; };
@@ -34,6 +37,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8A0E988322170C9200A0EEA6 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		8A0E98852217244400A0EEA6 /* OrderDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetails.swift; sourceTree = "<group>"; };
+		8A0E98872217246000A0EEA6 /* OrderStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStatus.swift; sourceTree = "<group>"; };
 		8A1B01FB2202E2A800CE513A /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
 		8A1B01FC2202E2A800CE513A /* RestaurantTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantTableViewCell.xib; sourceTree = "<group>"; };
 		8A1FA55D2214301D00DF0430 /* UIFont+Pizza.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Pizza.swift"; sourceTree = "<group>"; };
@@ -195,6 +201,9 @@
 				8A28D64D2201A35400F5B640 /* Restaurant.swift */,
 				8A6940AA220339B100FD71F8 /* MenuItem.swift */,
 				8A21B13422147F2B00C4B02A /* Cart.swift */,
+				8A0E988322170C9200A0EEA6 /* Order.swift */,
+				8A0E98852217244400A0EEA6 /* OrderDetails.swift */,
+				8A0E98872217246000A0EEA6 /* OrderStatus.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -310,6 +319,7 @@
 				8A1FA560221437DC00DF0430 /* UIColor+Pizza.swift in Sources */,
 				8A1B01FD2202E2A800CE513A /* RestaurantTableViewCell.swift in Sources */,
 				8A1FA55E2214301D00DF0430 /* UIFont+Pizza.swift in Sources */,
+				8A0E988422170C9200A0EEA6 /* Order.swift in Sources */,
 				8A21039922156470007CBC61 /* CartTableViewCell.swift in Sources */,
 				8ADC8477221309ED0049464E /* StoryboardInstance.swift in Sources */,
 				8A28D64E2201A35400F5B640 /* Restaurant.swift in Sources */,
@@ -318,9 +328,11 @@
 				8AC21A772214581A00DF1BD9 /* UpdateCartProtocol.swift in Sources */,
 				8ADE624B2200B12900E956A1 /* HomeViewController.swift in Sources */,
 				8AA8DA0E2212C6C900138FAF /* UIViewController+Pizza.swift in Sources */,
+				8A0E98882217246000A0EEA6 /* OrderStatus.swift in Sources */,
 				8A6940A9220330B100FD71F8 /* DetailViewController.swift in Sources */,
 				8AA8DA0B2212C2EE00138FAF /* LoadingViewController.swift in Sources */,
 				8A40D5F2220366D20066DCD9 /* MenuItemTableViewCell.swift in Sources */,
+				8A0E98862217244400A0EEA6 /* OrderDetails.swift in Sources */,
 				8A21B137221490C600C4B02A /* CartViewController.swift in Sources */,
 				8A28D64C220194FF00F5B640 /* DataController.swift in Sources */,
 				8ADE62492200B12900E956A1 /* AppDelegate.swift in Sources */,
