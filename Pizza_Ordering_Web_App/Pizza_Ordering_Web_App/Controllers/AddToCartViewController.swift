@@ -15,7 +15,7 @@ class AddToCartViewController: UIViewController {
     var menuItem: MenuItem!
     var addToCartProtocol: UpdateCartProtocol!
     let animationDuration = 0.3
-    var numberOfItems = 1
+    var quantityOfItem = 1
     
     // MARK: UI components
     
@@ -34,8 +34,8 @@ class AddToCartViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var pricePerUnitLabel: UILabel!
     @IBOutlet weak var totalPriceLabel: UILabel!
-    @IBOutlet weak var removeItemButton: UIButton!
-    @IBOutlet weak var addItemButton: UIButton!
+    @IBOutlet weak var decreaseQuantityButton: UIButton!
+    @IBOutlet weak var increaseQuantityButton: UIButton!
     @IBOutlet weak var addToCartButton: UIButton!
     
     // MARK: IBActions
@@ -45,17 +45,17 @@ class AddToCartViewController: UIViewController {
     }
     
     @IBAction func removeItemButtonWasPressed(_ sender: UIButton) {
-        numberOfItems -= 1
-        nrOfItemsDidChange()
+        quantityOfItem -= 1
+        quantityDidChange()
     }
     
     @IBAction func addItemButtonWasPressed(_ sender: UIButton) {
-        numberOfItems += 1
-        nrOfItemsDidChange()
+        quantityOfItem += 1
+        quantityDidChange()
     }
     
     @IBAction func addToCartButtonWasPressed(_ sender: UIButton) {
-        addToCartProtocol.addToCart(menuItem, quantity: numberOfItems)
+        addToCartProtocol.addToCart(menuItem, quantity: quantityOfItem)
         dismissView()
     }
     
@@ -86,6 +86,7 @@ extension AddToCartViewController {
         pricePerUnitLabel.text = menuItem.price > 0 ? "\(menuItem.price) kr" : "Gratis"
         addToCartButton.setTitle("Lägg i varukorgen", for: .normal)
         setTotalPrice()
+        quantityDidChange()
         hideContent(withAnimation: false, completion: nil)
     }
     
@@ -99,11 +100,9 @@ extension AddToCartViewController {
         containerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
         dismissButton.layer.cornerRadius = dismissButton.frame.height * 0.5
-        removeItemButton.layer.cornerRadius = removeItemButton.frame.height * 0.5
-        addItemButton.layer.cornerRadius = addItemButton.frame.height * 0.5
-        addToCartButton.layer.cornerRadius = addToCartButton.frame.height * 0.5
-        
-        removeItemButton.isUserInteractionEnabled = false
+        decreaseQuantityButton.layer.cornerRadius = decreaseQuantityButton.frame.height * 0.5
+        increaseQuantityButton.layer.cornerRadius = increaseQuantityButton.frame.height * 0.5
+        addToCartButton.layer.cornerRadius = addToCartButton.frame.height * 0.5        
     }
 }
 
@@ -138,12 +137,12 @@ extension AddToCartViewController {
     }
     
     func setTotalPrice() {
-        let totalPrice = numberOfItems * menuItem.price
-        self.totalPriceLabel.text = "\(numberOfItems) för \(totalPrice) kr"
+        let totalPrice = quantityOfItem * menuItem.price
+        self.totalPriceLabel.text = "\(quantityOfItem) för \(totalPrice) kr"
     }
     
-    func nrOfItemsDidChange() {
-        removeItemButton.isUserInteractionEnabled = numberOfItems > 1
+    func quantityDidChange() {
+        decreaseQuantityButton.isUserInteractionEnabled = quantityOfItem > 1
         setTotalPrice()
     }
 }

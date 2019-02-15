@@ -144,8 +144,9 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         let storyboard = StoryboardInstance.home
         if let viewController = storyboard.instantiateViewController(withIdentifier: "AddToCartViewController") as? AddToCartViewController {
             
-            let menuItemsInCategory = getMenuItemsIn(category: categories[indexPath.section])
-            viewController.menuItem = menuItemsInCategory[indexPath.row]
+            let allMenuItemsInCategory = getMenuItemsIn(category: categories[indexPath.section])
+            let selectedMenuItem = allMenuItemsInCategory[indexPath.row]
+            viewController.menuItem = selectedMenuItem
             viewController.restaurant = restaurant
             viewController.addToCartProtocol = self
             viewController.modalPresentationStyle = .overCurrentContext
@@ -173,24 +174,6 @@ extension DetailViewController {
     }
 }
 
-// MARK: UpdateCartProtocol
-
-extension DetailViewController: UpdateCartProtocol {
-    
-    func addToCart(_ menuItem: MenuItem, quantity: Int) {
-        if let index = cart.firstIndex(where: { $0.menuItem.id == menuItem.id }) {
-            cart[index].quantity += quantity
-        } else {
-            let newItem = Cart(menuItem: menuItem, quantity: quantity)
-            cart.append(newItem)
-        }
-    }
-    
-    func removeFromCart(_ menuItem: MenuItem) {
-        cart.removeAll(where: { $0.menuItem.id == menuItem.id })
-    }
-}
-
 // MARK: Cart
 
 extension DetailViewController {
@@ -210,6 +193,7 @@ extension DetailViewController {
     }
     
     func hideCartButton(withAnimation animation: Bool) {
+        tableView.contentInset.bottom = 0.0
         let timeInterval = animation ? animationDuration : 0.0
         
         UIView.animate(withDuration: timeInterval, animations: {
@@ -237,5 +221,23 @@ extension DetailViewController {
             viewController.updateCartProtocol = self
             navigationController?.pushViewController(viewController, animated: true)
         }
+    }
+}
+
+// MARK: UpdateCartProtocol
+
+extension DetailViewController: UpdateCartProtocol {
+    
+    func addToCart(_ menuItem: MenuItem, quantity: Int) {
+        if let index = cart.firstIndex(where: { $0.menuItem.id == menuItem.id }) {
+            cart[index].quantity += quantity
+        } else {
+            let newItem = Cart(menuItem: menuItem, quantity: quantity)
+            cart.append(newItem)
+        }
+    }
+    
+    func removeFromCart(_ menuItem: MenuItem) {
+        cart.removeAll(where: { $0.menuItem.id == menuItem.id })
     }
 }
