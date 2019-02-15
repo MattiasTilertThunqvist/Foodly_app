@@ -10,7 +10,7 @@ import Foundation
 
 struct Cart {
     let menuItem: MenuItem
-    let quantity: Int
+    var quantity: Int
     
     static func totalPriceOfItems(in cart: [Cart]) -> Int {
         var totalPrice = 0

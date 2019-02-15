@@ -173,26 +173,21 @@ extension DetailViewController {
     }
 }
 
-// MARK: SettingsProtocol
+// MARK: UpdateCartProtocol
 
 extension DetailViewController: UpdateCartProtocol {
     
     func addToCart(_ menuItem: MenuItem, quantity: Int) {
-        let newItem = Cart(menuItem: menuItem, quantity: quantity)
-        cart.append(newItem)
+        if let index = cart.firstIndex(where: { $0.menuItem.id == menuItem.id }) {
+            cart[index].quantity += quantity
+        } else {
+            let newItem = Cart(menuItem: menuItem, quantity: quantity)
+            cart.append(newItem)
+        }
     }
     
     func removeFromCart(_ menuItem: MenuItem) {
-        var index = 0
-        
-        for item in cart {
-            if item.menuItem.id == menuItem.id {
-                break
-            }
-            index += 1
-        }
-        
-        cart.remove(at: index)
+        cart.removeAll(where: { $0.menuItem.id == menuItem.id })
     }
 }
 
