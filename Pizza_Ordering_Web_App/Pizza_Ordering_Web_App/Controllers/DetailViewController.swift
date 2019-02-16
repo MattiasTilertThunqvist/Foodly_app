@@ -12,7 +12,6 @@ class DetailViewController: UIViewController {
     
     // MARK: Properties
     
-    let dataController = DataController()
     var restaurant: Restaurant!
     var menu: [MenuItem] = []
     var categories: [String] = []
@@ -73,7 +72,7 @@ extension DetailViewController {
         let loadingViewController = LoadingViewController()
         add(loadingViewController)
         
-        dataController.getMenuForRestaurant(with: restaurant.id) { (menu, error) in
+        DataController.sharedInstance.getMenuForRestaurant(with: restaurant.id) { (menu, error) in
             loadingViewController.remove()
             
             if error != nil {

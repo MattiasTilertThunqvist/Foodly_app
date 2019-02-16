@@ -14,6 +14,6 @@ struct OrderStatus: Decodable {
     let orderedAt: String
     let esitmatedDelivery: String
     let status: String
-    let cart: OrderDetails?
-    let restuarantId: Int?
+    var cart: [OrderDetails]?
+    var restuarantId: Int?
 }

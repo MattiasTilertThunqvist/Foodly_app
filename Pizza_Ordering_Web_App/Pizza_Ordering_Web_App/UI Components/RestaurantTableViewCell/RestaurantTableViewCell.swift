@@ -12,8 +12,8 @@ class RestaurantTableViewCell: UITableViewCell {
 
     // MARK: IBOutlets
     
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak private var nameLabel: UILabel!
+    @IBOutlet weak private var addressLabel: UILabel!
     
     // MARK: Helpers
     

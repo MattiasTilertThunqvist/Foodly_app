@@ -9,6 +9,12 @@
 import Foundation
 
 class DataController {
+    static let sharedInstance = DataController()
+    var restaurants: [Restaurant] = []
+    var menu: [MenuItem] = []
+    var orderStatus: [OrderStatus] = []
+    
+    private init() {}
     
     func getRestaurants(completion: @escaping (_ restaurants: [Restaurant]?, _ error: Error?) -> ()) {
         let url = URL(string: "https://private-anon-93a88b892d-pizzaapp.apiary-mock.com/restaurants/")!
@@ -17,6 +23,7 @@ class DataController {
             if error == nil, let data = data {
                 do {
                     let restaurants = try JSONDecoder().decode([Restaurant].self, from: data)
+                    self.restaurants = restaurants
                     completion(restaurants, nil)
                 } catch let jsonError {
                     completion(nil, jsonError)
@@ -34,6 +41,7 @@ class DataController {
             if error == nil, let data = data {
                 do {
                     let menu = try JSONDecoder().decode([MenuItem].self, from: data)
+                    self.menu = menu
                     completion(menu, nil)
                 } catch let jsonError {
                     completion(nil, jsonError)
@@ -59,7 +67,10 @@ class DataController {
         URLSession.shared.dataTask(with: request) { data, response, error in
             if error == nil, let data = data {
                 do {
-                    let orderStatus = try JSONDecoder().decode(OrderStatus.self, from: data)
+                    var orderStatus = try JSONDecoder().decode(OrderStatus.self, from: data)
+                    orderStatus.cart = order.cart
+                    orderStatus.restuarantId = order.restuarantId
+                    self.orderStatus.append(orderStatus)
                     completion(orderStatus, nil)
                 } catch let jsonError {
                     completion(nil, jsonError)

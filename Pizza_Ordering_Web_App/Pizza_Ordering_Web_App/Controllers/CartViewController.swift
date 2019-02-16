@@ -12,7 +12,6 @@ class CartViewController: UIViewController {
     
     // MARK: Properties
     
-    lazy var data = DataController()
     var restaurant: Restaurant!
     var cart: [Cart] = []
     var updateCartProtocol: UpdateCartProtocol!
@@ -21,9 +20,9 @@ class CartViewController: UIViewController {
     
     // MARK: UI components
     
-    lazy var emptyCartLabel: UILabel = {
+    lazy var loadingViewController = LoadingViewController()
+    lazy var alertLabel: UILabel = {
         let label = UILabel()
-        label.text = "Du har inga varor i varukorgen. Gå tillbaka för att lägga till några."
         label.font = .pizzaRegularFont(withSize: 25)
         label.textColor = .pizzaColor(.darkGray)
         label.numberOfLines = 0
@@ -114,7 +113,9 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
             self.cart.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             self.priceLabel.text = "\(Cart.totalPriceOfItems(in: cart)) kr"
-            if cart.isEmpty { handleEmpyCart() }
+            if cart.isEmpty {
+                displayAlertLabel(withMessage: "Du har inga varor i varukorgen. Gå tillbaka för att lägga till några.")
+            }
         }
     }
 }
@@ -123,11 +124,12 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension CartViewController {
     
-    func handleEmpyCart() {
-        emptyCartLabel.frame.size = CGSize(width: tableView.frame.width * 0.8, height: tableView.frame.height)
-        emptyCartLabel.center = view.center
-        emptyCartLabel.alpha = 0.0
-        view.addSubview(emptyCartLabel)
+    func displayAlertLabel(withMessage message: String) {
+        alertLabel.text = message
+        alertLabel.frame.size = CGSize(width: tableView.frame.width * 0.8, height: tableView.frame.height)
+        alertLabel.center = view.center
+        alertLabel.alpha = 0.0
+        view.addSubview(alertLabel)
         
         UIView.animate(withDuration: animationDuration) {
             self.tableView.alpha = 0.0
@@ -135,30 +137,40 @@ extension CartViewController {
             self.totalLabel.alpha = 0.0
             self.priceLabel.alpha = 0.0
             self.orderButton.alpha = 0.0
-            self.emptyCartLabel.alpha = 1.0
+            self.alertLabel.alpha = 1.0
         }
     }
     
     func createOrder() {
-        navigationController?.navigationBar.isUserInteractionEnabled = false
-        let loadingViewController = LoadingViewController()
+//        navigationController?.navigationBar.isUserInteractionEnabled = false
         add(loadingViewController)
         
         let orderDetails = cart.map { OrderDetails.init(menuItemId: $0.menuItem.id, quantity: $0.quantity) }
         let order = Order(cart: orderDetails, restuarantId: restaurant.id)
         
-        data.createOrder(order) { (orderStatus, error) in
-            self.navigationController?.navigationBar.isUserInteractionEnabled = true
-            loadingViewController.remove()
+        DataController.sharedInstance.createOrder(order) { (orderStatus, error) in
+//            self.navigationController?.navigationBar.isUserInteractionEnabled = true
 
-            if let error = error {
-                // Handle error
-                // Om det är ett fel så presentera ett meddelande i emptyCartLabel
+            if error != nil {
+                DispatchQueue.main.async {
+                    self.loadingViewController.remove()
+                    self.displayAlertLabel(withMessage: "Beställningen misslyckades. Något gick fel, vi beklagar. Gå tillbaka och gör ett nytt försök.")
+                }
+            } else {
+                self.presentOrderOverview(orderStatus!)
             }
+        }
+    }
+    
+    func presentOrderOverview(_ orderStatus: OrderStatus) {
+        if let viewController = StoryboardInstance.home.instantiateViewController(withIdentifier: "OrderOverviewViewController") as? OrderOverviewViewController {
             
+            viewController.isOrderConfirmation = true
             
-            
-            // Oavsett om det är ett error så ska vyn presenteras
+            DispatchQueue.main.async {
+                self.loadingViewController.remove()
+                self.present(viewController, animated: true, completion: nil)
+            }
         }
     }
 }

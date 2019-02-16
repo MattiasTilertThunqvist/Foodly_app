@@ -1,29 +1,29 @@
 //
-//  OrderOverviewTableViewCell.swift
+//  OrderTableViewHeaderView.swift
 //  Pizza_Ordering_Web_App
 //
-//  Created by Mattias Tilert Thunqvist on 2019-02-15.
+//  Created by Mattias Tilert Thunqvist on 2019-02-16.
 //  Copyright © 2019 Mattias Tilert Thunqvist. All rights reserved.
 //
 
 import UIKit
 
-class OrderOverviewTableViewCell: UITableViewCell {
-
+class OrderTableViewHeaderView: UITableViewHeaderFooterView {
+    
     // MARK: IBOutlets
     
-    @IBOutlet weak var restaurantNameLabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var orderIdInfoLabel: UILabel!
-    @IBOutlet weak var orderIdLabel: UILabel!
-    @IBOutlet weak var orderDateInfoLabel: UILabel!
-    @IBOutlet weak var orderDateLabel: UILabel!
-    @IBOutlet weak var deliveryDateInfoLabel: UILabel!
-    @IBOutlet weak var deliveryDateLabel: UILabel!
-    @IBOutlet weak var statusInfoLabel: UILabel!
-    @IBOutlet weak var statusLabel: UILabel!
-    @IBOutlet weak var totalPriceInfoLabel: UILabel!
-    @IBOutlet weak var totalPriceLabel: UILabel!
+    @IBOutlet weak private var restaurantNameLabel: UILabel!
+    @IBOutlet weak private var addressLabel: UILabel!
+    @IBOutlet weak private var orderIdInfoLabel: UILabel!
+    @IBOutlet weak private var orderIdLabel: UILabel!
+    @IBOutlet weak private var orderDateInfoLabel: UILabel!
+    @IBOutlet weak private var orderDateLabel: UILabel!
+    @IBOutlet weak private var deliveryDateInfoLabel: UILabel!
+    @IBOutlet weak private var deliveryDateLabel: UILabel!
+    @IBOutlet weak private var statusInfoLabel: UILabel!
+    @IBOutlet weak private var statusLabel: UILabel!
+    @IBOutlet weak private var totalPriceInfoLabel: UILabel!
+    @IBOutlet weak private var totalPriceLabel: UILabel!
     
     // MARK: Helpers
     
@@ -51,8 +51,8 @@ class OrderOverviewTableViewCell: UITableViewCell {
     }
     
     func setDeliveryStatus(to status: String) {
-        deliveryDateInfoLabel.text = "Leveransstatus"
-        deliveryDateLabel.text = status
+        statusInfoLabel.text = "Leveransstatus"
+        statusLabel.text = status
     }
     
     func setTotalPrice(to price: Int) {

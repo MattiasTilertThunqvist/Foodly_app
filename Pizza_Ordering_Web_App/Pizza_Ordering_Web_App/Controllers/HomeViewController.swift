@@ -13,7 +13,6 @@ class HomeViewController: UIViewController {
     
     // MARK: Properties
     
-    let dataController = DataController()
     let locationManager = CLLocationManager()
     var restaurants: [Restaurant] = []
     let RestaurantCellIdentifier = "RestaurantTableViewCell"
@@ -23,6 +22,9 @@ class HomeViewController: UIViewController {
     // MARK: IBOutlets
     
     @IBOutlet weak var tableView: UITableView!
+    @IBAction func ordersButtonWasPressed(_ sender: UIButton) {
+        presentOrders()
+    }
     
     // MARK: View
     
@@ -37,7 +39,7 @@ class HomeViewController: UIViewController {
 
 // MARK: Setup
 
-private extension HomeViewController {
+extension HomeViewController {
     
     func setup() {
         let nav = self.navigationController?.navigationBar
@@ -78,7 +80,7 @@ private extension HomeViewController {
     
     func getRestaurants() {
         dispatchGroup.enter()
-        dataController.getRestaurants { (restaurants, error) in
+        DataController.sharedInstance.getRestaurants { (restaurants, error) in
             if error != nil {
                 self.presentErrorAlert(title: "Kunde inte hämta restauranger", message: "", buttonText: "Okej")
             } else if let restaurants = restaurants {
@@ -166,6 +168,12 @@ extension HomeViewController: CLLocationManagerDelegate {
 // MARK: Helper
 
 extension HomeViewController {
+    
+    func presentOrders() {
+        if let viewController = StoryboardInstance.home.instantiateViewController(withIdentifier: "OrderOverviewViewController") as? OrderOverviewViewController {
+            present(viewController, animated: true, completion: nil)
+        }
+    }
     
     func presentErrorAlert(title: String, message: String, buttonText: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)

@@ -12,11 +12,11 @@ class CartTableViewCell: UITableViewCell {
     
     // MARK: IBOutlets
     
-    @IBOutlet weak var quantityContainerView: UIView!
-    @IBOutlet weak var quantityLabel: UILabel!
-    @IBOutlet weak var menuItemLabel: UILabel!
-    @IBOutlet weak var pricePerItemLabel: UILabel!
-    @IBOutlet weak var totalPriceLabel: UILabel!
+    @IBOutlet weak private var quantityContainerView: UIView!
+    @IBOutlet weak private var quantityLabel: UILabel!
+    @IBOutlet weak private var menuItemLabel: UILabel!
+    @IBOutlet weak private var pricePerItemLabel: UILabel!
+    @IBOutlet weak private var totalPriceLabel: UILabel!
     
     // MARK: Helpers
     
