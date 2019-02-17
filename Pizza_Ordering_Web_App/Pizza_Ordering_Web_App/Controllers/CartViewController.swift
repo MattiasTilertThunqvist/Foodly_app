@@ -143,15 +143,12 @@ private extension CartViewController {
     }
     
     func createOrder() {
-//        navigationController?.navigationBar.isUserInteractionEnabled = false
         add(loadingViewController)
         
         let orderDetails = cart.map { OrderDetails.init(menuItemId: $0.menuItem.id, quantity: $0.quantity) }
         let newOrder = NewOrder(orderDetails: orderDetails, restuarantId: restaurant.id)
         
         DataController.sharedInstance.createOrder(newOrder) { (order, error) in
-//            self.navigationController?.navigationBar.isUserInteractionEnabled = true
-
             if error != nil {
                 DispatchQueue.main.async {
                     self.loadingViewController.remove()
