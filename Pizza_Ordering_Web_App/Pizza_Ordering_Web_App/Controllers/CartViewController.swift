@@ -64,7 +64,7 @@ class CartViewController: UIViewController {
 
 // MARK: Setup
 
-extension CartViewController {
+private extension CartViewController {
     
     func setup() {
         title = "Varukorg"
@@ -121,9 +121,9 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-// MARK: Functions
+// MARK: Helpers
 
-extension CartViewController {
+private extension CartViewController {
     
     func displayAlertLabel(withMessage message: String) {
         alertLabel.text = message

@@ -39,7 +39,7 @@ class HomeViewController: UIViewController {
 
 // MARK: Setup
 
-extension HomeViewController {
+private extension HomeViewController {
     
     func setup() {
         let nav = self.navigationController?.navigationBar
@@ -168,7 +168,7 @@ extension HomeViewController: CLLocationManagerDelegate {
 
 // MARK: Helper
 
-extension HomeViewController {
+private extension HomeViewController {
     
     func presentOrders() {
         if let viewController = StoryboardInstance.home.instantiateViewController(withIdentifier: "OrderOverviewViewController") as? OrderOverviewViewController {

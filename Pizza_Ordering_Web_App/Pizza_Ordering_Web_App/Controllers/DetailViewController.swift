@@ -46,7 +46,7 @@ class DetailViewController: UIViewController {
 
 // MARK: Setup
 
-extension DetailViewController {
+private extension DetailViewController {
     
     func setup() {
         title = restaurant.name
@@ -157,7 +157,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
 
 // MARK: Helpers
 
-extension DetailViewController {
+private extension DetailViewController {
     
     func sortMenuByRank() {
         menu.sort { (item1, item2) -> Bool in
@@ -176,7 +176,7 @@ extension DetailViewController {
 
 // MARK: Cart
 
-extension DetailViewController {
+private extension DetailViewController {
     
     func handleCartButton() {
         setCartButtonText()

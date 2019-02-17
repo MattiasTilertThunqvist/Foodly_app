@@ -66,7 +66,7 @@ class OrderOverviewViewController: UIViewController {
 
 // MARK: Setup
 
-extension OrderOverviewViewController {
+private extension OrderOverviewViewController {
 
     func setup() {
         headerLabel.text = isOrderConfirmation ? "Orderbekräftelse" : "Mina ordrar"
@@ -160,9 +160,9 @@ extension OrderOverviewViewController: UITableViewDelegate, UITableViewDataSourc
     }
 }
 
-// MARK: Functions
+// MARK: Helpers
 
-extension OrderOverviewViewController {
+private extension OrderOverviewViewController {
     
     func displayAlertLabel(withMessage message: String) {
         alertLabel.text = message

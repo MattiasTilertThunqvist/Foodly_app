@@ -77,7 +77,7 @@ class AddToCartViewController: UIViewController {
 
 // MARK: Setup
 
-extension AddToCartViewController {
+private extension AddToCartViewController {
     
     func setup() {
         restaurantNameLabel.text = restaurant.name
@@ -107,9 +107,9 @@ extension AddToCartViewController {
 }
 
 
-// MARK: Functions
+// MARK: Helpers
 
-extension AddToCartViewController {
+private extension AddToCartViewController {
     
     func showContent() {
         UIView.animate(withDuration: animationDuration) {
