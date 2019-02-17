@@ -1,5 +1,5 @@
 //
-//  DetailViewController.swift
+//  MenuViewController.swift
 //  Pizza_Ordering_Web_App
 //
 //  Created by Mattias Tilert Thunqvist on 2019-01-31.
