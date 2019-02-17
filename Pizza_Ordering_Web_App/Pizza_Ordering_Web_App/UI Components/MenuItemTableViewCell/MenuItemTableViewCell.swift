@@ -12,9 +12,9 @@ class MenuItemTableViewCell: UITableViewCell {
 
     // MARK: IBOutlet
     
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak private var nameLabel: UILabel!
+    @IBOutlet weak private var descriptionLabel: UILabel!
+    @IBOutlet weak private var priceLabel: UILabel!
     
     // MARK: Helpers
     
