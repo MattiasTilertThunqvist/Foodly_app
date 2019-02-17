@@ -15,6 +15,7 @@ class CartViewController: UIViewController {
     var restaurant: Restaurant!
     var cart: [Cart] = []
     var updateCartProtocol: UpdateCartProtocol!
+    var dismissProtocol: DismissProtocol!
     let cellIdentifier = "CartTableViewCell"
     let animationDuration = 0.3
     
@@ -126,7 +127,7 @@ extension CartViewController {
     
     func displayAlertLabel(withMessage message: String) {
         alertLabel.text = message
-        alertLabel.frame.size = CGSize(width: tableView.frame.width * 0.8, height: tableView.frame.height)
+        alertLabel.frame.size = CGSize(width: tableView.frame.width - 30, height: tableView.frame.height)
         alertLabel.center = view.center
         alertLabel.alpha = 0.0
         view.addSubview(alertLabel)
@@ -166,6 +167,7 @@ extension CartViewController {
         if let viewController = StoryboardInstance.home.instantiateViewController(withIdentifier: "OrderOverviewViewController") as? OrderOverviewViewController {
             
             viewController.isOrderConfirmation = true
+            viewController.dismissProtocol = dismissProtocol
             
             DispatchQueue.main.async {
                 self.loadingViewController.remove()

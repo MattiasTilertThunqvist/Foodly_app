@@ -20,6 +20,7 @@ class DetailViewController: UIViewController {
             handleCartButton()
         }
     }
+    var dismissProtocol: DismissProtocol!
     let menuCellIdentifier = "MenuItemTableViewCell"
     let animationDuration = 0.3
     
@@ -218,6 +219,7 @@ extension DetailViewController {
             viewController.restaurant = restaurant
             viewController.cart = cart
             viewController.updateCartProtocol = self
+            viewController.dismissProtocol = dismissProtocol
             navigationController?.pushViewController(viewController, animated: true)
         }
     }

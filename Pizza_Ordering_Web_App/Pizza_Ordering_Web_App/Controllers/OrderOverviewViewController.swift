@@ -14,33 +14,38 @@ class OrderOverviewViewController: UIViewController {
     
     var restaurants: [Restaurant] = DataController.sharedInstance.restaurants
     var menu: [MenuItem] = DataController.sharedInstance.menu
-//    var orderStatus: [OrderStatus] = DataController.sharedInstance.orderStatus
-    //Mocked data
-    var orderStatus: [OrderStatus] = {
-        let orderDetails = [OrderDetails(menuItemId: 2, quantity: 1),
-                            OrderDetails(menuItemId: 3, quantity: 1),
-                            OrderDetails(menuItemId: 6, quantity: 2)]
-        
-       let order = OrderStatus(orderId: 1234412, totalPrice: 168, orderedAt: "2015-04-09T17:30:47.556Z", esitmatedDelivery: "2015-04-09T17:45:47.556Z", status: "ordered", cart: orderDetails, restuarantId: 1)
-        
-        
-        return [order, order]
-    }()
-
+    var orderStatus: [OrderStatus] = DataController.sharedInstance.orderStatus
     var isOrderConfirmation = false
+    var dismissProtocol: DismissProtocol?
     let orderHeaderIdentifier = "OrderTableViewHeaderView"
     let cartCellIdentifier = "CartTableViewCell"
+    
+    // MARK: UI components
+    
+    lazy var alertLabel: UILabel = {
+        let label = UILabel()
+        label.font = .pizzaRegularFont(withSize: 25)
+        label.textColor = .pizzaColor(.darkGray)
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        return label
+    }()
     
     // MARK: IBOutlets
     
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var dismissButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: IBActions
     
     @IBAction func dismissButtonWasPressed(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+        if let dismissProtocol = dismissProtocol {
+            dismissProtocol.dismiss()
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
     }
     
     // MARK: View
@@ -54,6 +59,9 @@ class OrderOverviewViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         setupContent()
+        if orderStatus.count == 0 {
+            displayAlertLabel(withMessage: "Du har inte lagt en beställning än. Gå tillbaka och gör din första beställning.")
+        }
     }
 }
 
@@ -67,6 +75,7 @@ extension OrderOverviewViewController {
     
     func setupContent() {
         dismissButton.layer.cornerRadius = dismissButton.frame.height * 0.5
+        activityIndicator.isHidden = true
     }
     
     func setupTableView() {
@@ -84,6 +93,22 @@ extension OrderOverviewViewController {
         let cartCellNib = UINib(nibName: cartCellIdentifier, bundle: nil)
         tableView.register(cartCellNib, forCellReuseIdentifier: cartCellIdentifier)
     }
+    
+    func updateOrderStatus(forHeaderInSection section: Int) {
+        DataController.sharedInstance.getOrder(withId: orderStatus[section].orderId) { (orderStatus, error) in
+            if error != nil {
+                self.displayAlertLabel(withMessage: "Misslyckades att uppdatera order")
+            }
+            
+            if !orderStatus.isEmpty {
+                self.orderStatus = orderStatus
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
 }
 
 // MARK: TableView
@@ -97,6 +122,10 @@ extension OrderOverviewViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: orderHeaderIdentifier) as! OrderTableViewHeaderView
         
+        if !isOrderConfirmation, orderStatus.count != 0 {
+            updateOrderStatus(forHeaderInSection: section)
+        }
+        
         let order = orderStatus[section]
         
         let restaurantId = order.restuarantId
@@ -106,13 +135,8 @@ extension OrderOverviewViewController: UITableViewDelegate, UITableViewDataSourc
         }
         
         view.setOrderId(to: order.orderId)
-        
-        let deliveryDate = format(dateString: order.orderedAt)
-        view.setOrderDate(to: deliveryDate)
-        
-        let estimatedDeliveryDate = format(dateString: order.esitmatedDelivery)
-        view.setEstimatedDeliveryDate(to: estimatedDeliveryDate)
-        
+        view.setOrderDate(to: format(dateString: order.orderedAt))
+        view.setEstimatedDeliveryDate(to: format(dateString: order.esitmatedDelivery))
         view.setDeliveryStatus(to: order.status)
         view.setTotalPrice(to: order.totalPrice)
         return view
@@ -123,12 +147,31 @@ extension OrderOverviewViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cartCell = tableView.dequeueReusableCell(withIdentifier: cartCellIdentifier) as! CartTableViewCell
-        return cartCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cartCellIdentifier) as! CartTableViewCell
+        
+        guard let cart = orderStatus[indexPath.section].cart else { return cell }
+        let quantity = cart[indexPath.row].quantity
+        let menuItemId = cart[indexPath.row].menuItemId
+        let menuItem = menu.first{ $0.id == menuItemId }!
+        
+        cell.setQuantity(to: quantity)
+        cell.setMenuItem(to: menuItem.name)
+        cell.setPricePerUnit(to: menuItem.price)
+        cell.setTotalPrice(to: menuItem.price * quantity)
+        return cell
     }
 }
 
+// MARK: Functions
+
 extension OrderOverviewViewController {
+    
+    func displayAlertLabel(withMessage message: String) {
+        alertLabel.text = message
+        alertLabel.frame.size = CGSize(width: view.frame.width - 30, height: view.frame.height * 0.5)
+        alertLabel.center = view.center
+        view.addSubview(alertLabel)
+    }
     
     func format(dateString: String) -> String {
         let dateFormatter = DateFormatter()

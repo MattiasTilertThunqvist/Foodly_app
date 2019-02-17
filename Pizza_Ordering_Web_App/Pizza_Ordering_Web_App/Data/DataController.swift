@@ -68,13 +68,42 @@ class DataController {
             if error == nil, let data = data {
                 do {
                     var orderStatus = try JSONDecoder().decode(OrderStatus.self, from: data)
-                    orderStatus.cart = order.cart
                     orderStatus.restuarantId = order.restuarantId
-                    self.orderStatus.append(orderStatus)
+                    self.orderStatus.insert(orderStatus, at: 0)
                     completion(orderStatus, nil)
                 } catch let jsonError {
                     completion(nil, jsonError)
                 }
+            }
+        }.resume()
+    }
+    
+    func getOrder(withId id: Int, completion: @escaping (_ orderStatus: [OrderStatus], _ error: Error?) -> ()) {
+        let url = URL(string: "https://private-anon-2b6f863617-pizzaapp.apiary-mock.com/orders/\(id)")!
+        let request = URLRequest(url: url)
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                completion([], error)
+                return
+            }
+            
+            do {
+                let orderStatus = try JSONDecoder().decode(OrderStatus.self, from: data)
+                guard let index = self.orderStatus.index(where: { $0.orderId == id }) else { return }
+                
+                if self.orderStatus[index].esitmatedDelivery != orderStatus.esitmatedDelivery ||
+                    self.orderStatus[index].status != orderStatus.status {
+                    
+                    self.orderStatus[index].esitmatedDelivery = orderStatus.esitmatedDelivery
+                    self.orderStatus[index].status = orderStatus.status
+                    self.orderStatus[index].cart = orderStatus.cart
+                    completion(self.orderStatus, nil)
+                } else {
+                    completion([], nil)
+                }
+            } catch let jsonError {
+                completion([], jsonError)
             }
         }.resume()
     }

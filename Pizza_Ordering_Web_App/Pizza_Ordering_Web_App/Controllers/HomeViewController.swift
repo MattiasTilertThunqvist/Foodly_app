@@ -114,6 +114,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let storyboard = StoryboardInstance.home
         if let detailViewController = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController {
             detailViewController.restaurant = restaurants[indexPath.row]
+            detailViewController.dismissProtocol = self
             navigationController?.pushViewController(detailViewController, animated: true)
         }
     }
@@ -180,5 +181,14 @@ extension HomeViewController {
         let alertAction = UIAlertAction(title: buttonText, style: .default, handler: nil)
         alert.addAction(alertAction)
         self.present(alert, animated: true, completion: nil)
+    }
+}
+
+// MARK: DismissProtocol
+
+extension HomeViewController: DismissProtocol {
+    func dismiss() {
+        navigationController?.dismiss(animated: true, completion: nil)
+        navigationController?.popToRootViewController(animated: true)
     }
 }

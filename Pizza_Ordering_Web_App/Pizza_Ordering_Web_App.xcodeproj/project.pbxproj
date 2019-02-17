@@ -15,6 +15,7 @@
 		8A1B01FE2202E2A800CE513A /* RestaurantTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A1B01FC2202E2A800CE513A /* RestaurantTableViewCell.xib */; };
 		8A1FA55E2214301D00DF0430 /* UIFont+Pizza.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1FA55D2214301D00DF0430 /* UIFont+Pizza.swift */; };
 		8A1FA560221437DC00DF0430 /* UIColor+Pizza.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1FA55F221437DC00DF0430 /* UIColor+Pizza.swift */; };
+		8A2074AB22199302000CC4C6 /* DismissProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2074AA22199302000CC4C6 /* DismissProtocol.swift */; };
 		8A21039922156470007CBC61 /* CartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A21039722156470007CBC61 /* CartTableViewCell.swift */; };
 		8A21039A22156470007CBC61 /* CartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A21039822156470007CBC61 /* CartTableViewCell.xib */; };
 		8A21B13522147F2B00C4B02A /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A21B13422147F2B00C4B02A /* Cart.swift */; };
@@ -48,6 +49,7 @@
 		8A1B01FC2202E2A800CE513A /* RestaurantTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantTableViewCell.xib; sourceTree = "<group>"; };
 		8A1FA55D2214301D00DF0430 /* UIFont+Pizza.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Pizza.swift"; sourceTree = "<group>"; };
 		8A1FA55F221437DC00DF0430 /* UIColor+Pizza.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Pizza.swift"; sourceTree = "<group>"; };
+		8A2074AA22199302000CC4C6 /* DismissProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissProtocol.swift; sourceTree = "<group>"; };
 		8A21039722156470007CBC61 /* CartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTableViewCell.swift; sourceTree = "<group>"; };
 		8A21039822156470007CBC61 /* CartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartTableViewCell.xib; sourceTree = "<group>"; };
 		8A21B13422147F2B00C4B02A /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				8AC21A762214581A00DF1BD9 /* UpdateCartProtocol.swift */,
+				8A2074AA22199302000CC4C6 /* DismissProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				8A21B137221490C600C4B02A /* CartViewController.swift in Sources */,
 				8A28D64C220194FF00F5B640 /* DataController.swift in Sources */,
 				8ADE62492200B12900E956A1 /* AppDelegate.swift in Sources */,
+				8A2074AB22199302000CC4C6 /* DismissProtocol.swift in Sources */,
 				8A21B13522147F2B00C4B02A /* Cart.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
