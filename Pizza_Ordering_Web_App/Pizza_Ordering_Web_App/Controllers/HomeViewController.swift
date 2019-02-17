@@ -112,10 +112,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let storyboard = StoryboardInstance.home
-        if let detailViewController = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController {
-            detailViewController.restaurant = restaurants[indexPath.row]
-            detailViewController.dismissProtocol = self
-            navigationController?.pushViewController(detailViewController, animated: true)
+        if let viewController = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController {
+            viewController.restaurant = restaurants[indexPath.row]
+            viewController.dismissProtocol = self
+            navigationController?.pushViewController(viewController, animated: true)
         }
     }
 }
