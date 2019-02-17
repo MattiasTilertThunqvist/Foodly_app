@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class HomeViewController: UIViewController {
+class RestaurantsViewController: UIViewController {
     
     // MARK: Properties
     
@@ -39,7 +39,7 @@ class HomeViewController: UIViewController {
 
 // MARK: Setup
 
-private extension HomeViewController {
+private extension RestaurantsViewController {
     
     func setup() {
         let nav = self.navigationController?.navigationBar
@@ -94,7 +94,7 @@ private extension HomeViewController {
 
 // MARK: TableView
 
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+extension RestaurantsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return restaurants.count
     }
@@ -112,7 +112,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let storyboard = StoryboardInstance.home
-        if let viewController = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? MenuViewController {
+        if let viewController = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController {
             viewController.restaurant = restaurants[indexPath.row]
             viewController.dismissProtocol = self
             navigationController?.pushViewController(viewController, animated: true)
@@ -122,7 +122,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
 // MARK: Location
 
-extension HomeViewController: CLLocationManagerDelegate {
+extension RestaurantsViewController: CLLocationManagerDelegate {
     
     func checkLocationManager() {
         dispatchGroup.enter()
@@ -168,7 +168,7 @@ extension HomeViewController: CLLocationManagerDelegate {
 
 // MARK: Helper
 
-private extension HomeViewController {
+private extension RestaurantsViewController {
     
     func presentOrders() {
         if let viewController = StoryboardInstance.home.instantiateViewController(withIdentifier: "OrderOverviewViewController") as? OrderOverviewViewController {
@@ -186,7 +186,7 @@ private extension HomeViewController {
 
 // MARK: DismissProtocol
 
-extension HomeViewController: DismissProtocol {
+extension RestaurantsViewController: DismissProtocol {
     func dismiss() {
         navigationController?.dismiss(animated: true, completion: nil)
         navigationController?.popToRootViewController(animated: true)

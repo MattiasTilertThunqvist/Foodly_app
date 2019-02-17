@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class MenuViewController: UIViewController {
     
     // MARK: Properties
     
@@ -46,7 +46,7 @@ class DetailViewController: UIViewController {
 
 // MARK: Setup
 
-private extension DetailViewController {
+private extension MenuViewController {
     
     func setup() {
         title = restaurant.name
@@ -104,7 +104,7 @@ private extension DetailViewController {
 
 // MARK: TableView
 
-extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
+extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return categories.count
@@ -157,7 +157,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
 
 // MARK: Helpers
 
-private extension DetailViewController {
+private extension MenuViewController {
     
     func sortMenuByRank() {
         menu.sort { (item1, item2) -> Bool in
@@ -176,7 +176,7 @@ private extension DetailViewController {
 
 // MARK: Cart
 
-private extension DetailViewController {
+private extension MenuViewController {
     
     func handleCartButton() {
         setCartButtonText()
@@ -227,7 +227,7 @@ private extension DetailViewController {
 
 // MARK: UpdateCartProtocol
 
-extension DetailViewController: UpdateCartProtocol {
+extension MenuViewController: UpdateCartProtocol {
     
     func addToCart(_ menuItem: MenuItem, quantity: Int) {
         if let index = cart.firstIndex(where: { $0.menuItem.id == menuItem.id }) {
