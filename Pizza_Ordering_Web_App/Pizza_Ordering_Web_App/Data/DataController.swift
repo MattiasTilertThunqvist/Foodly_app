@@ -20,16 +20,17 @@ class DataController {
         let url = URL(string: "https://private-anon-93a88b892d-pizzaapp.apiary-mock.com/restaurants/")!
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if error == nil, let data = data {
-                do {
-                    let restaurants = try JSONDecoder().decode([Restaurant].self, from: data)
-                    self.restaurants = restaurants
-                    completion(restaurants, nil)
-                } catch let jsonError {
-                    completion(nil, jsonError)
-                }
-            } else {
+            guard let data = data, error == nil else {
                 completion(nil, error)
+                return
+            }
+            
+            do {
+                let restaurants = try JSONDecoder().decode([Restaurant].self, from: data)
+                self.restaurants = restaurants
+                completion(restaurants, nil)
+            } catch let jsonError {
+                completion(nil, jsonError)
             }
         }.resume()
     }
@@ -38,16 +39,17 @@ class DataController {
         let url = URL(string: "https://private-anon-aaa547a087-pizzaapp.apiary-mock.com/restaurants/\(id)/menu")!
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if error == nil, let data = data {
-                do {
-                    let menu = try JSONDecoder().decode([MenuItem].self, from: data)
-                    self.menu = menu
-                    completion(menu, nil)
-                } catch let jsonError {
-                    completion(nil, jsonError)
-                }
-            } else {
+            guard let data = data, error == nil else {
                 completion(nil, error)
+                return
+            }
+            
+            do {
+                let menu = try JSONDecoder().decode([MenuItem].self, from: data)
+                self.menu = menu
+                completion(menu, nil)
+            } catch let jsonError {
+                completion(nil, jsonError)
             }
         }.resume()
     }
@@ -65,17 +67,20 @@ class DataController {
         }
         
         URLSession.shared.dataTask(with: request) { data, response, error in
-            if error == nil, let data = data {
-                do {
-                    var orderStatus = try JSONDecoder().decode(OrderStatus.self, from: data)
-                    orderStatus.restuarantId = order.restuarantId
-                    self.orderStatus.insert(orderStatus, at: 0)
-                    completion(orderStatus, nil)
-                } catch let jsonError {
-                    completion(nil, jsonError)
-                }
+            guard let data = data, error == nil else {
+                completion(nil, error)
+                return
             }
-        }.resume()
+            
+            do {
+                var orderStatus = try JSONDecoder().decode(OrderStatus.self, from: data)
+                orderStatus.restuarantId = order.restuarantId
+                self.orderStatus.insert(orderStatus, at: 0)
+                completion(orderStatus, nil)
+            } catch let jsonError {
+                completion(nil, jsonError)
+            }
+            }.resume()
     }
     
     func getOrder(withId id: Int, completion: @escaping (_ orderStatus: [OrderStatus], _ error: Error?) -> ()) {
