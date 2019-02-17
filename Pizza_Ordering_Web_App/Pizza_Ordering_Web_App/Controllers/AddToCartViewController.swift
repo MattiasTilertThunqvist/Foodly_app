@@ -106,7 +106,6 @@ private extension AddToCartViewController {
     }
 }
 
-
 // MARK: Helpers
 
 private extension AddToCartViewController {

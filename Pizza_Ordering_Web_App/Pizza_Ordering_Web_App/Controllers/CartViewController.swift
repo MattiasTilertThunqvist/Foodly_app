@@ -58,8 +58,6 @@ class CartViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         setupContent()
     }
-    
-    
 }
 
 // MARK: Setup

@@ -166,7 +166,7 @@ extension HomeViewController: CLLocationManagerDelegate {
     }
 }
 
-// MARK: Helper
+// MARK: Helpers
 
 private extension HomeViewController {
     
