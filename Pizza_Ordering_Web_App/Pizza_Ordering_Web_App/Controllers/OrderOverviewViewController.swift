@@ -36,7 +36,6 @@ class OrderOverviewViewController: UIViewController {
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var dismissButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: IBActions
     
@@ -75,7 +74,6 @@ extension OrderOverviewViewController {
     
     func setupContent() {
         dismissButton.layer.cornerRadius = dismissButton.frame.height * 0.5
-        activityIndicator.isHidden = true
     }
     
     func setupTableView() {

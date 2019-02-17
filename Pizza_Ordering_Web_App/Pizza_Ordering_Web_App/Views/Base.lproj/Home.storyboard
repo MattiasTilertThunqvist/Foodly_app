@@ -399,14 +399,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order overview" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sf3-eg-loy">
-                                <rect key="frame" x="15" y="41.5" width="255" height="27.5"/>
+                                <rect key="frame" x="15" y="41.5" width="290" height="27.5"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
                                 <color key="textColor" name="pizzaDarkGray"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="46E-dz-CKP">
-                                <rect key="frame" x="285" y="45" width="20" height="20"/>
-                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MJu-yE-Eke">
                                 <rect key="frame" x="320" y="35" width="40" height="40"/>
                                 <color key="backgroundColor" name="pizzaLightGray"/>
@@ -435,7 +432,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="46E-dz-CKP" firstAttribute="leading" secondItem="Sf3-eg-loy" secondAttribute="trailing" constant="15" id="7eJ-71-c3q"/>
                             <constraint firstItem="GRZ-6j-gKh" firstAttribute="trailing" secondItem="fMQ-E5-Btd" secondAttribute="trailing" id="98H-dd-Qlf"/>
                             <constraint firstItem="MJu-yE-Eke" firstAttribute="top" secondItem="fMQ-E5-Btd" secondAttribute="top" constant="15" id="F6l-WB-Kto"/>
                             <constraint firstItem="GRZ-6j-gKh" firstAttribute="bottom" secondItem="PmA-jH-Y4T" secondAttribute="bottom" id="Jah-xG-igZ"/>
@@ -446,14 +442,12 @@
                             <constraint firstItem="fMQ-E5-Btd" firstAttribute="trailing" secondItem="MJu-yE-Eke" secondAttribute="trailing" constant="15" id="YWw-7Z-oxA"/>
                             <constraint firstItem="qa5-61-bJP" firstAttribute="leading" secondItem="PmA-jH-Y4T" secondAttribute="leading" constant="15" id="aoJ-dQ-dR9"/>
                             <constraint firstItem="GRZ-6j-gKh" firstAttribute="top" secondItem="qa5-61-bJP" secondAttribute="bottom" constant="15" id="d6I-Ur-79k"/>
-                            <constraint firstItem="MJu-yE-Eke" firstAttribute="leading" secondItem="46E-dz-CKP" secondAttribute="trailing" constant="15" id="mbJ-lb-5Rt"/>
-                            <constraint firstItem="46E-dz-CKP" firstAttribute="centerY" secondItem="MJu-yE-Eke" secondAttribute="centerY" id="oPv-E7-gkp"/>
+                            <constraint firstItem="MJu-yE-Eke" firstAttribute="leading" secondItem="Sf3-eg-loy" secondAttribute="trailing" constant="15" id="lN3-PG-TZw"/>
                             <constraint firstItem="qa5-61-bJP" firstAttribute="top" secondItem="MJu-yE-Eke" secondAttribute="bottom" constant="15" id="xZn-4f-V7q"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fMQ-E5-Btd"/>
                     </view>
                     <connections>
-                        <outlet property="activityIndicator" destination="46E-dz-CKP" id="N0I-rA-xSy"/>
                         <outlet property="dismissButton" destination="MJu-yE-Eke" id="Tda-uI-OMN"/>
                         <outlet property="headerLabel" destination="Sf3-eg-loy" id="gQG-V6-SiE"/>
                         <outlet property="tableView" destination="GRZ-6j-gKh" id="dTC-XG-oIB"/>
