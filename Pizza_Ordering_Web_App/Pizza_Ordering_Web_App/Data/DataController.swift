@@ -12,7 +12,7 @@ class DataController {
     static let sharedInstance = DataController()
     var restaurants: [Restaurant] = []
     var menu: [MenuItem] = []
-    var orderStatus: [OrderStatus] = []
+    var orders: [Order] = []
     
     private init() {}
     
@@ -54,13 +54,13 @@ class DataController {
         }.resume()
     }
     
-    func createOrder(_ order: Order, completion: @escaping (_ orderStatus: OrderStatus?, _ error: Error?) -> ()) {
+    func createOrder(_ newOrder: NewOrder, completion: @escaping (_ order: Order?, _ error: Error?) -> ()) {
         let url = URL(string: "https://private-anon-bc43a7f805-pizzaapp.apiary-mock.com/orders/")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
         do {
-            let jsonData = try JSONEncoder().encode(order)
+            let jsonData = try JSONEncoder().encode(newOrder)
             request.httpBody = jsonData
         } catch {
             completion(nil, error)
@@ -73,17 +73,17 @@ class DataController {
             }
             
             do {
-                var orderStatus = try JSONDecoder().decode(OrderStatus.self, from: data)
-                orderStatus.restuarantId = order.restuarantId
-                self.orderStatus.insert(orderStatus, at: 0)
-                completion(orderStatus, nil)
+                var order = try JSONDecoder().decode(Order.self, from: data)
+                order.restuarantId = newOrder.restuarantId
+                self.orders.insert(order, at: 0)
+                completion(order, nil)
             } catch let jsonError {
                 completion(nil, jsonError)
             }
             }.resume()
     }
     
-    func getOrder(withId id: Int, completion: @escaping (_ orderStatus: [OrderStatus], _ error: Error?) -> ()) {
+    func getOrder(withId id: Int, completion: @escaping (_ order: [Order], _ error: Error?) -> ()) {
         let url = URL(string: "https://private-anon-2b6f863617-pizzaapp.apiary-mock.com/orders/\(id)")!
         let request = URLRequest(url: url)
         
@@ -94,16 +94,16 @@ class DataController {
             }
             
             do {
-                let orderStatus = try JSONDecoder().decode(OrderStatus.self, from: data)
-                guard let index = self.orderStatus.index(where: { $0.orderId == id }) else { return }
+                let order = try JSONDecoder().decode(Order.self, from: data)
+                guard let index = self.orders.index(where: { $0.orderId == id }) else { return }
                 
-                if self.orderStatus[index].esitmatedDelivery != orderStatus.esitmatedDelivery ||
-                    self.orderStatus[index].status != orderStatus.status {
+                if self.orders[index].esitmatedDelivery != order.esitmatedDelivery ||
+                    self.orders[index].status != order.status {
                     
-                    self.orderStatus[index].esitmatedDelivery = orderStatus.esitmatedDelivery
-                    self.orderStatus[index].status = orderStatus.status
-                    self.orderStatus[index].cart = orderStatus.cart
-                    completion(self.orderStatus, nil)
+                    self.orders[index].esitmatedDelivery = order.esitmatedDelivery
+                    self.orders[index].status = order.status
+                    self.orders[index].cart = order.cart
+                    completion(self.orders, nil)
                 } else {
                     completion([], nil)
                 }

@@ -147,9 +147,9 @@ private extension CartViewController {
         add(loadingViewController)
         
         let orderDetails = cart.map { OrderDetails.init(menuItemId: $0.menuItem.id, quantity: $0.quantity) }
-        let order = Order(cart: orderDetails, restuarantId: restaurant.id)
+        let newOrder = NewOrder(orderDetails: orderDetails, restuarantId: restaurant.id)
         
-        DataController.sharedInstance.createOrder(order) { (orderStatus, error) in
+        DataController.sharedInstance.createOrder(newOrder) { (order, error) in
 //            self.navigationController?.navigationBar.isUserInteractionEnabled = true
 
             if error != nil {
@@ -158,12 +158,12 @@ private extension CartViewController {
                     self.displayAlertLabel(withMessage: "Beställningen misslyckades. Något gick fel, vi beklagar. Gå tillbaka och gör ett nytt försök.")
                 }
             } else {
-                self.presentOrderOverview(orderStatus!)
+                self.presentOrderOverview(for: order!)
             }
         }
     }
     
-    func presentOrderOverview(_ orderStatus: OrderStatus) {
+    func presentOrderOverview(for order: Order) {
         if let viewController = StoryboardInstance.home.instantiateViewController(withIdentifier: "OrderOverviewViewController") as? OrderOverviewViewController {
             
             viewController.isOrderConfirmation = true

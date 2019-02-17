@@ -14,7 +14,7 @@ class OrderOverviewViewController: UIViewController {
     
     var restaurants: [Restaurant] = DataController.sharedInstance.restaurants
     var menu: [MenuItem] = DataController.sharedInstance.menu
-    var orderStatus: [OrderStatus] = DataController.sharedInstance.orderStatus
+    var orders: [Order] = DataController.sharedInstance.orders
     var isOrderConfirmation = false
     var dismissProtocol: DismissProtocol?
     let orderHeaderIdentifier = "OrderTableViewHeaderView"
@@ -58,7 +58,7 @@ class OrderOverviewViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         setupContent()
-        if orderStatus.count == 0 {
+        if orders.count == 0 {
             displayAlertLabel(withMessage: "Du har inte lagt en beställning än. Gå tillbaka och gör din första beställning.")
         }
     }
@@ -92,14 +92,14 @@ private extension OrderOverviewViewController {
         tableView.register(cartCellNib, forCellReuseIdentifier: cartCellIdentifier)
     }
     
-    func updateOrderStatus(forHeaderInSection section: Int) {
-        DataController.sharedInstance.getOrder(withId: orderStatus[section].orderId) { (orderStatus, error) in
+    func updateOrder(forHeaderInSection section: Int) {
+        DataController.sharedInstance.getOrder(withId: orders[section].orderId) { (order, error) in
             if error != nil {
                 self.displayAlertLabel(withMessage: "Misslyckades att uppdatera order")
             }
             
-            if !orderStatus.isEmpty {
-                self.orderStatus = orderStatus
+            if !order.isEmpty {
+                self.orders = order
                 
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
@@ -114,17 +114,17 @@ private extension OrderOverviewViewController {
 extension OrderOverviewViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return isOrderConfirmation ? 1 : orderStatus.count
+        return isOrderConfirmation ? 1 : orders.count
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: orderHeaderIdentifier) as! OrderTableViewHeaderView
         
-        if !isOrderConfirmation, orderStatus.count != 0 {
-            updateOrderStatus(forHeaderInSection: section)
+        if !isOrderConfirmation, orders.count != 0 {
+            updateOrder(forHeaderInSection: section)
         }
         
-        let order = orderStatus[section]
+        let order = orders[section]
         
         let restaurantId = order.restuarantId
         if let restaurant = restaurants.first(where: { $0.id == restaurantId }) {
@@ -141,13 +141,13 @@ extension OrderOverviewViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return orderStatus[section].cart?.count ?? 0
+        return orders[section].cart?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cartCellIdentifier) as! CartTableViewCell
         
-        guard let cart = orderStatus[indexPath.section].cart else { return cell }
+        guard let cart = orders[indexPath.section].cart else { return cell }
         let quantity = cart[indexPath.row].quantity
         let menuItemId = cart[indexPath.row].menuItemId
         let menuItem = menu.first{ $0.id == menuItemId }!

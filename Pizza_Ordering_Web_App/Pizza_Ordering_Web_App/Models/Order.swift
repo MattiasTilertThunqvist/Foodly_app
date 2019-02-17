@@ -8,7 +8,12 @@
 
 import Foundation
 
-struct Order: Encodable {
-    var cart: [OrderDetails]
-    var restuarantId: Int
+struct Order: Decodable {
+    let orderId: Int
+    let totalPrice: Int
+    let orderedAt: String
+    var esitmatedDelivery: String
+    var status: String
+    var cart: [OrderDetails]?
+    var restuarantId: Int?
 }
