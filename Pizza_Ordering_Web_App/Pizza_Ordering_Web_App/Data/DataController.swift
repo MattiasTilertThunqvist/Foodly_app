@@ -15,7 +15,7 @@ class DataController {
     var orders: [Order] = []
     
     func getRestaurants(completion: @escaping (_ restaurants: [Restaurant]?, _ error: Error?) -> ()) {
-        let url = URL(string: "https://private-130ed-foodapp5.apiary-mock.com/restaurants/")!
+        let url = URL(string: "https://private-130ed-foodlyapp.apiary-mock.com/restaurants/")!
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data, error == nil else {
@@ -35,7 +35,7 @@ class DataController {
     
     func getMenuForRestaurant(with id: Int, completion: @escaping (_ menu: [MenuItem]?, _ error: Error?) -> ()) {
         // TODO: Andra så att listan sorteras redan vid anrop. APIet tillåter det.
-        let url = URL(string: "https://private-130ed-foodapp5.apiary-mock.com/restaurants/\(id)/menu")!
+        let url = URL(string: "https://private-130ed-foodlyapp.apiary-mock.com/restaurants/\(id)/menu")!
 
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data, error == nil else {
@@ -54,7 +54,7 @@ class DataController {
     }
     
     func createOrder(_ newOrder: NewOrder, completion: @escaping (_ order: Order?, _ error: Error?) -> ()) {
-        let url = URL(string: "https://private-130ed-foodapp5.apiary-mock.com/orders/")!
+        let url = URL(string: "https://private-130ed-foodlyapp.apiary-mock.com/orders/")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
@@ -83,7 +83,7 @@ class DataController {
     }
     
     func getOrder(withId id: Int, completion: @escaping (_ order: [Order], _ error: Error?) -> ()) {
-        let url = URL(string: "https://private-130ed-foodapp5.apiary-mock.com/orders/\(id)")!
+        let url = URL(string: "https://private-130ed-foodlyapp.apiary-mock.com/orders/\(id)")!
         let request = URLRequest(url: url)
         
         URLSession.shared.dataTask(with: request) { data, response, error in
