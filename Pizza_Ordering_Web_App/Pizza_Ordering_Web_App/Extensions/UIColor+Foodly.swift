@@ -16,16 +16,16 @@ enum AssetsColor {
 }
 
 extension UIColor {
-    static func pizzaColor(_ name: AssetsColor) -> UIColor {
+    static func foodlyColor(_ name: AssetsColor) -> UIColor {
         switch name {
         case .green:
-            return UIColor(named: "pizzaGreen")!
+            return UIColor(named: "foodlyGreen")!
         case .white:
-            return UIColor(named: "pizzaWhite")!
+            return UIColor(named: "foodlyWhite")!
         case .lightGray:
-            return UIColor(named: "pizzaLightGray")!
+            return UIColor(named: "foodlyLightGray")!
         case .darkGray:
-            return UIColor(named: "pizzaDarkGray")!
+            return UIColor(named: "foodlyDarkGray")!
         }
     }
 }

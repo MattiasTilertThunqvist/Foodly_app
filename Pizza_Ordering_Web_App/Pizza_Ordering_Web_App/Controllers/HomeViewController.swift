@@ -34,6 +34,7 @@ class HomeViewController: UIViewController {
         setup()
         setupTableView()
         registerNibs()
+        tableView.backgroundColor = #colorLiteral(red: 0.2485148609, green: 0.7314290404, blue: 0.9247335792, alpha: 1)
     }
 }
 
@@ -44,8 +45,8 @@ private extension HomeViewController {
     func setup() {
         let nav = self.navigationController?.navigationBar
         nav?.barStyle = UIBarStyle.black
-        nav?.tintColor = .pizzaColor(.white)
-        nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.pizzaColor(.white),
+        nav?.tintColor = .foodlyColor(.white)
+        nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.foodlyColor(.white),
                                     NSAttributedString.Key.font: UIFont.pizzaRegularFont(withSize: 20)]
         title = "Restauranger"
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -104,7 +105,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: RestaurantCellIdentifier) as! RestaurantTableViewCell
         cell.setName(to: restaurant.name)
-        cell.setAdress(to: restaurant.address1 + ", " + restaurant.address2)
+        cell.setAdress(adress1: restaurant.address1, address2: restaurant.address2)
         return cell
     }
     

@@ -25,7 +25,7 @@ class OrderOverviewViewController: UIViewController {
     lazy var alertLabel: UILabel = {
         let label = UILabel()
         label.font = .pizzaRegularFont(withSize: 25)
-        label.textColor = .pizzaColor(.darkGray)
+        label.textColor = .foodlyColor(.darkGray)
         label.numberOfLines = 0
         label.textAlignment = .center
         return label

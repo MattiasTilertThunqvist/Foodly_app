@@ -13,8 +13,8 @@
 		8A0E988A22172CAA00A0EEA6 /* OrderOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0E988922172CAA00A0EEA6 /* OrderOverviewViewController.swift */; };
 		8A1B01FD2202E2A800CE513A /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B01FB2202E2A800CE513A /* RestaurantTableViewCell.swift */; };
 		8A1B01FE2202E2A800CE513A /* RestaurantTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A1B01FC2202E2A800CE513A /* RestaurantTableViewCell.xib */; };
-		8A1FA55E2214301D00DF0430 /* UIFont+Pizza.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1FA55D2214301D00DF0430 /* UIFont+Pizza.swift */; };
-		8A1FA560221437DC00DF0430 /* UIColor+Pizza.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1FA55F221437DC00DF0430 /* UIColor+Pizza.swift */; };
+		8A1FA55E2214301D00DF0430 /* UIFont+Foodly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1FA55D2214301D00DF0430 /* UIFont+Foodly.swift */; };
+		8A1FA560221437DC00DF0430 /* UIColor+Foodly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1FA55F221437DC00DF0430 /* UIColor+Foodly.swift */; };
 		8A2074AB22199302000CC4C6 /* DismissProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2074AA22199302000CC4C6 /* DismissProtocol.swift */; };
 		8A21039922156470007CBC61 /* CartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A21039722156470007CBC61 /* CartTableViewCell.swift */; };
 		8A21039A22156470007CBC61 /* CartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A21039822156470007CBC61 /* CartTableViewCell.xib */; };
@@ -26,11 +26,12 @@
 		8A28D64E2201A35400F5B640 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A28D64D2201A35400F5B640 /* Restaurant.swift */; };
 		8A40D5F2220366D20066DCD9 /* MenuItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A40D5F0220366D20066DCD9 /* MenuItemTableViewCell.swift */; };
 		8A40D5F3220366D20066DCD9 /* MenuItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A40D5F1220366D20066DCD9 /* MenuItemTableViewCell.xib */; };
+		8A4179C62248D56D007C0A7D /* CALayer+Foodly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4179C52248D56D007C0A7D /* CALayer+Foodly.swift */; };
 		8A6940A9220330B100FD71F8 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6940A8220330B100FD71F8 /* MenuViewController.swift */; };
 		8A6940AB220339B100FD71F8 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6940AA220339B100FD71F8 /* MenuItem.swift */; };
 		8A8F100F2213007B00E4B185 /* AddToCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8F100E2213007B00E4B185 /* AddToCartViewController.swift */; };
 		8AA8DA0B2212C2EE00138FAF /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA8DA0A2212C2EE00138FAF /* LoadingViewController.swift */; };
-		8AA8DA0E2212C6C900138FAF /* UIViewController+Pizza.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA8DA0D2212C6C900138FAF /* UIViewController+Pizza.swift */; };
+		8AA8DA0E2212C6C900138FAF /* UIViewController+Foodly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA8DA0D2212C6C900138FAF /* UIViewController+Foodly.swift */; };
 		8AC21A772214581A00DF1BD9 /* UpdateCartProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC21A762214581A00DF1BD9 /* UpdateCartProtocol.swift */; };
 		8ADC8477221309ED0049464E /* StoryboardInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADC8476221309ED0049464E /* StoryboardInstance.swift */; };
 		8ADE62492200B12900E956A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADE62482200B12900E956A1 /* AppDelegate.swift */; };
@@ -47,8 +48,8 @@
 		8A0E988922172CAA00A0EEA6 /* OrderOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OrderOverviewViewController.swift; path = Pizza_Ordering_Web_App/Controllers/OrderOverviewViewController.swift; sourceTree = SOURCE_ROOT; };
 		8A1B01FB2202E2A800CE513A /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
 		8A1B01FC2202E2A800CE513A /* RestaurantTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantTableViewCell.xib; sourceTree = "<group>"; };
-		8A1FA55D2214301D00DF0430 /* UIFont+Pizza.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Pizza.swift"; sourceTree = "<group>"; };
-		8A1FA55F221437DC00DF0430 /* UIColor+Pizza.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Pizza.swift"; sourceTree = "<group>"; };
+		8A1FA55D2214301D00DF0430 /* UIFont+Foodly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Foodly.swift"; sourceTree = "<group>"; };
+		8A1FA55F221437DC00DF0430 /* UIColor+Foodly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Foodly.swift"; sourceTree = "<group>"; };
 		8A2074AA22199302000CC4C6 /* DismissProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissProtocol.swift; sourceTree = "<group>"; };
 		8A21039722156470007CBC61 /* CartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTableViewCell.swift; sourceTree = "<group>"; };
 		8A21039822156470007CBC61 /* CartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartTableViewCell.xib; sourceTree = "<group>"; };
@@ -60,11 +61,12 @@
 		8A28D64D2201A35400F5B640 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		8A40D5F0220366D20066DCD9 /* MenuItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemTableViewCell.swift; sourceTree = "<group>"; };
 		8A40D5F1220366D20066DCD9 /* MenuItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuItemTableViewCell.xib; sourceTree = "<group>"; };
+		8A4179C52248D56D007C0A7D /* CALayer+Foodly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Foodly.swift"; sourceTree = "<group>"; };
 		8A6940A8220330B100FD71F8 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		8A6940AA220339B100FD71F8 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		8A8F100E2213007B00E4B185 /* AddToCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCartViewController.swift; sourceTree = "<group>"; };
 		8AA8DA0A2212C2EE00138FAF /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
-		8AA8DA0D2212C6C900138FAF /* UIViewController+Pizza.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Pizza.swift"; sourceTree = "<group>"; };
+		8AA8DA0D2212C6C900138FAF /* UIViewController+Foodly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Foodly.swift"; sourceTree = "<group>"; };
 		8AC21A762214581A00DF1BD9 /* UpdateCartProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCartProtocol.swift; sourceTree = "<group>"; };
 		8ADC8476221309ED0049464E /* StoryboardInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardInstance.swift; sourceTree = "<group>"; };
 		8ADE62452200B12900E956A1 /* Pizza_Ordering_Web_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pizza_Ordering_Web_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,9 +155,10 @@
 		8AA8DA0C2212C69700138FAF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				8AA8DA0D2212C6C900138FAF /* UIViewController+Pizza.swift */,
-				8A1FA55D2214301D00DF0430 /* UIFont+Pizza.swift */,
-				8A1FA55F221437DC00DF0430 /* UIColor+Pizza.swift */,
+				8AA8DA0D2212C6C900138FAF /* UIViewController+Foodly.swift */,
+				8A1FA55D2214301D00DF0430 /* UIFont+Foodly.swift */,
+				8A1FA55F221437DC00DF0430 /* UIColor+Foodly.swift */,
+				8A4179C52248D56D007C0A7D /* CALayer+Foodly.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -338,19 +341,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A0E988A22172CAA00A0EEA6 /* OrderOverviewViewController.swift in Sources */,
-				8A1FA560221437DC00DF0430 /* UIColor+Pizza.swift in Sources */,
+				8A1FA560221437DC00DF0430 /* UIColor+Foodly.swift in Sources */,
 				8A1B01FD2202E2A800CE513A /* RestaurantTableViewCell.swift in Sources */,
-				8A1FA55E2214301D00DF0430 /* UIFont+Pizza.swift in Sources */,
+				8A1FA55E2214301D00DF0430 /* UIFont+Foodly.swift in Sources */,
 				8A0E988422170C9200A0EEA6 /* NewOrder.swift in Sources */,
 				8A21039922156470007CBC61 /* CartTableViewCell.swift in Sources */,
 				8ADC8477221309ED0049464E /* StoryboardInstance.swift in Sources */,
+				8A4179C62248D56D007C0A7D /* CALayer+Foodly.swift in Sources */,
 				8A28D64E2201A35400F5B640 /* Restaurant.swift in Sources */,
 				8A6940AB220339B100FD71F8 /* MenuItem.swift in Sources */,
 				8A8F100F2213007B00E4B185 /* AddToCartViewController.swift in Sources */,
 				8AC21A772214581A00DF1BD9 /* UpdateCartProtocol.swift in Sources */,
 				8A21DB25221850B800BBF89A /* OrderTableViewHeaderView.swift in Sources */,
 				8ADE624B2200B12900E956A1 /* HomeViewController.swift in Sources */,
-				8AA8DA0E2212C6C900138FAF /* UIViewController+Pizza.swift in Sources */,
+				8AA8DA0E2212C6C900138FAF /* UIViewController+Foodly.swift in Sources */,
 				8A0E98882217246000A0EEA6 /* Order.swift in Sources */,
 				8A6940A9220330B100FD71F8 /* MenuViewController.swift in Sources */,
 				8AA8DA0B2212C2EE00138FAF /* LoadingViewController.swift in Sources */,
