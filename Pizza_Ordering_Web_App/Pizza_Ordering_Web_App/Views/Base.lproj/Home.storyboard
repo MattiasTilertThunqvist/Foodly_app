@@ -19,16 +19,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="SFv-7Z-9KY">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </progressView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="D2o-rC-Xwl">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="D2o-rC-Xwl" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="0hj-KH-xcJ"/>
                             <constraint firstAttribute="bottom" secondItem="D2o-rC-Xwl" secondAttribute="bottom" id="QIO-MG-DKH"/>
+                            <constraint firstItem="SFv-7Z-9KY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Vfr-NY-PY8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SFv-7Z-9KY" secondAttribute="trailing" id="Vwe-TJ-8hS"/>
                             <constraint firstItem="D2o-rC-Xwl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ec3-EQ-uXq"/>
+                            <constraint firstItem="SFv-7Z-9KY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fed-IC-UeN"/>
+                            <constraint firstAttribute="bottom" secondItem="SFv-7Z-9KY" secondAttribute="bottom" id="u1c-HB-JwA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="D2o-rC-Xwl" secondAttribute="trailing" id="x7v-Rp-viH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -36,7 +44,7 @@
                     <navigationItem key="navigationItem" id="xcz-0g-wsj">
                         <barButtonItem key="backBarButtonItem" title=" " id="5kf-lH-S2M"/>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="QZR-k2-DxO">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6kL-ZZ-w8q">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6kL-ZZ-w8q">
                                 <rect key="frame" x="323" y="4" width="36" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="order"/>
@@ -47,6 +55,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="progressView" destination="SFv-7Z-9KY" id="2TE-XF-glW"/>
                         <outlet property="tableView" destination="D2o-rC-Xwl" id="un4-h5-GTp"/>
                     </connections>
                 </viewController>
@@ -479,7 +488,7 @@
     <resources>
         <image name="cancel" width="38.400001525878906" height="38.400001525878906"/>
         <image name="minus" width="36" height="36"/>
-        <image name="order" width="36" height="36"/>
+        <image name="order" width="38.400001525878906" height="38.400001525878906"/>
         <image name="plus" width="36" height="36"/>
         <namedColor name="pizzaDarkGray">
             <color red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

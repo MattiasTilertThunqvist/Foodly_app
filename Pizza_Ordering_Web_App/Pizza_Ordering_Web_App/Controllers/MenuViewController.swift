@@ -118,7 +118,7 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         if let header = view as? UITableViewHeaderFooterView {
             header.textLabel?.font = .pizzaRegularFont(withSize: 20)
             header.textLabel?.textColor = .foodlyColor(.white)
-            header.backgroundView?.backgroundColor = .foodlyColor(.green)
+            header.backgroundView?.backgroundColor = .foodlyColor(.red)
         }
     }
     

@@ -24,13 +24,13 @@
                         <rect key="frame" x="40" y="7" width="249" height="94.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Restaurant name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gY-XW-HsV">
-                                <rect key="frame" x="40" y="10" width="179" height="25"/>
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
+                                <rect key="frame" x="40" y="10" width="179" height="27.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
                                 <color key="textColor" name="pizzaDarkGray"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address 1" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfU-HW-L0f">
-                                <rect key="frame" x="40" y="40" width="179" height="24"/>
+                                <rect key="frame" x="40" y="42.5" width="179" height="21.5"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
                                 <color key="textColor" name="pizzaLightGray"/>
                                 <nil key="highlightedColor"/>

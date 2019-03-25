@@ -32,7 +32,6 @@ class RestaurantTableViewCell: UITableViewCell {
         iconContainerView.layer.cornerRadius = iconContainerView.frame.height * 0.5
         iconContainerView.layer.setFoodlyCustomShadow()
     }
-
     
     // MARK: Helpers
     

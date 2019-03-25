@@ -15,12 +15,12 @@ class HomeViewController: UIViewController {
     
     let locationManager = CLLocationManager()
     var restaurants: [Restaurant] = []
-    let RestaurantCellIdentifier = "RestaurantTableViewCell"
     let dispatchGroup = DispatchGroup()
     var locationIsNotSet = true
     
     // MARK: IBOutlets
     
+    @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var tableView: UITableView!
     @IBAction func ordersButtonWasPressed(_ sender: UIButton) {
         presentOrders()
@@ -34,7 +34,6 @@ class HomeViewController: UIViewController {
         setup()
         setupTableView()
         registerNibs()
-        tableView.backgroundColor = #colorLiteral(red: 0.2485148609, green: 0.7314290404, blue: 0.9247335792, alpha: 1)
     }
 }
 
@@ -43,13 +42,11 @@ class HomeViewController: UIViewController {
 private extension HomeViewController {
     
     func setup() {
-        let nav = self.navigationController?.navigationBar
-        nav?.barStyle = UIBarStyle.black
-        nav?.tintColor = .foodlyColor(.white)
-        nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.foodlyColor(.white),
-                                    NSAttributedString.Key.font: UIFont.pizzaRegularFont(withSize: 20)]
         title = "Restauranger"
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        progressView.progress = 0.25
+        progressView.progressTintColor = UIColor.foodlyColor(.red)
+        progressView.trackTintColor = UIColor.white
     }
     
     func startRequests() {
@@ -70,13 +67,14 @@ private extension HomeViewController {
     func setupTableView() {
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        tableView.contentInset.top = 30
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 80
     }
     
     func registerNibs() {
-        let cellNib = UINib(nibName: RestaurantCellIdentifier, bundle: nil)
-        tableView.register(cellNib, forCellReuseIdentifier: RestaurantCellIdentifier)
+        let cellNib = UINib(nibName: RestaurantTableViewCell.reuseIdentifier(), bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: RestaurantTableViewCell.reuseIdentifier())
     }
     
     func getRestaurants() {
@@ -103,7 +101,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let restaurant = restaurants[indexPath.row]
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: RestaurantCellIdentifier) as! RestaurantTableViewCell
+        let identifier = RestaurantTableViewCell.reuseIdentifier()
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as! RestaurantTableViewCell
         cell.setName(to: restaurant.name)
         cell.setAdress(adress1: restaurant.address1, address2: restaurant.address2)
         return cell
