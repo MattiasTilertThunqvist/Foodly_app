@@ -43,7 +43,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="xcz-0g-wsj">
                         <barButtonItem key="backBarButtonItem" title=" " id="5kf-lH-S2M"/>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="QZR-k2-DxO">
+                        <barButtonItem key="rightBarButtonItem" style="done" id="QZR-k2-DxO">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6kL-ZZ-w8q">
                                 <rect key="frame" x="321" y="3" width="38" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
