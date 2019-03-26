@@ -67,14 +67,14 @@ private extension HomeViewController {
     func setupTableView() {
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        tableView.contentInset.top = 30
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 80
     }
     
     func registerNibs() {
-        let cellNib = UINib(nibName: RestaurantTableViewCell.reuseIdentifier(), bundle: nil)
-        tableView.register(cellNib, forCellReuseIdentifier: RestaurantTableViewCell.reuseIdentifier())
+        let identifier = RestaurantTableViewCell.reuseIdentifier()
+        let cellNib = UINib(nibName: identifier, bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: identifier)
     }
     
     func getRestaurants() {
@@ -103,6 +103,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         let identifier = RestaurantTableViewCell.reuseIdentifier()
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as! RestaurantTableViewCell
+        cell.selectionStyle = .none
         cell.setName(to: restaurant.name)
         cell.setAdress(adress1: restaurant.address1, address2: restaurant.address2)
         return cell

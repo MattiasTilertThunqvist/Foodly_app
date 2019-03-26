@@ -12,11 +12,27 @@ class CartTableViewCell: UITableViewCell {
     
     // MARK: IBOutlets
     
-    @IBOutlet weak private var quantityContainerView: UIView!
-    @IBOutlet weak private var quantityLabel: UILabel!
+    @IBOutlet weak private var foodImageContainerView: UIView!
+    @IBOutlet weak var foodImageView: UIImageView!
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak private var menuItemLabel: UILabel!
     @IBOutlet weak private var pricePerItemLabel: UILabel!
     @IBOutlet weak private var totalPriceLabel: UILabel!
+    @IBOutlet weak var quantityContainerView: UIView!
+    @IBOutlet weak private var quantityLabel: UILabel!
+    
+    // MARK: Setup
+    
+    override func awakeFromNib() {
+        foodImageContainerView.layer.cornerRadius = foodImageContainerView.frame.height * 0.5
+        foodImageContainerView.layer.setFoodlyCustomShadow()
+        
+        containerView.layer.cornerRadius = 10
+        containerView.layer.setFoodlyCustomShadow()
+        
+        quantityContainerView.layer.cornerRadius = quantityContainerView.frame.height * 0.5
+        quantityContainerView.layer.setFoodlyCustomShadow()
+    }
     
     // MARK: Helpers
     
@@ -29,10 +45,14 @@ class CartTableViewCell: UITableViewCell {
     }
     
     func setPricePerUnit(to price: Int) {
-        pricePerItemLabel.text = "\(price) kr per vara"
+        pricePerItemLabel.text = "Pris per vara: \(price) kr"
     }
     
     func setTotalPrice(to price: Int) {
-        totalPriceLabel.text = "\(price) kr"
+        totalPriceLabel.text = "Total: \(price) kr"
+    }
+    
+    static func reuseIdentifier() -> String {
+        return "CartTableViewCell"
     }
 }

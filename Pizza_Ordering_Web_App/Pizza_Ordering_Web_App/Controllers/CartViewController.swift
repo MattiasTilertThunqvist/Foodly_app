@@ -16,7 +16,6 @@ class CartViewController: UIViewController {
     var cart: [Cart] = []
     var updateCartProtocol: UpdateCartProtocol!
     var dismissProtocol: DismissProtocol!
-    let cellIdentifier = "CartTableViewCell"
     let animationDuration = 0.3
     
     // MARK: UI components
@@ -33,9 +32,9 @@ class CartViewController: UIViewController {
     
     // MARK: IBOutlets
     
-    @IBOutlet weak var restaurantNameLabel: UILabel!
+    @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var bottomBorderView: UIView!
+    @IBOutlet weak var orderContainerView: UIView!
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var orderButton: UIButton!
@@ -66,8 +65,9 @@ private extension CartViewController {
     
     func setup() {
         title = "Varukorg"
-        restaurantNameLabel.text = restaurant.name
+        orderContainerView.layer.setFoodlyCustomShadow()
         orderButton.setTitle("Beställ", for: .normal)
+        orderButton.layer.setFoodlyCustomShadow()
         priceLabel.text = "\(Cart.totalPriceOfItems(in: cart)) kr"
     }
     
@@ -83,8 +83,9 @@ private extension CartViewController {
     }
     
     func registerNib() {
-        let cellNib = UINib(nibName: cellIdentifier, bundle: nil)
-        tableView.register(cellNib, forCellReuseIdentifier: cellIdentifier)
+        let identifier = CartTableViewCell.reuseIdentifier()
+        let cellNib = UINib(nibName: identifier, bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: identifier)
     }
 }
 
@@ -92,12 +93,33 @@ private extension CartViewController {
 
 extension CartViewController: UITableViewDelegate, UITableViewDataSource {
     
+    // MARK: Section
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return restaurant.name
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let header = view as? UITableViewHeaderFooterView {
+            header.textLabel?.font = .pizzaRegularFont(withSize: 20)
+            header.textLabel?.textColor = .foodlyColor(.white)
+            header.backgroundView?.backgroundColor = UIColor.clear
+        }
+    }
+    
+    // MARK: Row
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cart.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! CartTableViewCell
+        let identifier = CartTableViewCell.reuseIdentifier()
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as! CartTableViewCell
         let index = cart[indexPath.row]
         cell.setQuantity(to: index.quantity)
         cell.setMenuItem(to: index.menuItem.name)
@@ -106,15 +128,28 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    // MARK: Edit
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteButton = UITableViewRowAction(style: .default, title: "Ta bort") { (action, indexPath) in
+            self.tableView.dataSource?.tableView?(self.tableView, commit: .delete, forRowAt: indexPath)
+            return
+        }
+        
+        deleteButton.backgroundColor = UIColor.foodlyColor(.lightGray)
+        return[deleteButton]
+    }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             self.updateCartProtocol.removeFromCart(cart[indexPath.row].menuItem)
             self.cart.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             self.priceLabel.text = "\(Cart.totalPriceOfItems(in: cart)) kr"
-            if cart.isEmpty {
-                displayAlertLabel(withMessage: "Du har inga varor i varukorgen. Gå tillbaka för att lägga till några.")
-            }
+        }
+        
+        if cart.isEmpty {
+            displayAlertLabel(withMessage: "Du har inga varor i varukorgen. Gå tillbaka för att lägga till några.")
         }
     }
 }
@@ -132,8 +167,8 @@ private extension CartViewController {
         
         UIView.animate(withDuration: animationDuration) {
             self.tableView.alpha = 0.0
-            self.bottomBorderView.alpha = 0.0
             self.totalLabel.alpha = 0.0
+            self.orderContainerView.alpha = 0.0
             self.priceLabel.alpha = 0.0
             self.orderButton.alpha = 0.0
             self.alertLabel.alpha = 1.0

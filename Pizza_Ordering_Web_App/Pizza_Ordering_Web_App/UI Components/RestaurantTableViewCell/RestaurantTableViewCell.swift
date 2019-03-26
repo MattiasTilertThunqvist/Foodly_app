@@ -26,8 +26,8 @@ class RestaurantTableViewCell: UITableViewCell {
         logoImageView.layer.cornerRadius = logoImageView.frame.height * 0.5
         logoImageView.layer.setFoodlyCustomShadow()
         
-        containerView.layer.setFoodlyCustomShadow()
         containerView.layer.cornerRadius = 10
+        containerView.layer.setFoodlyCustomShadow()
         
         iconContainerView.layer.cornerRadius = iconContainerView.frame.height * 0.5
         iconContainerView.layer.setFoodlyCustomShadow()
@@ -44,7 +44,7 @@ class RestaurantTableViewCell: UITableViewCell {
         address2Label.text = address2
     }
     
-    class func reuseIdentifier() -> String {
+    static func reuseIdentifier() -> String {
         return "RestaurantTableViewCell"
     }
 }

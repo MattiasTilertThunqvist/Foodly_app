@@ -21,7 +21,6 @@ class MenuViewController: UIViewController {
         }
     }
     var dismissProtocol: DismissProtocol!
-    let menuCellIdentifier = "MenuItemTableViewCell"
     let animationDuration = 0.3
     
     // MARK: IBOutlets
@@ -65,8 +64,9 @@ private extension MenuViewController {
     }
     
     func registerNibs() {
-        let cellNib = UINib(nibName: menuCellIdentifier, bundle: nil)
-        tableView.register(cellNib, forCellReuseIdentifier: menuCellIdentifier)
+        let identifier = MenuItemTableViewCell.reuseIdentifier()
+        let cellNib = UINib(nibName: identifier, bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: identifier)
     }
     
     func getMenu() {
@@ -106,6 +106,8 @@ private extension MenuViewController {
 
 extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     
+    //MARK: Section
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return categories.count
     }
@@ -118,9 +120,11 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         if let header = view as? UITableViewHeaderFooterView {
             header.textLabel?.font = .pizzaRegularFont(withSize: 20)
             header.textLabel?.textColor = .foodlyColor(.white)
-            header.backgroundView?.backgroundColor = .foodlyColor(.red)
+            header.backgroundView?.backgroundColor = UIColor.clear
         }
     }
+    
+    // MARK: Row
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let menuItemsInCategory = getMenuItemsIn(category: categories[section])
@@ -131,7 +135,9 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         let menuItemsInCategory = getMenuItemsIn(category: categories[indexPath.section])
         let menuItem = menuItemsInCategory[indexPath.row]
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: menuCellIdentifier) as! MenuItemTableViewCell
+        let identifier = MenuItemTableViewCell.reuseIdentifier()
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as! MenuItemTableViewCell
+        cell.selectionStyle = .none
         cell.setName(to: menuItem.name)
         cell.setPrice(to: menuItem.price)
         cell.setDescription(to: menuItem.topping?.joined(separator: ", ") ?? "")
@@ -180,6 +186,7 @@ private extension MenuViewController {
     
     func handleCartButton() {
         setCartButtonText()
+        cartContainerView.layer.setFoodlyCustomShadow()
         cart.isEmpty ? hideCartButton(withAnimation: false) : showCartButton()
     }
     
