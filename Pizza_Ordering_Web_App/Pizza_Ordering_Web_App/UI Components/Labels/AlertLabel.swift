@@ -25,7 +25,7 @@ class AlertLabel: UILabel {
     // MARK: Setup
     
     func setup() {
-        font = .pizzaRegularFont(withSize: 25)
+        font = .foodlyRegularFont(withSize: 25)
         numberOfLines = 0
         textAlignment = .center
     }

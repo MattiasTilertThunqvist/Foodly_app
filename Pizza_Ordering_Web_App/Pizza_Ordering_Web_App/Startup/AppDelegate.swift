@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().backgroundColor = .white
         UINavigationBar.appearance().tintColor = UIColor.foodlyColor(.darkGray)
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.foodlyColor(.darkGray), NSAttributedString.Key.font: UIFont.pizzaRegularFont(withSize: 20)]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.foodlyColor(.darkGray), NSAttributedString.Key.font: UIFont.foodlyRegularFont(withSize: 20)]
         
         return true
     }
