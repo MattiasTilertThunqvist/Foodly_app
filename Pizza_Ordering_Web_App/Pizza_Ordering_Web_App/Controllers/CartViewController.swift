@@ -21,14 +21,6 @@ class CartViewController: UIViewController {
     // MARK: UI components
     
     lazy var loadingViewController = LoadingViewController()
-    lazy var alertLabel: UILabel = {
-        let label = UILabel()
-        label.font = .pizzaRegularFont(withSize: 25)
-        label.textColor = .foodlyColor(.darkGray)
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        return label
-    }()
     
     // MARK: IBOutlets
     
@@ -159,8 +151,11 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
 private extension CartViewController {
     
     func displayAlertLabel(withMessage message: String) {
+        let alertLabel = AlertLabel()
+        alertLabel.textColor = UIColor.foodlyColor(.darkGray)
         alertLabel.text = message
-        alertLabel.frame.size = CGSize(width: tableView.frame.width - 30, height: tableView.frame.height)
+        alertLabel.frame.size.width = tableView.frame.width - 30
+        alertLabel.sizeToFit()
         alertLabel.center = view.center
         alertLabel.alpha = 0.0
         view.addSubview(alertLabel)
@@ -171,7 +166,7 @@ private extension CartViewController {
             self.orderContainerView.alpha = 0.0
             self.priceLabel.alpha = 0.0
             self.orderButton.alpha = 0.0
-            self.alertLabel.alpha = 1.0
+            alertLabel.alpha = 1.0
         }
     }
     

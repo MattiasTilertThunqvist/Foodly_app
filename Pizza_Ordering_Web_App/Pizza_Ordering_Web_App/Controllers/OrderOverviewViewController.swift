@@ -20,17 +20,6 @@ class OrderOverviewViewController: UIViewController {
     let orderHeaderIdentifier = "OrderTableViewHeaderView"
     let cartCellIdentifier = "CartTableViewCell"
     
-    // MARK: UI components
-    
-    lazy var alertLabel: UILabel = {
-        let label = UILabel()
-        label.font = .pizzaRegularFont(withSize: 25)
-        label.textColor = .foodlyColor(.darkGray)
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        return label
-    }()
-    
     // MARK: IBOutlets
     
     @IBOutlet weak var headerLabel: UILabel!
@@ -165,8 +154,11 @@ extension OrderOverviewViewController: UITableViewDelegate, UITableViewDataSourc
 private extension OrderOverviewViewController {
     
     func displayAlertLabel(withMessage message: String) {
+        let alertLabel = AlertLabel()
+        alertLabel.textColor = UIColor.foodlyColor(.white)
         alertLabel.text = message
-        alertLabel.frame.size = CGSize(width: view.frame.width - 30, height: view.frame.height * 0.5)
+        alertLabel.frame.size.width = view.frame.width - 30
+        alertLabel.sizeToFit()
         alertLabel.center = view.center
         view.addSubview(alertLabel)
     }
