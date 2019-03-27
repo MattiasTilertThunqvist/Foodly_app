@@ -175,7 +175,7 @@
                 <outlet property="totalPriceInfoLabel" destination="kFH-pe-1m8" id="yd1-LE-kQx"/>
                 <outlet property="totalPriceLabel" destination="puV-b4-9gg" id="EMv-bd-Wo2"/>
             </connections>
-            <point key="canvasLocation" x="91.200000000000003" y="-156.97151424287858"/>
+            <point key="canvasLocation" x="91.200000000000003" y="-157.42128935532236"/>
         </view>
     </objects>
     <resources>

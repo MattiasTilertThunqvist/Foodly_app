@@ -71,7 +71,7 @@ private extension CartViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 80
+        tableView.estimatedRowHeight = 110
     }
     
     func registerNib() {

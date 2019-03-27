@@ -60,7 +60,7 @@ private extension MenuViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 100
+        tableView.estimatedRowHeight = 110
     }
     
     func registerNibs() {

@@ -68,7 +68,7 @@ private extension HomeViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 80
+        tableView.estimatedRowHeight = 115
     }
     
     func registerNibs() {
