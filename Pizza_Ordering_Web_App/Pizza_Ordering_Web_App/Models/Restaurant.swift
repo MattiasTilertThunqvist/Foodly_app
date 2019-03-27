@@ -10,12 +10,17 @@ import Foundation
 import CoreLocation
 
 struct Restaurant: Decodable {
+    
+    // MARK: Properties
+    
     let id: Int
     let name: String
     let address1: String
     let address2: String
     let latitude: CLLocationDegrees
     let longitude: CLLocationDegrees
+    
+    // MARK: Helpers
     
     var location: CLLocation {
         return CLLocation(latitude: latitude, longitude: longitude)

@@ -13,7 +13,7 @@ class OrderOverviewViewController: UIViewController {
     // MARK: Properties
     
     var restaurants: [Restaurant] = DataController.sharedInstance.restaurants
-    var menu: [MenuItem] = DataController.sharedInstance.menu
+    var menu: Menu = DataController.sharedInstance.menu
     var orders: [Order] = DataController.sharedInstance.orders
     var isOrderConfirmation = false
     var dismissProtocol: DismissProtocol?
@@ -139,7 +139,7 @@ extension OrderOverviewViewController: UITableViewDelegate, UITableViewDataSourc
         guard let cart = orders[indexPath.section].cart else { return cell }
         let quantity = cart[indexPath.row].quantity
         let menuItemId = cart[indexPath.row].menuItemId
-        let menuItem = menu.first{ $0.id == menuItemId }!
+        let menuItem = menu.items.first{ $0.id == menuItemId }!
         
         cell.setQuantity(to: quantity)
         cell.setMenuItem(to: menuItem.name)

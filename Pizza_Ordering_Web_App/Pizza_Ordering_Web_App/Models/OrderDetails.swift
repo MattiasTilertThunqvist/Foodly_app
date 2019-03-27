@@ -9,6 +9,9 @@
 import Foundation
 
 struct OrderDetails: Codable {
+    
+    // MARK: Properties
+    
     var menuItemId : Int
     var quantity : Int
 }

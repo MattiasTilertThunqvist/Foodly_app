@@ -9,6 +9,9 @@
 import Foundation
 
 struct Order: Decodable {
+    
+    // MARK: Properties
+    
     let orderId: Int
     let totalPrice: Int
     let orderedAt: String

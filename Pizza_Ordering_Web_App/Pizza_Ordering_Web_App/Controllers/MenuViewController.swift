@@ -13,8 +13,7 @@ class MenuViewController: UIViewController {
     // MARK: Properties
     
     var restaurant: Restaurant!
-    var menu: [MenuItem] = []
-    var categories: [String] = []
+    var menu = Menu(items: [])
     var cart: [Cart] = [] {
         didSet {
             handleCartButton()
@@ -76,7 +75,7 @@ private extension MenuViewController {
         DataController.sharedInstance.getMenuForRestaurant(with: restaurant.id) { (menu, error) in
             loadingViewController.remove()
             
-            if error != nil {
+            guard let menu = menu, error == nil else {
                 let alert = UIAlertController(title: "Kunde inte hämta meny", message: "", preferredStyle: .alert)
                 let alertAction = UIAlertAction(title: "Okej", style: .default, handler: nil)
                 alert.addAction(alertAction)
@@ -84,19 +83,13 @@ private extension MenuViewController {
                 DispatchQueue.main.async {
                     self.present(alert, animated: true, completion: nil)
                 }
-            } else if let menu = menu {
-                for item in menu {
-                    if !self.categories.contains(item.category) {
-                        self.categories.append(item.category)
-                    }
-                }
-                
-                self.menu = menu
-                self.sortMenuByRank()
-                
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+                return
+            }
+            
+            self.menu = menu
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
         }
     }
@@ -109,11 +102,11 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     //MARK: Section
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return categories.count
+        return menu.categories().count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return categories[section]
+        return menu.categories()[section]
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -127,12 +120,14 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     // MARK: Row
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let menuItemsInCategory = getMenuItemsIn(category: categories[section])
+        let category = menu.categories()[section]
+        let menuItemsInCategory = menu.getItemsIn(category: category)
         return menuItemsInCategory.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let menuItemsInCategory = getMenuItemsIn(category: categories[indexPath.section])
+        let category = menu.categories()[indexPath.section]
+        let menuItemsInCategory = menu.getItemsIn(category: category)
         let menuItem = menuItemsInCategory[indexPath.row]
         
         let identifier = MenuItemTableViewCell.reuseIdentifier()
@@ -149,34 +144,15 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         
         let storyboard = StoryboardInstance.home
         if let viewController = storyboard.instantiateViewController(withIdentifier: "AddToCartViewController") as? AddToCartViewController {
-            
-            let allMenuItemsInCategory = getMenuItemsIn(category: categories[indexPath.section])
-            let selectedMenuItem = allMenuItemsInCategory[indexPath.row]
+            let category = menu.categories()[indexPath.section]
+            let menuItemsInCategory = menu.getItemsIn(category: category)
+            let selectedMenuItem = menuItemsInCategory[indexPath.row]
             viewController.menuItem = selectedMenuItem
             viewController.restaurant = restaurant
             viewController.addToCartProtocol = self
             viewController.modalPresentationStyle = .overCurrentContext
             present(viewController, animated: false, completion: nil)
         }
-    }
-}
-
-// MARK: Helpers
-
-private extension MenuViewController {
-    
-    func sortMenuByRank() {
-        menu.sort { (item1, item2) -> Bool in
-            if let rank1 = item1.rank, let rank2 = item2.rank {
-                return item1.category == item2.category && rank1 < rank2
-            }
-            
-            return false
-        }
-    }
-    
-    func getMenuItemsIn(category: String) -> [MenuItem] {
-        return menu.filter({ $0.category == category })
     }
 }
 

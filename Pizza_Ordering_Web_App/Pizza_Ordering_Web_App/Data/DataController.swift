@@ -11,8 +11,10 @@ import Foundation
 class DataController {
     static let sharedInstance = DataController()
     var restaurants: [Restaurant] = []
-    var menu: [MenuItem] = []
+    var menu = Menu(items: [])
     var orders: [Order] = []
+    
+    // MARK: Restarurants
     
     func getRestaurants(completion: @escaping (_ restaurants: [Restaurant]?, _ error: Error?) -> ()) {
         let url = URL(string: "https://private-130ed-foodlyapp.apiary-mock.com/restaurants/")!
@@ -33,8 +35,9 @@ class DataController {
         }.resume()
     }
     
-    func getMenuForRestaurant(with id: Int, completion: @escaping (_ menu: [MenuItem]?, _ error: Error?) -> ()) {
-        // TODO: Andra så att listan sorteras redan vid anrop. APIet tillåter det.
+    // MARK: Menu
+    
+    func getMenuForRestaurant(with id: Int, completion: @escaping (_ menu: Menu?, _ error: Error?) -> ()) {
         let url = URL(string: "https://private-130ed-foodlyapp.apiary-mock.com/restaurants/\(id)/menu")!
 
         URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -42,9 +45,11 @@ class DataController {
                 completion(nil, error)
                 return
             }
-            
+
             do {
-                let menu = try JSONDecoder().decode([MenuItem].self, from: data)
+                let menuItems = try JSONDecoder().decode([MenuItem].self, from: data)
+                var menu = Menu(items: menuItems)
+                menu.sortMenuByRank()
                 self.menu = menu
                 completion(menu, nil)
             } catch let jsonError {
@@ -52,6 +57,8 @@ class DataController {
             }
         }.resume()
     }
+    
+    // MARK: Order
     
     func createOrder(_ newOrder: NewOrder, completion: @escaping (_ order: Order?, _ error: Error?) -> ()) {
         let url = URL(string: "https://private-130ed-foodlyapp.apiary-mock.com/orders/")!
@@ -112,3 +119,5 @@ class DataController {
         }.resume()
     }
 }
+
+

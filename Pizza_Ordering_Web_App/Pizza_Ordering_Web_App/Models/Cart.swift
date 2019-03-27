@@ -9,8 +9,13 @@
 import Foundation
 
 struct Cart {
+    
+    // MARK: Properties
+    
     let menuItem: MenuItem
     var quantity: Int
+    
+    // MARK: Helpers
     
     static func totalPriceOfItems(in cart: [Cart]) -> Int {
         var totalPrice = 0
