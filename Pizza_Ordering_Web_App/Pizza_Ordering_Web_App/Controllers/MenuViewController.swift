@@ -72,7 +72,7 @@ private extension MenuViewController {
         let loadingViewController = LoadingViewController()
         add(loadingViewController)
         
-        DataController.sharedInstance.getMenuForRestaurant(with: restaurant.id) { (menu, error) in
+        DataController.getMenuForRestaurant(with: restaurant.id) { (menu, error) in
             loadingViewController.remove()
             
             guard let menu = menu, error == nil else {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Cart {
+struct Cart: Decodable {
     
     // MARK: Properties
     

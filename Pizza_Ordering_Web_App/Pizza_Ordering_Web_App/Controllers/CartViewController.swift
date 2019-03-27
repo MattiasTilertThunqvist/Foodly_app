@@ -173,24 +173,25 @@ private extension CartViewController {
     func createOrder() {
         add(loadingViewController)
         
-        let orderDetails = cart.map { OrderDetails.init(menuItemId: $0.menuItem.id, quantity: $0.quantity) }
-        let newOrder = NewOrder(orderDetails: orderDetails, restuarantId: restaurant.id)
-        
-        DataController.sharedInstance.createOrder(newOrder) { (order, error) in
-            if error != nil {
+        DataController.createOrder(restaurantId: restaurant.id, cart: cart) { (order, error) in
+            guard let order = order, error == nil else {
                 DispatchQueue.main.async {
                     self.loadingViewController.remove()
                     self.displayAlertLabel(withMessage: "Beställningen misslyckades. Något gick fel, vi beklagar. Gå tillbaka och gör ett nytt försök.")
                 }
-            } else {
-                self.presentOrderOverview(for: order!)
+                
+                return
             }
+            
+            self.presentOrderOverview(for: order)
         }
     }
     
     func presentOrderOverview(for order: Order) {
         if let viewController = StoryboardInstance.home.instantiateViewController(withIdentifier: "OrderOverviewViewController") as? OrderOverviewViewController {
             
+            viewController.restaurants = [restaurant]
+            viewController.orders = [order]
             viewController.isOrderConfirmation = true
             viewController.dismissProtocol = dismissProtocol
             

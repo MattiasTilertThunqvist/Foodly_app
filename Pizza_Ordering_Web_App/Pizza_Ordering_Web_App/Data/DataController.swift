@@ -9,14 +9,10 @@
 import Foundation
 
 class DataController {
-    static let sharedInstance = DataController()
-    var restaurants: [Restaurant] = []
-    var menu = Menu(items: [])
-    var orders: [Order] = []
     
     // MARK: Restarurants
     
-    func getRestaurants(completion: @escaping (_ restaurants: [Restaurant]?, _ error: Error?) -> ()) {
+    static func getRestaurants(completion: @escaping (_ restaurants: [Restaurant]?, _ error: Error?) -> ()) {
         let url = URL(string: "https://private-130ed-foodlyapp.apiary-mock.com/restaurants/")!
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -27,7 +23,6 @@ class DataController {
             
             do {
                 let restaurants = try JSONDecoder().decode([Restaurant].self, from: data)
-                self.restaurants = restaurants
                 completion(restaurants, nil)
             } catch let jsonError {
                 completion(nil, jsonError)
@@ -37,7 +32,7 @@ class DataController {
     
     // MARK: Menu
     
-    func getMenuForRestaurant(with id: Int, completion: @escaping (_ menu: Menu?, _ error: Error?) -> ()) {
+    static func getMenuForRestaurant(with id: Int, completion: @escaping (_ menu: Menu?, _ error: Error?) -> ()) {
         let url = URL(string: "https://private-130ed-foodlyapp.apiary-mock.com/restaurants/\(id)/menu")!
 
         URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -50,7 +45,6 @@ class DataController {
                 let menuItems = try JSONDecoder().decode([MenuItem].self, from: data)
                 var menu = Menu(items: menuItems)
                 menu.sortMenuByRank()
-                self.menu = menu
                 completion(menu, nil)
             } catch let jsonError {
                 completion(nil, jsonError)
@@ -60,10 +54,14 @@ class DataController {
     
     // MARK: Order
     
-    func createOrder(_ newOrder: NewOrder, completion: @escaping (_ order: Order?, _ error: Error?) -> ()) {
-        let url = URL(string: "https://private-130ed-foodlyapp.apiary-mock.com/orders/")!
+    static func createOrder(restaurantId: Int, cart: [Cart], completion: @escaping (_ order: Order?, _ error: Error?) -> ()) {
+        let url = URL(string: "https://private-130ed-foodlyapp.apiary-mock.com/orders/createorder/")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
+        
+        // TODO: This is uneffecient
+        let orderDetails = cart.map { OrderDetails.init(menuItemId: $0.menuItem.id, quantity: $0.quantity) }
+        let newOrder = NewOrder(orderDetails: orderDetails, restuarantId: restaurantId)
         
         do {
             let jsonData = try JSONEncoder().encode(newOrder)
@@ -80,17 +78,17 @@ class DataController {
             
             do {
                 var order = try JSONDecoder().decode(Order.self, from: data)
+                order.cart = cart
                 order.restuarantId = newOrder.restuarantId
-                self.orders.insert(order, at: 0)
                 completion(order, nil)
             } catch let jsonError {
                 completion(nil, jsonError)
             }
-            }.resume()
+        }.resume()
     }
     
-    func getOrder(withId id: Int, completion: @escaping (_ order: [Order], _ error: Error?) -> ()) {
-        let url = URL(string: "https://private-130ed-foodlyapp.apiary-mock.com/orders/\(id)")!
+    static func getOrders(completion: @escaping (_ order: [Order]?, _ error: Error?) -> ()) {
+        let url = URL(string: "https://private-130ed-foodlyapp.apiary-mock.com/orders/")!
         let request = URLRequest(url: url)
         
         URLSession.shared.dataTask(with: request) { data, response, error in
@@ -100,19 +98,8 @@ class DataController {
             }
             
             do {
-                let order = try JSONDecoder().decode(Order.self, from: data)
-                guard let index = self.orders.index(where: { $0.orderId == id }) else { return }
-                
-                if self.orders[index].esitmatedDelivery != order.esitmatedDelivery ||
-                    self.orders[index].status != order.status {
-                    
-                    self.orders[index].esitmatedDelivery = order.esitmatedDelivery
-                    self.orders[index].status = order.status
-                    self.orders[index].cart = order.cart
-                    completion(self.orders, nil)
-                } else {
-                    completion([], nil)
-                }
+                let order = try JSONDecoder().decode([Order].self, from: data)
+                completion(order, nil)
             } catch let jsonError {
                 completion([], jsonError)
             }

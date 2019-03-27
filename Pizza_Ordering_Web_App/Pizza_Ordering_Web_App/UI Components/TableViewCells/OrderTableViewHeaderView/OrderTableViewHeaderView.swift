@@ -59,4 +59,8 @@ class OrderTableViewHeaderView: UITableViewHeaderFooterView {
         totalPriceInfoLabel.text = "Total"
         totalPriceLabel.text = "\(price) kr"
     }
+    
+    static func reuseIdentifier() -> String {
+        return "OrderTableViewHeaderView"
+    }
 }

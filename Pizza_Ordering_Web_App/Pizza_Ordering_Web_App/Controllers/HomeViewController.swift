@@ -79,7 +79,7 @@ private extension HomeViewController {
     
     func getRestaurants() {
         dispatchGroup.enter()
-        DataController.sharedInstance.getRestaurants { (restaurants, error) in
+        DataController.getRestaurants { (restaurants, error) in
             if error != nil {
                 self.presentErrorAlert(title: "Kunde inte hämta restauranger", message: "", buttonText: "Okej")
             } else if let restaurants = restaurants {
@@ -173,6 +173,7 @@ private extension HomeViewController {
     
     func presentOrders() {
         if let viewController = StoryboardInstance.home.instantiateViewController(withIdentifier: "OrderOverviewViewController") as? OrderOverviewViewController {
+            viewController.restaurants = restaurants
             present(viewController, animated: true, completion: nil)
         }
     }

@@ -12,13 +12,12 @@ class OrderOverviewViewController: UIViewController {
     
     // MARK: Properties
     
-    var restaurants: [Restaurant] = DataController.sharedInstance.restaurants
-    var menu: Menu = DataController.sharedInstance.menu
-    var orders: [Order] = DataController.sharedInstance.orders
+    var restaurants: [Restaurant] = []
+    var orders: [Order] = []
     var isOrderConfirmation = false
     var dismissProtocol: DismissProtocol?
-    let orderHeaderIdentifier = "OrderTableViewHeaderView"
-    let cartCellIdentifier = "CartTableViewCell"
+    let orderHeaderIdentifier = OrderTableViewHeaderView.reuseIdentifier()
+    let cartCellIdentifier = CartTableViewCell.reuseIdentifier()
     
     // MARK: IBOutlets
     
@@ -43,13 +42,14 @@ class OrderOverviewViewController: UIViewController {
         setup()
         setupTableView()
         registerNibs()
+        
+        if orders.isEmpty {
+            getOrders()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         setupContent()
-        if orders.count == 0 {
-            displayAlertLabel(withMessage: "Du har inte lagt en beställning än. Gå tillbaka och gör din första beställning.")
-        }
     }
 }
 
@@ -81,18 +81,17 @@ private extension OrderOverviewViewController {
         tableView.register(cartCellNib, forCellReuseIdentifier: cartCellIdentifier)
     }
     
-    func updateOrder(forHeaderInSection section: Int) {
-        DataController.sharedInstance.getOrder(withId: orders[section].orderId) { (order, error) in
-            if error != nil {
+    func getOrders() {
+        DataController.getOrders { (orders, error) in
+            guard let orders = orders, error == nil else {
                 self.displayAlertLabel(withMessage: "Misslyckades att uppdatera order")
+                return
             }
             
-            if !order.isEmpty {
-                self.orders = order
-                
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+            self.orders = orders
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
         }
     }
@@ -102,19 +101,16 @@ private extension OrderOverviewViewController {
 
 extension OrderOverviewViewController: UITableViewDelegate, UITableViewDataSource {
     
+    // MARK: Header
+    
     func numberOfSections(in tableView: UITableView) -> Int {
-        return isOrderConfirmation ? 1 : orders.count
+        return orders.count
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: orderHeaderIdentifier) as! OrderTableViewHeaderView
         
-        if !isOrderConfirmation, orders.count != 0 {
-            updateOrder(forHeaderInSection: section)
-        }
-        
         let order = orders[section]
-        
         let restaurantId = order.restuarantId
         if let restaurant = restaurants.first(where: { $0.id == restaurantId }) {
             view.setRestaurantName(to: restaurant.name)
@@ -129,6 +125,8 @@ extension OrderOverviewViewController: UITableViewDelegate, UITableViewDataSourc
         return view
     }
     
+    // MARK: Rows
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return orders[section].cart?.count ?? 0
     }
@@ -137,9 +135,8 @@ extension OrderOverviewViewController: UITableViewDelegate, UITableViewDataSourc
         let cell = tableView.dequeueReusableCell(withIdentifier: cartCellIdentifier) as! CartTableViewCell
         
         guard let cart = orders[indexPath.section].cart else { return cell }
+        let menuItem = cart[indexPath.row].menuItem
         let quantity = cart[indexPath.row].quantity
-        let menuItemId = cart[indexPath.row].menuItemId
-        let menuItem = menu.items.first{ $0.id == menuItemId }!
         
         cell.setQuantity(to: quantity)
         cell.setMenuItem(to: menuItem.name)
