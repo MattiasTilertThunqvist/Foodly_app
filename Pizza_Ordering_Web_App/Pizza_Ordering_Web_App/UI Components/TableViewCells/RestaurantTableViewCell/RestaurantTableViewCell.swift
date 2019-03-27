@@ -13,7 +13,6 @@ class RestaurantTableViewCell: UITableViewCell {
     // MARK: IBOutlets
     
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak private var nameLabel: UILabel!
     @IBOutlet weak private var address1Label: UILabel!
     @IBOutlet weak var address2Label: UILabel!
@@ -23,9 +22,6 @@ class RestaurantTableViewCell: UITableViewCell {
     // MARK: Setup
     
     override func awakeFromNib() {
-        logoImageView.layer.cornerRadius = logoImageView.frame.height * 0.5
-        logoImageView.layer.setFoodlyCustomShadow()
-        
         containerView.layer.cornerRadius = 10
         containerView.layer.setFoodlyCustomShadow()
         

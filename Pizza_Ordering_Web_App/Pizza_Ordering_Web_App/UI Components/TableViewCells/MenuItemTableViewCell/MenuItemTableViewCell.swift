@@ -12,8 +12,6 @@ class MenuItemTableViewCell: UITableViewCell {
 
     // MARK: IBOutlet
   
-    @IBOutlet weak var foodImageContainerView: UIView!
-    @IBOutlet weak var foodImageView: UIImageView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak private var nameLabel: UILabel!
     @IBOutlet weak private var descriptionLabel: UILabel!
@@ -22,10 +20,7 @@ class MenuItemTableViewCell: UITableViewCell {
     
     // MARK: Setup
     
-    override func awakeFromNib() {
-        foodImageContainerView.layer.cornerRadius = foodImageContainerView.frame.height * 0.5
-        foodImageContainerView.layer.setFoodlyCustomShadow()
-        
+    override func awakeFromNib() {        
         containerView.layer.cornerRadius = 10
         containerView.layer.setFoodlyCustomShadow()
         
