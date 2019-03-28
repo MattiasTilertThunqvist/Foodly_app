@@ -21,6 +21,8 @@
                         <subviews>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="SFv-7Z-9KY">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="progressTintColor" name="foodlyRed"/>
+                                <color key="trackTintColor" name="foodlyWhite"/>
                             </progressView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="D2o-rC-Xwl">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>

@@ -44,9 +44,6 @@ private extension HomeViewController {
     func setup() {
         title = "Restauranger"
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        progressView.progress = 0.25
-        progressView.progressTintColor = UIColor.foodlyColor(.red)
-        progressView.trackTintColor = UIColor.white
     }
     
     func startRequests() {
