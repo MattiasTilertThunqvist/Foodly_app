@@ -16,7 +16,7 @@ class HomeViewController: UIViewController {
     let locationManager = CLLocationManager()
     var restaurants: [Restaurant] = []
     let dispatchGroup = DispatchGroup()
-    var locationIsNotSet = true
+    var locationAuthStatusIsSet = false
     
     // MARK: IBOutlets
     
@@ -51,13 +51,13 @@ private extension HomeViewController {
         getRestaurants()
         
         dispatchGroup.notify(queue: .main) {
-            if let location = self.locationManager.location, !self.restaurants.isEmpty {
+            if let location = self.locationManager.location {
                 self.restaurants.sort(by: { (restaurant1, restaurant2) -> Bool in
                     return restaurant1.distance(to: location) < restaurant2.distance(to: location)
                 })
-                
-                self.tableView.reloadData()
             }
+            
+            self.tableView.reloadData()
         }
     }
     
@@ -77,12 +77,12 @@ private extension HomeViewController {
     func getRestaurants() {
         dispatchGroup.enter()
         DataController.getRestaurants { (restaurants, error) in
-            if error != nil {
+            guard let restaurants = restaurants, error == nil else {
                 self.presentErrorAlert(title: "Kunde inte hämta restauranger", message: "", buttonText: "Okej")
-            } else if let restaurants = restaurants {
-                self.restaurants = restaurants
+                return
             }
             
+            self.restaurants = restaurants
             self.dispatchGroup.leave()
         }
     }
@@ -123,39 +123,26 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 extension HomeViewController: CLLocationManagerDelegate {
     
     func checkLocationManager() {
-        dispatchGroup.enter()
         if CLLocationManager.locationServicesEnabled() {
-            setupLocationManager()
+            locationManager.delegate = self
+            dispatchGroup.enter()
             checkLocationAuthorization()
         } else {
-            presentErrorAlert(title: "Platsdata avstängt", message: "Gå till inställningar och aktivera platsdata.", buttonText: "Okej")
+            locationAuthStatusIsSet.toggle()
         }
     }
     
-    func setupLocationManager() {
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-    }
-    
     func checkLocationAuthorization() {
+        
         switch CLLocationManager.authorizationStatus() {
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
             break
-        case .denied:
-            presentErrorAlert(title: "Kan ej hämta platsdata", message: "Gå till inställningar och tillåt appen åtkomst av platsdata.", buttonText: "Okej")
-            break
-        case .restricted:
-            presentErrorAlert(title: "Kan ej hämta platsdata", message: "För att använda appen krävs åtkomst av platsdata.", buttonText: "Okej")
-            break
-        case .authorizedWhenInUse:
-            if locationIsNotSet {
+        default:
+            if locationAuthStatusIsSet == false {
+                locationAuthStatusIsSet.toggle()
                 dispatchGroup.leave()
-                locationIsNotSet.toggle()
             }
-            break
-        case .authorizedAlways:
-            break
         }
     }
     
