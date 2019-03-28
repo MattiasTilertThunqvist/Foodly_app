@@ -14,7 +14,7 @@ class MenuViewController: UIViewController {
     
     var restaurant: Restaurant!
     var menu = Menu(items: [])
-    var cart: [Cart] = [] {
+    var cart: [CartItem] = [] {
         didSet {
             handleCartButton()
         }
@@ -35,10 +35,10 @@ class MenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getMenu()
         setup()
         setupTableView()
         registerNibs()
+        getMenu()
     }
 }
 
@@ -52,6 +52,7 @@ private extension MenuViewController {
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(goToCart))
         cartTapView.addGestureRecognizer(tapGesture)
+        cartContainerView.layer.setFoodlyCustomShadow()
         handleCartButton()
     }
     
@@ -72,7 +73,7 @@ private extension MenuViewController {
         let loadingViewController = LoadingViewController()
         add(loadingViewController)
         
-        DataController.getMenuForRestaurant(with: restaurant.id) { (menu, error) in
+        DataController.getMenuForRestaurant(withId: restaurant.id) { (menu, error) in
             loadingViewController.remove()
             
             guard let menu = menu, error == nil else {
@@ -147,10 +148,12 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
             let category = menu.categories()[indexPath.section]
             let menuItemsInCategory = menu.getItemsIn(category: category)
             let selectedMenuItem = menuItemsInCategory[indexPath.row]
+            
             viewController.menuItem = selectedMenuItem
             viewController.restaurant = restaurant
             viewController.addToCartProtocol = self
             viewController.modalPresentationStyle = .overCurrentContext
+            
             present(viewController, animated: false, completion: nil)
         }
     }
@@ -162,7 +165,6 @@ private extension MenuViewController {
     
     func handleCartButton() {
         setCartButtonText()
-        cartContainerView.layer.setFoodlyCustomShadow()
         cart.isEmpty ? hideCartButton(withAnimation: false) : showCartButton()
     }
     
@@ -188,11 +190,11 @@ private extension MenuViewController {
     }
     
     func setCartButtonText() {
-        let quantity = Cart.quantityOfItems(in: cart)
+        let quantity = CartItem.quantityOfItems(in: cart)
         let itemString = quantity > 1 ? "varor" : "vara"
         nrOfItemsLabel.text = "\(quantity) \(itemString) i varukorgen"
         
-        priceLabel.text = "\(Cart.totalPriceOfItems(in: cart)) kr"
+        priceLabel.text = "\(CartItem.totalPriceOfItems(in: cart)) kr"
         descriptionLabel.text = "Gå till varukorgen"
     }
     
@@ -216,7 +218,7 @@ extension MenuViewController: UpdateCartProtocol {
         if let index = cart.firstIndex(where: { $0.menuItem.id == menuItem.id }) {
             cart[index].quantity += quantity
         } else {
-            let newItem = Cart(menuItem: menuItem, quantity: quantity)
+            let newItem = CartItem(menuItem: menuItem, quantity: quantity)
             cart.append(newItem)
         }
     }

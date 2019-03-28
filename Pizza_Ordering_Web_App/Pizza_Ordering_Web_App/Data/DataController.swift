@@ -32,7 +32,7 @@ class DataController {
     
     // MARK: Menu
     
-    static func getMenuForRestaurant(with id: Int, completion: @escaping (_ menu: Menu?, _ error: Error?) -> ()) {
+    static func getMenuForRestaurant(withId id: Int, completion: @escaping (_ menu: Menu?, _ error: Error?) -> ()) {
         let url = URL(string: "https://private-130ed-foodlyapp.apiary-mock.com/restaurants/\(id)/menu")!
 
         URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -54,7 +54,7 @@ class DataController {
     
     // MARK: Order
     
-    static func createOrder(restaurantId: Int, cart: [Cart], completion: @escaping (_ order: Order?, _ error: Error?) -> ()) {
+    static func createOrder(restaurantId: Int, cart: [CartItem], completion: @escaping (_ order: Order?, _ error: Error?) -> ()) {
         let url = URL(string: "https://private-130ed-foodlyapp.apiary-mock.com/orders/createorder/")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"

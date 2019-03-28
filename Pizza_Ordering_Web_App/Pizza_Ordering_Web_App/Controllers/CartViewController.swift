@@ -13,7 +13,7 @@ class CartViewController: UIViewController {
     // MARK: Properties
     
     var restaurant: Restaurant!
-    var cart: [Cart] = []
+    var cart: [CartItem] = []
     var updateCartProtocol: UpdateCartProtocol!
     var dismissProtocol: DismissProtocol!
     let animationDuration = 0.3
@@ -58,9 +58,9 @@ private extension CartViewController {
     func setup() {
         title = "Varukorg"
         orderContainerView.layer.setFoodlyCustomShadow()
-        orderButton.setTitle("Beställ", for: .normal)
         orderButton.layer.setFoodlyCustomShadow()
-        priceLabel.text = "\(Cart.totalPriceOfItems(in: cart)) kr"
+        orderButton.setTitle("Beställ", for: .normal)
+        priceLabel.text = "\(CartItem.totalPriceOfItems(in: cart)) kr"
     }
     
     func setupContent() {
@@ -137,7 +137,7 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
             self.updateCartProtocol.removeFromCart(cart[indexPath.row].menuItem)
             self.cart.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
-            self.priceLabel.text = "\(Cart.totalPriceOfItems(in: cart)) kr"
+            self.priceLabel.text = "\(CartItem.totalPriceOfItems(in: cart)) kr"
         }
         
         if cart.isEmpty {
