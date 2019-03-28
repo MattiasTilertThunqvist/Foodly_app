@@ -22,6 +22,9 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: IBActions
+    
     @IBAction func ordersButtonWasPressed(_ sender: UIButton) {
         presentOrders()
     }
@@ -30,10 +33,10 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        startRequests()
         setup()
         setupTableView()
         registerNibs()
+        startRequests()
     }
 }
 
@@ -47,8 +50,8 @@ private extension HomeViewController {
     }
     
     func startRequests() {
-        checkLocationManager()
         getRestaurants()
+        checkLocationManager()
         
         dispatchGroup.notify(queue: .main) {
             if let location = self.locationManager.location {
