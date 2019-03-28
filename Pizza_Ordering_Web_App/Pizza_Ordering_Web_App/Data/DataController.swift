@@ -58,8 +58,7 @@ class DataController {
         let url = URL(string: "https://private-130ed-foodlyapp.apiary-mock.com/orders/createorder/")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        
-        // TODO: This is uneffecient
+
         let orderDetails = cart.map { OrderDetails.init(menuItemId: $0.menuItem.id, quantity: $0.quantity) }
         let newOrder = NewOrder(orderDetails: orderDetails, restuarantId: restaurantId)
         
