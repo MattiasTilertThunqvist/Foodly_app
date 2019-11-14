@@ -45,7 +45,7 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="5kf-lH-S2M"/>
                         <barButtonItem key="rightBarButtonItem" style="done" id="QZR-k2-DxO">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6kL-ZZ-w8q">
-                                <rect key="frame" x="321" y="3" width="38" height="38"/>
+                                <rect key="frame" x="311" y="0.0" width="48" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="order"/>
                                 <connections>
@@ -277,6 +277,7 @@
                                             <constraint firstAttribute="height" constant="40" id="Ihm-68-Yoh"/>
                                             <constraint firstAttribute="width" constant="40" id="McJ-co-KFD"/>
                                         </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="12" minY="12" maxX="12" maxY="12"/>
                                         <state key="normal" image="cancel-white"/>
                                         <connections>
@@ -302,6 +303,7 @@
                                             <constraint firstAttribute="width" constant="50" id="ZuN-lq-g8q"/>
                                             <constraint firstAttribute="height" constant="50" id="fwx-LB-95u"/>
                                         </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="minus"/>
                                         <connections>
                                             <action selector="removeItemButtonWasPressed:" destination="9ja-Jd-6ET" eventType="touchUpInside" id="s6m-bJ-FRu"/>
@@ -314,6 +316,7 @@
                                             <constraint firstAttribute="height" constant="50" id="fan-Uz-Eau"/>
                                             <constraint firstAttribute="width" constant="50" id="pWO-dB-htu"/>
                                         </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                         <state key="normal" image="plus"/>
                                         <connections>
