@@ -2,7 +2,7 @@
 //  AlertLabel.swift
 //  Pizza_Ordering_Web_App
 //
-//  Created by Mattias Tilert Thunqvist on 2019-03-26.
+//  Created by Mattias Tilert Thunqvist on 2019-10-14.
 //  Copyright © 2019 Mattias Tilert Thunqvist. All rights reserved.
 //
 
