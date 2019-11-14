@@ -13,15 +13,13 @@ class MenuViewController: UIViewController {
     // MARK: Properties
     
     var restaurant: Restaurant!
-    var menu: [MenuItem] = []
-    var categories: [String] = []
-    var cart: [Cart] = [] {
+    var menu = Menu(items: [])
+    var cart: [CartItem] = [] {
         didSet {
             handleCartButton()
         }
     }
     var dismissProtocol: DismissProtocol!
-    let menuCellIdentifier = "MenuItemTableViewCell"
     let animationDuration = 0.3
     
     // MARK: IBOutlets
@@ -37,10 +35,10 @@ class MenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getMenu()
         setup()
         setupTableView()
         registerNibs()
+        getMenu()
     }
 }
 
@@ -54,6 +52,7 @@ private extension MenuViewController {
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(goToCart))
         cartTapView.addGestureRecognizer(tapGesture)
+        cartContainerView.layer.setFoodlyCustomShadow()
         handleCartButton()
     }
     
@@ -61,22 +60,23 @@ private extension MenuViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 100
+        tableView.estimatedRowHeight = 110
     }
     
     func registerNibs() {
-        let cellNib = UINib(nibName: menuCellIdentifier, bundle: nil)
-        tableView.register(cellNib, forCellReuseIdentifier: menuCellIdentifier)
+        let identifier = MenuItemTableViewCell.reuseIdentifier()
+        let cellNib = UINib(nibName: identifier, bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: identifier)
     }
     
     func getMenu() {
         let loadingViewController = LoadingViewController()
         add(loadingViewController)
         
-        DataController.sharedInstance.getMenuForRestaurant(with: restaurant.id) { (menu, error) in
+        DataController.getMenuForRestaurant(withId: restaurant.id) { (menu, error) in
             loadingViewController.remove()
             
-            if error != nil {
+            guard let menu = menu, error == nil else {
                 let alert = UIAlertController(title: "Kunde inte hämta meny", message: "", preferredStyle: .alert)
                 let alertAction = UIAlertAction(title: "Okej", style: .default, handler: nil)
                 alert.addAction(alertAction)
@@ -84,19 +84,13 @@ private extension MenuViewController {
                 DispatchQueue.main.async {
                     self.present(alert, animated: true, completion: nil)
                 }
-            } else if let menu = menu {
-                for item in menu {
-                    if !self.categories.contains(item.category) {
-                        self.categories.append(item.category)
-                    }
-                }
-                
-                self.menu = menu
-                self.sortMenuByRank()
-                
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+                return
+            }
+            
+            self.menu = menu
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
         }
     }
@@ -106,32 +100,40 @@ private extension MenuViewController {
 
 extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     
+    //MARK: Section
+    
     func numberOfSections(in tableView: UITableView) -> Int {
-        return categories.count
+        return menu.categories().count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return categories[section]
+        return menu.categories()[section]
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let header = view as? UITableViewHeaderFooterView {
-            header.textLabel?.font = .pizzaRegularFont(withSize: 20)
-            header.textLabel?.textColor = .pizzaColor(.white)
-            header.backgroundView?.backgroundColor = .pizzaColor(.green)
+            header.textLabel?.font = .foodlyRegularFont(withSize: 20)
+            header.textLabel?.textColor = .foodlyColor(.white)
+            header.backgroundView?.backgroundColor = UIColor.clear
         }
     }
     
+    // MARK: Row
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let menuItemsInCategory = getMenuItemsIn(category: categories[section])
+        let category = menu.categories()[section]
+        let menuItemsInCategory = menu.getItemsIn(category: category)
         return menuItemsInCategory.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let menuItemsInCategory = getMenuItemsIn(category: categories[indexPath.section])
+        let category = menu.categories()[indexPath.section]
+        let menuItemsInCategory = menu.getItemsIn(category: category)
         let menuItem = menuItemsInCategory[indexPath.row]
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: menuCellIdentifier) as! MenuItemTableViewCell
+        let identifier = MenuItemTableViewCell.reuseIdentifier()
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as! MenuItemTableViewCell
+        cell.selectionStyle = .none
         cell.setName(to: menuItem.name)
         cell.setPrice(to: menuItem.price)
         cell.setDescription(to: menuItem.topping?.joined(separator: ", ") ?? "")
@@ -143,34 +145,17 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         
         let storyboard = StoryboardInstance.home
         if let viewController = storyboard.instantiateViewController(withIdentifier: "AddToCartViewController") as? AddToCartViewController {
+            let category = menu.categories()[indexPath.section]
+            let menuItemsInCategory = menu.getItemsIn(category: category)
+            let selectedMenuItem = menuItemsInCategory[indexPath.row]
             
-            let allMenuItemsInCategory = getMenuItemsIn(category: categories[indexPath.section])
-            let selectedMenuItem = allMenuItemsInCategory[indexPath.row]
             viewController.menuItem = selectedMenuItem
             viewController.restaurant = restaurant
             viewController.addToCartProtocol = self
             viewController.modalPresentationStyle = .overCurrentContext
+            
             present(viewController, animated: false, completion: nil)
         }
-    }
-}
-
-// MARK: Helpers
-
-private extension MenuViewController {
-    
-    func sortMenuByRank() {
-        menu.sort { (item1, item2) -> Bool in
-            if let rank1 = item1.rank, let rank2 = item2.rank {
-                return item1.category == item2.category && rank1 < rank2
-            }
-            
-            return false
-        }
-    }
-    
-    func getMenuItemsIn(category: String) -> [MenuItem] {
-        return menu.filter({ $0.category == category })
     }
 }
 
@@ -205,11 +190,11 @@ private extension MenuViewController {
     }
     
     func setCartButtonText() {
-        let quantity = Cart.quantityOfItems(in: cart)
+        let quantity = CartItem.quantityOfItems(in: cart)
         let itemString = quantity > 1 ? "varor" : "vara"
         nrOfItemsLabel.text = "\(quantity) \(itemString) i varukorgen"
         
-        priceLabel.text = "\(Cart.totalPriceOfItems(in: cart)) kr"
+        priceLabel.text = "\(CartItem.totalPriceOfItems(in: cart)) kr"
         descriptionLabel.text = "Gå till varukorgen"
     }
     
@@ -233,7 +218,7 @@ extension MenuViewController: UpdateCartProtocol {
         if let index = cart.firstIndex(where: { $0.menuItem.id == menuItem.id }) {
             cart[index].quantity += quantity
         } else {
-            let newItem = Cart(menuItem: menuItem, quantity: quantity)
+            let newItem = CartItem(menuItem: menuItem, quantity: quantity)
             cart.append(newItem)
         }
     }

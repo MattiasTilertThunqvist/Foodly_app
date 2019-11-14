@@ -9,23 +9,23 @@
 import UIKit
 
 enum AssetsColor {
-    case green
+    case red
     case white
     case lightGray
     case darkGray
 }
 
 extension UIColor {
-    static func pizzaColor(_ name: AssetsColor) -> UIColor {
+    static func foodlyColor(_ name: AssetsColor) -> UIColor {
         switch name {
-        case .green:
-            return UIColor(named: "pizzaGreen")!
+        case .red:
+            return UIColor(named: "foodlyRed")!
         case .white:
-            return UIColor(named: "pizzaWhite")!
+            return UIColor(named: "foodlyWhite")!
         case .lightGray:
-            return UIColor(named: "pizzaLightGray")!
+            return UIColor(named: "foodlyLightGray")!
         case .darkGray:
-            return UIColor(named: "pizzaDarkGray")!
+            return UIColor(named: "foodlyDarkGray")!
         }
     }
 }

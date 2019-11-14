@@ -17,9 +17,8 @@ extension UIViewController {
     }
     
     func remove() {
-        guard parent != nil else { return }
-        
         DispatchQueue.main.async {
+            guard self.parent != nil else { return }
             self.willMove(toParent: nil)
             self.view.removeFromSuperview()
             self.removeFromParent()

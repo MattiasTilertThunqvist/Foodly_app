@@ -9,11 +9,14 @@
 import Foundation
 
 struct Order: Decodable {
+    
+    // MARK: Properties
+    
     let orderId: Int
     let totalPrice: Int
     let orderedAt: String
     var esitmatedDelivery: String
     var status: String
-    var cart: [OrderDetails]?
+    var cart: [CartItem]?
     var restuarantId: Int?
 }

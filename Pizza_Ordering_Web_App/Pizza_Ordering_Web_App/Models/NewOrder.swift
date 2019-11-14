@@ -9,6 +9,17 @@
 import Foundation
 
 struct NewOrder: Encodable {
+    
+    // MARK: Properties
+    
     var orderDetails: [OrderDetails]
     var restuarantId: Int
+}
+
+struct OrderDetails: Codable {
+    
+    // MARK: Properties
+    
+    var menuItemId : Int
+    var quantity : Int
 }

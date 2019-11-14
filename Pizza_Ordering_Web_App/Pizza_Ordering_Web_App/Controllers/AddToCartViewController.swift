@@ -11,6 +11,7 @@ import UIKit
 class AddToCartViewController: UIViewController {
     
     // MARK: Properties
+    
     var restaurant: Restaurant!
     var menuItem: MenuItem!
     var addToCartProtocol: UpdateCartProtocol!
@@ -27,6 +28,7 @@ class AddToCartViewController: UIViewController {
     }()
     
     // MARK: IBOutlets
+    
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var restaurantNameLabel: UILabel!
     @IBOutlet weak var dismissButton: UIButton!
@@ -100,9 +102,16 @@ private extension AddToCartViewController {
         containerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
         dismissButton.layer.cornerRadius = dismissButton.frame.height * 0.5
+        dismissButton.layer.setFoodlyCustomShadow()
+        
         decreaseQuantityButton.layer.cornerRadius = decreaseQuantityButton.frame.height * 0.5
+        decreaseQuantityButton.layer.setFoodlyCustomShadow()
+        
         increaseQuantityButton.layer.cornerRadius = increaseQuantityButton.frame.height * 0.5
-        addToCartButton.layer.cornerRadius = addToCartButton.frame.height * 0.5        
+        increaseQuantityButton.layer.setFoodlyCustomShadow()
+        
+        addToCartButton.layer.cornerRadius = addToCartButton.frame.height * 0.5
+        addToCartButton.layer.setFoodlyCustomShadow()
     }
 }
 
@@ -117,8 +126,8 @@ private extension AddToCartViewController {
         }
     }
     
-    func hideContent(withAnimation animation: Bool, completion: (() -> ())?) {
-        let timeInterval = animation ? animationDuration : 0.0
+    func hideContent(withAnimation: Bool, completion: (() -> ())?) {
+        let timeInterval = withAnimation ? animationDuration : 0.0
 
         UIView.animate(withDuration: timeInterval, animations: {
             self.blurEffectView.alpha = 0.0

@@ -9,6 +9,9 @@
 import Foundation
 
 struct MenuItem: Decodable {
+    
+    // MARK: Properties
+    
     let id: Int
     let category: String
     let name: String

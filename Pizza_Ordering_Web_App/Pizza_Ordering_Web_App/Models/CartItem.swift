@@ -8,11 +8,16 @@
 
 import Foundation
 
-struct Cart {
+struct CartItem: Decodable {
+    
+    // MARK: Properties
+    
     let menuItem: MenuItem
     var quantity: Int
     
-    static func totalPriceOfItems(in cart: [Cart]) -> Int {
+    // MARK: Helpers
+    
+    static func totalPriceOfItems(in cart: [CartItem]) -> Int {
         var totalPrice = 0
         
         for item in cart {
@@ -22,7 +27,7 @@ struct Cart {
         return totalPrice
     }
     
-    static func quantityOfItems(in cart: [Cart]) -> Int {
+    static func quantityOfItems(in cart: [CartItem]) -> Int {
         var quantity = 0
         
         for item in cart {

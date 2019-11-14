@@ -10,7 +10,7 @@ import UIKit
 
 extension UIFont {
     
-    static func pizzaRegularFont(withSize size: CGFloat) -> UIFont {
+    static func foodlyRegularFont(withSize size: CGFloat) -> UIFont {
         return UIFont(name: "Avenir-Medium", size: size)!
     }
 }

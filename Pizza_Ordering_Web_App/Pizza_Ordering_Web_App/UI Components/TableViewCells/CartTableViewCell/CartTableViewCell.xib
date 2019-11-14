@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="110" id="KGk-i7-Jjw" customClass="CartTableViewCell" customModule="Pizza_Ordering_Web_App" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="308" height="110"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="308" height="109.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rru-hT-pl8">
+                        <rect key="frame" x="15" y="10" width="258" height="89.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MenuItem" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjP-3N-sWe">
+                                <rect key="frame" x="15" y="10" width="208" height="24.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                <color key="textColor" name="pizzaDarkGray"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="233 kr per item" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UZk-nl-c61">
+                                <rect key="frame" x="15" y="36.5" width="208" height="20.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
+                                <color key="textColor" name="pizzaLightGray"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Total: 123 kr" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ja-L0-2Rx" userLabel="Total Price Label">
+                                <rect key="frame" x="15" y="59" width="208" height="20.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
+                                <color key="textColor" name="foodlyLightGray"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="UZk-nl-c61" firstAttribute="leading" secondItem="Rru-hT-pl8" secondAttribute="leading" constant="15" id="BdL-Fl-THe"/>
+                            <constraint firstItem="xjP-3N-sWe" firstAttribute="top" secondItem="Rru-hT-pl8" secondAttribute="top" constant="10" id="Fhy-HW-JDM"/>
+                            <constraint firstAttribute="trailing" secondItem="3ja-L0-2Rx" secondAttribute="trailing" constant="35" id="Hl5-Rr-krL"/>
+                            <constraint firstAttribute="trailing" secondItem="xjP-3N-sWe" secondAttribute="trailing" constant="35" id="Qno-LB-747"/>
+                            <constraint firstAttribute="bottom" secondItem="3ja-L0-2Rx" secondAttribute="bottom" constant="10" id="a9Y-XF-EHV"/>
+                            <constraint firstItem="3ja-L0-2Rx" firstAttribute="top" secondItem="UZk-nl-c61" secondAttribute="bottom" constant="2" id="c2d-SE-l7n"/>
+                            <constraint firstItem="3ja-L0-2Rx" firstAttribute="leading" secondItem="Rru-hT-pl8" secondAttribute="leading" constant="15" id="eXx-gh-1et"/>
+                            <constraint firstItem="UZk-nl-c61" firstAttribute="top" secondItem="xjP-3N-sWe" secondAttribute="bottom" constant="2" id="nbP-wB-jv0"/>
+                            <constraint firstItem="xjP-3N-sWe" firstAttribute="leading" secondItem="Rru-hT-pl8" secondAttribute="leading" constant="15" id="pyh-Dd-Fbk"/>
+                            <constraint firstAttribute="trailing" secondItem="UZk-nl-c61" secondAttribute="trailing" constant="35" id="sJm-0k-QPL"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Flg-uZ-uON">
+                        <rect key="frame" x="253" y="35" width="40" height="40"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1x" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UZM-FZ-hHt">
+                                <rect key="frame" x="7" y="7" width="26" height="26"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
+                                <color key="textColor" name="foodlyWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="foodlyRed"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="DZ8-BM-Ekw"/>
+                            <constraint firstItem="UZM-FZ-hHt" firstAttribute="leading" secondItem="Flg-uZ-uON" secondAttribute="leading" constant="7" id="QPj-KD-wkc"/>
+                            <constraint firstAttribute="bottom" secondItem="UZM-FZ-hHt" secondAttribute="bottom" constant="7" id="S19-ig-S3P"/>
+                            <constraint firstItem="UZM-FZ-hHt" firstAttribute="top" secondItem="Flg-uZ-uON" secondAttribute="top" constant="7" id="b4H-7a-eX3"/>
+                            <constraint firstAttribute="trailing" secondItem="UZM-FZ-hHt" secondAttribute="trailing" constant="7" id="myo-1Y-t4v"/>
+                            <constraint firstAttribute="height" constant="40" id="vpm-39-9bZ"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="Rru-hT-pl8" secondAttribute="bottom" constant="10" id="IY9-Qg-FhM"/>
+                    <constraint firstItem="Rru-hT-pl8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="KJn-HT-3nt"/>
+                    <constraint firstAttribute="trailing" secondItem="Flg-uZ-uON" secondAttribute="trailing" constant="15" id="MA2-1A-7GR"/>
+                    <constraint firstItem="Flg-uZ-uON" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Zjb-ke-1Xh"/>
+                    <constraint firstAttribute="trailing" secondItem="Rru-hT-pl8" secondAttribute="trailing" constant="35" id="rbd-5w-9iM"/>
+                    <constraint firstItem="Rru-hT-pl8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="y3x-o5-x8u"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="containerView" destination="Rru-hT-pl8" id="Hy9-rb-azD"/>
+                <outlet property="menuItemLabel" destination="xjP-3N-sWe" id="K91-Rd-fJ4"/>
+                <outlet property="pricePerItemLabel" destination="UZk-nl-c61" id="WzT-Pf-q68"/>
+                <outlet property="quantityContainerView" destination="Flg-uZ-uON" id="DJX-0U-nMW"/>
+                <outlet property="quantityLabel" destination="UZM-FZ-hHt" id="BQ9-vQ-bIX"/>
+                <outlet property="totalPriceLabel" destination="3ja-L0-2Rx" id="JxK-uL-wgD"/>
+            </connections>
+            <point key="canvasLocation" x="128" y="184.40779610194903"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="foodlyLightGray">
+            <color red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="foodlyRed">
+            <color red="0.93333333333333335" green="0.22352941176470589" blue="0.30588235294117649" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="foodlyWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="pizzaDarkGray">
+            <color red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="pizzaLightGray">
+            <color red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

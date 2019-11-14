@@ -15,13 +15,16 @@ class HomeViewController: UIViewController {
     
     let locationManager = CLLocationManager()
     var restaurants: [Restaurant] = []
-    let RestaurantCellIdentifier = "RestaurantTableViewCell"
     let dispatchGroup = DispatchGroup()
-    var locationIsNotSet = true
+    var locationAuthStatusIsSet = false
     
     // MARK: IBOutlets
     
+    @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: IBActions
+    
     @IBAction func ordersButtonWasPressed(_ sender: UIButton) {
         presentOrders()
     }
@@ -30,10 +33,10 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        startRequests()
         setup()
         setupTableView()
         registerNibs()
+        startRequests()
     }
 }
 
@@ -42,27 +45,22 @@ class HomeViewController: UIViewController {
 private extension HomeViewController {
     
     func setup() {
-        let nav = self.navigationController?.navigationBar
-        nav?.barStyle = UIBarStyle.black
-        nav?.tintColor = .pizzaColor(.white)
-        nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.pizzaColor(.white),
-                                    NSAttributedString.Key.font: UIFont.pizzaRegularFont(withSize: 20)]
         title = "Restauranger"
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     func startRequests() {
-        checkLocationManager()
         getRestaurants()
+        checkLocationManager()
         
         dispatchGroup.notify(queue: .main) {
-            if let location = self.locationManager.location, !self.restaurants.isEmpty {
+            if let location = self.locationManager.location {
                 self.restaurants.sort(by: { (restaurant1, restaurant2) -> Bool in
                     return restaurant1.distance(to: location) < restaurant2.distance(to: location)
                 })
-                
-                self.tableView.reloadData()
             }
+            
+            self.tableView.reloadData()
         }
     }
     
@@ -70,23 +68,24 @@ private extension HomeViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 80
+        tableView.estimatedRowHeight = 115
     }
     
     func registerNibs() {
-        let cellNib = UINib(nibName: RestaurantCellIdentifier, bundle: nil)
-        tableView.register(cellNib, forCellReuseIdentifier: RestaurantCellIdentifier)
+        let identifier = RestaurantTableViewCell.reuseIdentifier()
+        let cellNib = UINib(nibName: identifier, bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: identifier)
     }
     
     func getRestaurants() {
         dispatchGroup.enter()
-        DataController.sharedInstance.getRestaurants { (restaurants, error) in
-            if error != nil {
+        DataController.getRestaurants { (restaurants, error) in
+            guard let restaurants = restaurants, error == nil else {
                 self.presentErrorAlert(title: "Kunde inte hämta restauranger", message: "", buttonText: "Okej")
-            } else if let restaurants = restaurants {
-                self.restaurants = restaurants
+                return
             }
             
+            self.restaurants = restaurants
             self.dispatchGroup.leave()
         }
     }
@@ -102,9 +101,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let restaurant = restaurants[indexPath.row]
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: RestaurantCellIdentifier) as! RestaurantTableViewCell
+        let identifier = RestaurantTableViewCell.reuseIdentifier()
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as! RestaurantTableViewCell
+        cell.selectionStyle = .none
         cell.setName(to: restaurant.name)
-        cell.setAdress(to: restaurant.address1 + ", " + restaurant.address2)
+        cell.setAdress(adress1: restaurant.address1, address2: restaurant.address2)
         return cell
     }
     
@@ -125,39 +126,26 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 extension HomeViewController: CLLocationManagerDelegate {
     
     func checkLocationManager() {
-        dispatchGroup.enter()
         if CLLocationManager.locationServicesEnabled() {
-            setupLocationManager()
+            locationManager.delegate = self
+            dispatchGroup.enter()
             checkLocationAuthorization()
         } else {
-            presentErrorAlert(title: "Platsdata avstängt", message: "Gå till inställningar och aktivera platsdata.", buttonText: "Okej")
+            locationAuthStatusIsSet.toggle()
         }
     }
     
-    func setupLocationManager() {
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-    }
-    
     func checkLocationAuthorization() {
+        
         switch CLLocationManager.authorizationStatus() {
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
             break
-        case .denied:
-            presentErrorAlert(title: "Kan ej hämta platsdata", message: "Gå till inställningar och tillåt appen åtkomst av platsdata.", buttonText: "Okej")
-            break
-        case .restricted:
-            presentErrorAlert(title: "Kan ej hämta platsdata", message: "För att använda appen krävs åtkomst av platsdata.", buttonText: "Okej")
-            break
-        case .authorizedWhenInUse:
-            if locationIsNotSet {
+        default:
+            if locationAuthStatusIsSet == false {
+                locationAuthStatusIsSet.toggle()
                 dispatchGroup.leave()
-                locationIsNotSet.toggle()
             }
-            break
-        case .authorizedAlways:
-            break
         }
     }
     
@@ -172,6 +160,7 @@ private extension HomeViewController {
     
     func presentOrders() {
         if let viewController = StoryboardInstance.home.instantiateViewController(withIdentifier: "OrderOverviewViewController") as? OrderOverviewViewController {
+            viewController.restaurants = restaurants
             present(viewController, animated: true, completion: nil)
         }
     }
