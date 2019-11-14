@@ -40,7 +40,7 @@ class CartTableViewCell: UITableViewCell {
     }
     
     func setPricePerUnit(to price: Int) {
-        pricePerItemLabel.text = "Pris per vara: \(price) kr"
+        pricePerItemLabel.text = "Price per item: \(price) kr"
     }
     
     func setTotalPrice(to price: Int) {

@@ -41,17 +41,17 @@ class OrderTableViewHeaderView: UITableViewHeaderFooterView {
     }
     
     func setOrderDate(to date: String) {
-        orderDateInfoLabel.text = "Orderdatum"
+        orderDateInfoLabel.text = "Order date"
         orderDateLabel.text = date
     }
     
     func setEstimatedDeliveryDate(to date: String) {
-        deliveryDateInfoLabel.text = "Uppskattad leverans"
+        deliveryDateInfoLabel.text = "Ready for pick up"
         deliveryDateLabel.text = date
     }
     
     func setDeliveryStatus(to status: String) {
-        statusInfoLabel.text = "Leveransstatus"
+        statusInfoLabel.text = "Delivery status"
         statusLabel.text = status
     }
     

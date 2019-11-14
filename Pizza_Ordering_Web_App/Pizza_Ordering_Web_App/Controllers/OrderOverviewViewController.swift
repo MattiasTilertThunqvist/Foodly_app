@@ -58,7 +58,7 @@ class OrderOverviewViewController: UIViewController {
 private extension OrderOverviewViewController {
 
     func setup() {
-        headerLabel.text = isOrderConfirmation ? "Orderbekräftelse" : "Mina ordrar"
+        headerLabel.text = isOrderConfirmation ? "Order confirmed" : "My orders"
     }
     
     func setupContent() {
@@ -84,7 +84,7 @@ private extension OrderOverviewViewController {
     func getOrders() {
         DataController.getOrders { (orders, error) in
             guard let orders = orders, error == nil else {
-                self.displayAlertLabel(withMessage: "Misslyckades att uppdatera order")
+                self.displayAlertLabel(withMessage: "Failed to update order")
                 return
             }
             

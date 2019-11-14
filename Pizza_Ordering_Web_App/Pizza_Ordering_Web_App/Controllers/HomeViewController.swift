@@ -45,7 +45,7 @@ class HomeViewController: UIViewController {
 private extension HomeViewController {
     
     func setup() {
-        title = "Restauranger"
+        title = "Restaurants"
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
@@ -81,7 +81,7 @@ private extension HomeViewController {
         dispatchGroup.enter()
         DataController.getRestaurants { (restaurants, error) in
             guard let restaurants = restaurants, error == nil else {
-                self.presentErrorAlert(title: "Kunde inte hämta restauranger", message: "", buttonText: "Okej")
+                self.presentErrorAlert(title: "Couldn't load restaurants", message: "", buttonText: "Okey")
                 return
             }
             

@@ -85,8 +85,8 @@ private extension AddToCartViewController {
         restaurantNameLabel.text = restaurant.name
         menuItemLabel.text = menuItem.name
         descriptionLabel.text = menuItem.topping?.joined(separator: ", ") ?? ""
-        pricePerUnitLabel.text = menuItem.price > 0 ? "\(menuItem.price) kr" : "Gratis"
-        addToCartButton.setTitle("Lägg i varukorgen", for: .normal)
+        pricePerUnitLabel.text = menuItem.price > 0 ? "\(menuItem.price) kr" : "Free"
+        addToCartButton.setTitle("Add to cart", for: .normal)
         setTotalPrice()
         quantityDidChange()
         hideContent(withAnimation: false, completion: nil)
@@ -146,7 +146,7 @@ private extension AddToCartViewController {
     
     func setTotalPrice() {
         let totalPrice = quantityOfItem * menuItem.price
-        self.totalPriceLabel.text = "\(quantityOfItem) för \(totalPrice) kr"
+        self.totalPriceLabel.text = "\(quantityOfItem) for \(totalPrice) kr"
     }
     
     func quantityDidChange() {

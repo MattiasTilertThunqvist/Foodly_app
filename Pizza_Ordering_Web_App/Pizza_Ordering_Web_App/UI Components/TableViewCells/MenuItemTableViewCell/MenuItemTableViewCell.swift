@@ -39,7 +39,7 @@ class MenuItemTableViewCell: UITableViewCell {
     }
     
     func setPrice(to price: Int) {
-        priceLabel.text = price > 0 ? "\(price) kr" : "Gratis"
+        priceLabel.text = price > 0 ? "\(price) kr" : "Free"
     }
     
     static func reuseIdentifier() -> String {
