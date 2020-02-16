@@ -2,7 +2,7 @@
 //  OrderTableViewHeaderView.swift
 //  Pizza_Ordering_Web_App
 //
-//  Created by Mattias Tilert Thunqvist on 2019-02-16.
+//  Created by Mattias Tilert Thunqvist on 2019-10-13.
 //  Copyright © 2019 Mattias Tilert Thunqvist. All rights reserved.
 //
 
@@ -41,17 +41,17 @@ class OrderTableViewHeaderView: UITableViewHeaderFooterView {
     }
     
     func setOrderDate(to date: String) {
-        orderDateInfoLabel.text = "Orderdatum"
+        orderDateInfoLabel.text = "Order date"
         orderDateLabel.text = date
     }
     
     func setEstimatedDeliveryDate(to date: String) {
-        deliveryDateInfoLabel.text = "Uppskattad leverans"
+        deliveryDateInfoLabel.text = "Ready for pick up"
         deliveryDateLabel.text = date
     }
     
     func setDeliveryStatus(to status: String) {
-        statusInfoLabel.text = "Leveransstatus"
+        statusInfoLabel.text = "Delivery status"
         statusLabel.text = status
     }
     

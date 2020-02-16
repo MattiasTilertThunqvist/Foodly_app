@@ -2,7 +2,7 @@
 //  DataController.swift
 //  Pizza_Ordering_Web_App
 //
-//  Created by Mattias Tilert Thunqvist on 2019-01-30.
+//  Created by Mattias Tilert Thunqvist on 2019-11-10.
 //  Copyright © 2019 Mattias Tilert Thunqvist. All rights reserved.
 //
 
@@ -10,10 +10,14 @@ import Foundation
 
 class DataController {
     
+    // MARK: Properties
+    
+    static let urlString = "https://private-130ed-foodlyapp.apiary-mock.com/"
+    
     // MARK: Restarurants
     
     static func getRestaurants(completion: @escaping (_ restaurants: [Restaurant]?, _ error: Error?) -> ()) {
-        let url = URL(string: "https://private-130ed-foodlyapp.apiary-mock.com/restaurants/")!
+        let url = URL(string: urlString + "restaurants/")!
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data, error == nil else {
@@ -33,7 +37,7 @@ class DataController {
     // MARK: Menu
     
     static func getMenuForRestaurant(withId id: Int, completion: @escaping (_ menu: Menu?, _ error: Error?) -> ()) {
-        let url = URL(string: "https://private-130ed-foodlyapp.apiary-mock.com/restaurants/\(id)/menu")!
+        let url = URL(string: urlString + "restaurants/\(id)/menu")!
 
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data, error == nil else {
@@ -55,7 +59,7 @@ class DataController {
     // MARK: Order
     
     static func createOrder(restaurantId: Int, cart: [CartItem], completion: @escaping (_ order: Order?, _ error: Error?) -> ()) {
-        let url = URL(string: "https://private-130ed-foodlyapp.apiary-mock.com/orders/createorder/")!
+        let url = URL(string: urlString + "orders/createorder/")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
 
@@ -87,7 +91,7 @@ class DataController {
     }
     
     static func getOrders(completion: @escaping (_ order: [Order]?, _ error: Error?) -> ()) {
-        let url = URL(string: "https://private-130ed-foodlyapp.apiary-mock.com/orders/")!
+        let url = URL(string: urlString + "orders/")!
         let request = URLRequest(url: url)
         
         URLSession.shared.dataTask(with: request) { data, response, error in

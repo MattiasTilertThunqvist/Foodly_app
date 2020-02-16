@@ -2,7 +2,7 @@
 //  MenuViewController.swift
 //  Pizza_Ordering_Web_App
 //
-//  Created by Mattias Tilert Thunqvist on 2019-01-31.
+//  Created by Mattias Tilert Thunqvist on 2019-11-10.
 //  Copyright © 2019 Mattias Tilert Thunqvist. All rights reserved.
 //
 
@@ -77,8 +77,8 @@ private extension MenuViewController {
             loadingViewController.remove()
             
             guard let menu = menu, error == nil else {
-                let alert = UIAlertController(title: "Kunde inte hämta meny", message: "", preferredStyle: .alert)
-                let alertAction = UIAlertAction(title: "Okej", style: .default, handler: nil)
+                let alert = UIAlertController(title: "Couldn't load menu", message: "", preferredStyle: .alert)
+                let alertAction = UIAlertAction(title: "Okey", style: .default, handler: nil)
                 alert.addAction(alertAction)
                 
                 DispatchQueue.main.async {
@@ -191,11 +191,11 @@ private extension MenuViewController {
     
     func setCartButtonText() {
         let quantity = CartItem.quantityOfItems(in: cart)
-        let itemString = quantity > 1 ? "varor" : "vara"
-        nrOfItemsLabel.text = "\(quantity) \(itemString) i varukorgen"
+        let itemString = quantity > 1 ? "items" : "item"
+        nrOfItemsLabel.text = "\(quantity) \(itemString) in cart"
         
         priceLabel.text = "\(CartItem.totalPriceOfItems(in: cart)) kr"
-        descriptionLabel.text = "Gå till varukorgen"
+        descriptionLabel.text = "Go to cart"
     }
     
     @objc func goToCart() {

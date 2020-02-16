@@ -2,7 +2,7 @@
 //  CartViewController.swift
 //  Pizza_Ordering_Web_App
 //
-//  Created by Mattias Tilert Thunqvist on 2019-02-13.
+//  Created by Mattias Tilert Thunqvist on 2019-10-12.
 //  Copyright © 2019 Mattias Tilert Thunqvist. All rights reserved.
 //
 
@@ -56,10 +56,10 @@ class CartViewController: UIViewController {
 private extension CartViewController {
     
     func setup() {
-        title = "Varukorg"
+        title = "Cart"
         orderContainerView.layer.setFoodlyCustomShadow()
         orderButton.layer.setFoodlyCustomShadow()
-        orderButton.setTitle("Beställ", for: .normal)
+        orderButton.setTitle("Place order", for: .normal)
         priceLabel.text = "\(CartItem.totalPriceOfItems(in: cart)) kr"
     }
     
@@ -123,7 +123,7 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
     // MARK: Edit
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteButton = UITableViewRowAction(style: .default, title: "Ta bort") { (action, indexPath) in
+        let deleteButton = UITableViewRowAction(style: .default, title: "Remove") { (action, indexPath) in
             self.tableView.dataSource?.tableView?(self.tableView, commit: .delete, forRowAt: indexPath)
             return
         }
@@ -141,7 +141,7 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         if cart.isEmpty {
-            displayAlertLabel(withMessage: "Du har inga varor i varukorgen. Gå tillbaka för att lägga till några.")
+            displayAlertLabel(withMessage: "No items in cart. Return to menu and add some.")
         }
     }
 }
@@ -177,7 +177,7 @@ private extension CartViewController {
             guard let order = order, error == nil else {
                 DispatchQueue.main.async {
                     self.loadingViewController.remove()
-                    self.displayAlertLabel(withMessage: "Beställningen misslyckades. Något gick fel, vi beklagar. Gå tillbaka och gör ett nytt försök.")
+                    self.displayAlertLabel(withMessage: "Something went wrong, failed to place order.")
                 }
                 
                 return

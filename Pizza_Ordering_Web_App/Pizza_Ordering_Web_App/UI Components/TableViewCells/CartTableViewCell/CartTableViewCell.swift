@@ -2,7 +2,7 @@
 //  CartTableViewCell.swift
 //  Pizza_Ordering_Web_App
 //
-//  Created by Mattias Tilert Thunqvist on 2019-02-14.
+//  Created by Mattias Tilert Thunqvist on 2019-10-12.
 //  Copyright © 2019 Mattias Tilert Thunqvist. All rights reserved.
 //
 
@@ -40,7 +40,7 @@ class CartTableViewCell: UITableViewCell {
     }
     
     func setPricePerUnit(to price: Int) {
-        pricePerItemLabel.text = "Pris per vara: \(price) kr"
+        pricePerItemLabel.text = "Price per item: \(price) kr"
     }
     
     func setTotalPrice(to price: Int) {
