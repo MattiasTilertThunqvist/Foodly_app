@@ -1,6 +1,6 @@
 # Foodly
 ### A food ordering iOS app that uses Apiary Mock server.
-Backend apis: https://foodlyapp.docs.apiary.io/#
+Backend api: https://foodlyapp.docs.apiary.io/#
 
 #### Functions
 - Find the closest restaurant
