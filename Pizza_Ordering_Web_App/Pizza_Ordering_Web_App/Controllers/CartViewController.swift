@@ -188,10 +188,9 @@ private extension CartViewController {
     }
     
     func presentOrderOverview(for order: Order) {
-            DispatchQueue.main.async {
-                if let viewController = StoryboardInstance.home.instantiateViewController(withIdentifier: "OrderOverviewViewController") as? OrderOverviewViewController {
-                
-                    viewController.restaurants = [self.restaurant]
+        DispatchQueue.main.async {
+            if let viewController = StoryboardInstance.home.instantiateViewController(withIdentifier: "OrderOverviewViewController") as? OrderOverviewViewController {
+                viewController.restaurants = [self.restaurant]
                 viewController.orders = [order]
                 viewController.isOrderConfirmation = true
                     viewController.dismissProtocol = self.dismissProtocol
