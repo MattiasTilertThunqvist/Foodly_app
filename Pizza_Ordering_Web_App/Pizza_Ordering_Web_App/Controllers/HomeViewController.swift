@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeViewController.swift
 //  Pizza_Ordering_Web_App
 //
 //  Created by Mattias Tilert Thunqvist on 2019-11-10.
@@ -54,9 +54,9 @@ private extension HomeViewController {
         checkLocationManager()
         
         dispatchGroup.notify(queue: .main) {
-            if let location = self.locationManager.location {
+            if let userLocation = self.locationManager.location {
                 self.restaurants.sort(by: { (restaurant1, restaurant2) -> Bool in
-                    return restaurant1.distance(to: location) < restaurant2.distance(to: location)
+                    return restaurant1.distance(to: userLocation) < restaurant2.distance(to: userLocation)
                 })
             }
             
@@ -136,7 +136,6 @@ extension HomeViewController: CLLocationManagerDelegate {
     }
     
     func checkLocationAuthorization() {
-        
         switch CLLocationManager.authorizationStatus() {
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
