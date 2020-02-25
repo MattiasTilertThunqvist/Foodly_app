@@ -17,14 +17,8 @@ struct Menu {
     // MARK: Helpers
     
     func categories() -> [String] {
-        var categories: [String] = []
-        
-        for item in items {
-            if !categories.contains(item.category) {
-                categories.append(item.category)
-            }
-        }
-        
+        var categories = items.map({ $0.category })
+        categories.removeDuplicates()
         return categories
     }
     

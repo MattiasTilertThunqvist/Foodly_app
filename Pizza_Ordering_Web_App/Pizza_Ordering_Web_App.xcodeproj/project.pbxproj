@@ -40,6 +40,7 @@
 		8ADE624E2200B12900E956A1 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ADE624C2200B12900E956A1 /* Home.storyboard */; };
 		8ADE62502200B12B00E956A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8ADE624F2200B12B00E956A1 /* Assets.xcassets */; };
 		8ADE62532200B12B00E956A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ADE62512200B12B00E956A1 /* LaunchScreen.storyboard */; };
+		8AE89136240566200018DBEA /* Array+Foodly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE89135240566200018DBEA /* Array+Foodly.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,7 @@
 		8ADE624F2200B12B00E956A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8ADE62522200B12B00E956A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8ADE62542200B12B00E956A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8AE89135240566200018DBEA /* Array+Foodly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Foodly.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +180,7 @@
 				8A1FA55D2214301D00DF0430 /* UIFont+Foodly.swift */,
 				8A1FA55F221437DC00DF0430 /* UIColor+Foodly.swift */,
 				8A4179C52248D56D007C0A7D /* CALayer+Foodly.swift */,
+				8AE89135240566200018DBEA /* Array+Foodly.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				8AA8DA0E2212C6C900138FAF /* UIViewController+Foodly.swift in Sources */,
 				8A0E98882217246000A0EEA6 /* Order.swift in Sources */,
 				8A6940A9220330B100FD71F8 /* MenuViewController.swift in Sources */,
+				8AE89136240566200018DBEA /* Array+Foodly.swift in Sources */,
 				8AA8DA0B2212C2EE00138FAF /* LoadingViewController.swift in Sources */,
 				8A40D5F2220366D20066DCD9 /* MenuItemTableViewCell.swift in Sources */,
 				8A21B137221490C600C4B02A /* CartViewController.swift in Sources */,
