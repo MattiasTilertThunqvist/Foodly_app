@@ -73,10 +73,16 @@ private extension MenuViewController {
         let loadingViewController = LoadingViewController()
         add(loadingViewController)
         
-        DataController.getMenuForRestaurant(withId: restaurant.id) { (menu, error) in
+        DataController.getMenu(restaurantId: restaurant.id) { result in
             loadingViewController.remove()
             
-            guard let menu = menu, error == nil else {
+            switch result {
+            case .success(let menu):
+                DispatchQueue.main.async {
+                    self.menu = menu
+                    self.tableView.reloadData()
+                }
+            case .failure:
                 let alert = UIAlertController(title: "Couldn't load menu", message: "", preferredStyle: .alert)
                 let alertAction = UIAlertAction(title: "Okey", style: .default, handler: nil)
                 alert.addAction(alertAction)
@@ -84,13 +90,6 @@ private extension MenuViewController {
                 DispatchQueue.main.async {
                     self.present(alert, animated: true, completion: nil)
                 }
-                return
-            }
-            
-            self.menu = menu
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
             }
         }
     }

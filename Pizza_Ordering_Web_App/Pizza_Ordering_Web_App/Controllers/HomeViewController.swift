@@ -79,14 +79,14 @@ private extension HomeViewController {
     
     func getRestaurants() {
         dispatchGroup.enter()
-        DataController.getRestaurants { (restaurants, error) in
-            guard let restaurants = restaurants, error == nil else {
+        DataController.getRestaurants { result in
+            switch result {
+            case .success(let restaurants):
+                self.restaurants = restaurants
+                self.dispatchGroup.leave()
+            case .failure:
                 self.presentErrorAlert(title: "Couldn't load restaurants", message: "", buttonText: "Okey")
-                return
             }
-            
-            self.restaurants = restaurants
-            self.dispatchGroup.leave()
         }
     }
 }
