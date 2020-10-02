@@ -82,16 +82,15 @@ private extension OrderOverviewViewController {
     }
     
     func getOrders() {
-        DataController.getOrders { (orders, error) in
-            guard let orders = orders, error == nil else {
+        DataController.getOrders { (result) in
+            switch result {
+            case .success(let orders):
+                DispatchQueue.main.async {
+                    self.orders = orders
+                    self.tableView.reloadData()
+                }
+            case .failure:
                 self.displayAlertLabel(withMessage: "Failed to update order")
-                return
-            }
-            
-            self.orders = orders
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
             }
         }
     }

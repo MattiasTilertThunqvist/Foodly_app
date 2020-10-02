@@ -12,46 +12,52 @@ class DataController {
     
     // MARK: Properties
     
-    static let urlString = "https://private-130ed-foodlyapp.apiary-mock.com/"
+    private static let urlString = "https://private-130ed-foodlyapp.apiary-mock.com/"
+    private static let decoder = JSONDecoder()
     
     // MARK: Restarurants
     
-    static func getRestaurants(completion: @escaping (_ restaurants: [Restaurant]?, _ error: Error?) -> ()) {
+    static func getRestaurants(completion: @escaping (Result<[Restaurant], Error>) -> ()) {
         let url = URL(string: urlString + "restaurants/")!
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data, error == nil else {
-                completion(nil, error)
-                return
+            guard let data = data else {
+                if let error = error {
+                    completion(.failure(error))
+                }
+                
+                fatalError("Data and error should never both be nil")
             }
             
-            do {
-                let restaurants = try JSONDecoder().decode([Restaurant].self, from: data)
-                completion(restaurants, nil)
-            } catch let jsonError {
-                completion(nil, jsonError)
-            }
+            let result = Result(catching: {
+                try decoder.decode([Restaurant].self, from: data)
+            })
+            
+            completion(result)
         }.resume()
     }
     
     // MARK: Menu
     
-    static func getMenuForRestaurant(withId id: Int, completion: @escaping (_ menu: Menu?, _ error: Error?) -> ()) {
+    static func getMenu(restaurantId id: Int, completion: @escaping (Result<Menu, Error>) -> ()) {
         let url = URL(string: urlString + "restaurants/\(id)/menu")!
 
         URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data, error == nil else {
-                completion(nil, error)
-                return
+            guard let data = data else {
+                if let error = error {
+                    completion(.failure(error))
+                }
+                
+                fatalError("Data and error should never both be nil")
             }
-
+            
             do {
                 let menuItems = try JSONDecoder().decode([MenuItem].self, from: data)
                 var menu = Menu(items: menuItems)
                 menu.sortMenuByRank()
-                completion(menu, nil)
-            } catch let jsonError {
-                completion(nil, jsonError)
+                completion(.success(menu))
+            } catch {
+                completion(.failure(error))
             }
         }.resume()
     }
@@ -90,22 +96,43 @@ class DataController {
         }.resume()
     }
     
-    static func getOrders(completion: @escaping (_ order: [Order]?, _ error: Error?) -> ()) {
+//    static func getOrders(completion: @escaping (_ order: [Order]?, _ error: Error?) -> ()) {
+//        let url = URL(string: urlString + "orders/")!
+//        let request = URLRequest(url: url)
+//
+//        URLSession.shared.dataTask(with: request) { data, response, error in
+//            guard let data = data, error == nil else {
+//                completion([], error)
+//                return
+//            }
+//
+//            do {
+//                let order = try JSONDecoder().decode([Order].self, from: data)
+//                completion(order, nil)
+//            } catch let jsonError {
+//                completion([], jsonError)
+//            }
+//        }.resume()
+//    }
+    
+    static func getOrders(completion: @escaping (Result<[Order], Error>) -> ()) {
         let url = URL(string: urlString + "orders/")!
         let request = URLRequest(url: url)
         
         URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                completion([], error)
-                return
+            guard let data = data else {
+                if let error = error {
+                    completion(.failure(error))
+                }
+                
+                fatalError("Data and error should never both be nil")
             }
             
-            do {
-                let order = try JSONDecoder().decode([Order].self, from: data)
-                completion(order, nil)
-            } catch let jsonError {
-                completion([], jsonError)
-            }
+            let result = Result(catching: {
+                try decoder.decode([Order].self, from: data)
+            })
+            
+            completion(result)
         }.resume()
     }
 }
