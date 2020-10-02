@@ -96,25 +96,6 @@ class DataController {
         }.resume()
     }
     
-//    static func getOrders(completion: @escaping (_ order: [Order]?, _ error: Error?) -> ()) {
-//        let url = URL(string: urlString + "orders/")!
-//        let request = URLRequest(url: url)
-//
-//        URLSession.shared.dataTask(with: request) { data, response, error in
-//            guard let data = data, error == nil else {
-//                completion([], error)
-//                return
-//            }
-//
-//            do {
-//                let order = try JSONDecoder().decode([Order].self, from: data)
-//                completion(order, nil)
-//            } catch let jsonError {
-//                completion([], jsonError)
-//            }
-//        }.resume()
-//    }
-    
     static func getOrders(completion: @escaping (Result<[Order], Error>) -> ()) {
         let url = URL(string: urlString + "orders/")!
         let request = URLRequest(url: url)
